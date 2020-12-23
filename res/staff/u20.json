@@ -99,7 +99,7 @@
 		{ "LeagueId": 113, "TeamId": 3193, "TeamName": "U-20 Suriname", "id": 9489063, "name": "Akragas" },
 		{ "LeagueId": 117, "TeamId": 3205, "TeamName": "U-20 Liechtenstein", "id": 605782, "name": "lumpe" },
 		{ "LeagueId": 118, "TeamId": 3197, "TeamName": "U-20 Algérie", "id": 3842471, "name": "Chercheur_" },
-		{ "LeagueId": 119, "TeamId": 3201, "TeamName": "U-20 Mongol Uls", "id": 4870697, "name": "med82" },
+		{ "LeagueId": 119, "TeamId": 3201, "TeamName": "U-20 Mongol Uls", "id": 11052766, "name": "Danielini-UHS" },
 		{ "LeagueId": 120, "TeamId": 3203, "TeamName": "U-20 Lubnan", "id": 3989549, "name": "Schubliak" },
 		{ "LeagueId": 121, "TeamId": 3199, "TeamName": "U-20 Senegal", "id": 8659587, "name": "DHT-Oscar" },
 		{ "LeagueId": 122, "TeamId": 3207, "TeamName": "U-20 Hayastan", "id": 12078657, "name": "ArmenianDoctor" },
@@ -128,6 +128,22 @@
 		{ "LeagueId": 145, "TeamId": 3261, "TeamName": "U-20 O'zbekiston", "id": 13083096, "name": "mally_pally" },
 		{ "LeagueId": 146, "TeamId": 3255, "TeamName": "U-20 Cameroon", "id": 3365769, "name": "Grizzly5" },
 		{ "LeagueId": 147, "TeamId": 3257, "TeamName": "U-20 Cuba", "id": 10177622, "name": "-Pimenton-" },
-		{ "LeagueId": 148, "TeamId": 3259, "TeamName": "U-20 Palestine", "id": 8692462, "name": "NeModSajnt-UHS" }
+		{ "LeagueId": 148, "TeamId": 3259, "TeamName": "U-20 Palestine", "id": 8692462, "name": "NeModSajnt-UHS" },
+		{ "LeagueId": 149, "TeamId": 3280, "TeamName": "U-20 São Tomé e Príncipe", "id": 36342, "name": "jopesnope" },
+		{ "LeagueId": 151, "TeamId": 3282, "TeamName": "U-20 Comoros", "id": 13415827, "name": "Lambatatte" },
+		{ "LeagueId": 152, "TeamId": 3283, "TeamName": "U-20 Sri Lanka", "id": 6219913, "name": "Ambrero" },
+		{ "LeagueId": 153, "TeamId": 3284, "TeamName": "U-20 Curaçao", "id": 13520054, "name": "AdW135" },
+		{ "LeagueId": 154, "TeamId": 3285, "TeamName": "U-20 Guam", "id": 2984411, "name": "Mod-Vjmargaren" },
+		{ "LeagueId": 155, "TeamId": 3286, "TeamName": "U-20 RD Congo", "id": 13295791, "name": "Pibe_Valderrama" },
+		{ "LeagueId": 156, "TeamId": 3287, "TeamName": "U-20 Ītyōṗṗyā", "id": 282557, "name": "Proeme" },
+		{ "LeagueId": 157, "TeamId": 3288, "TeamName": "U-20 Saint Vincent and the Grenadines", "id": 140965, "name": "Livache" },
+		{ "LeagueId": 158, "TeamId": 3289, "TeamName": "U-20 Belize", "id": 312391, "name": "Vilie" },
+		{ "LeagueId": 159, "TeamId": 3290, "TeamName": "U-20 Madagasikara", "id": 10477795, "name": "Bill__Gates" },
+		{ "LeagueId": 160, "TeamId": 3291, "TeamName": "U-20 Botswana", "id": 12934320, "name": "ilmagoderoz" },
+		{ "LeagueId": 161, "TeamId": 3292, "TeamName": "U-20 Myanmar", "id": 9327413, "name": "anoren_" },
+		{ "LeagueId": 162, "TeamId": 3293, "TeamName": "U-20 Zambia", "id": 212439, "name": "GM-Shaddy" },
+		{ "LeagueId": 163, "TeamId": 3294, "TeamName": "U-20 San Marino", "id": 5388390, "name": "nuvolesparse" },
+		{ "LeagueId": 164, "TeamId": 3295, "TeamName": "U-20 Haiti", "id": 6276977, "name": "kike123" },
+		{ "LeagueId": 165, "TeamId": 3296, "TeamName": "U-20 Puerto Rico", "id": 11939705, "name": "maxi2101" }
 	]
 }
