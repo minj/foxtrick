@@ -19,7 +19,7 @@ Foxtrick.modules['AttVsDef'] = {
 			return;
 
 		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
-		if (Foxtrick.Pages.Match.isWalkOver(ratingstable))
+		if (!ratingstable || Foxtrick.Pages.Match.isWalkOver(ratingstable))
 			return;
 
 		var module = this;

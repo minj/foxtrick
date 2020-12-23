@@ -276,21 +276,26 @@ Foxtrick.modules['CopyRatings'] = {
 		var COPIED = Foxtrick.L10n.getString('copy.ratings.copied');
 		var COPY = Foxtrick.L10n.getString('button.copy');
 		var COPY_BOTH = Foxtrick.L10n.getString('copy.ratings.both');
+		// eslint-disable-next-line complexity
 		var createRatings = function(place, teams) {
 			try {
+				var rTable = Foxtrick.Pages.Match.getRatingsTable(doc);
+				if (!rTable)
+					return;
+
 				var insertBefore = null;
 				if (place == 'table')
 					insertBefore = doc.getElementById('oldMatchRatings');
 
-				var team1 = (teams == 'both') || (teams == 'home');
-				var team2 = (teams == 'both') || (teams == 'away');
+				var team1 = teams == 'both' || teams == 'home';
+				var team2 = teams == 'both' || teams == 'away';
 
 				var byNumber = doc.getElementById('sortByNumberIcon');
 				var byText = doc.getElementById('sortByTextIcon');
 				var copyTextRating = !Foxtrick.hasClass(byNumber, 'disabled');
 				var copyNumRating = !Foxtrick.hasClass(byText, 'disabled');
 
-				var table = Foxtrick.cloneElement(Foxtrick.Pages.Match.getRatingsTable(doc), true);
+				var table = Foxtrick.cloneElement(rTable, true);
 				Foxtrick.forEach(function(row) {
 					if (!team1 && row.cells.length >= 2)
 						row.cells[1].textContent = '###';

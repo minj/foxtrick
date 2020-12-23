@@ -33,7 +33,7 @@ Foxtrick.modules.RatingsDisplay = {
 
 			/** @type {HTMLTableElement} */
 			let averageTable = doc.querySelector('.miscRatings');
-			let rows = Foxtrick.concat(table.rows, averageTable.rows);
+			let rows = Foxtrick.concat(table.rows, averageTable ? averageTable.rows : []);
 
 			const AVERAGE_ROWS = ['mid', 'def', 'att', 'total'];
 
@@ -62,7 +62,7 @@ Foxtrick.modules.RatingsDisplay = {
 						val = parseFloat(float);
 					}
 					else if (DISPLAY_HS) {
-						if (i === 1 || i >= rows.length - AVERAGE_ROWS.length) {
+						if (i === 1 || averageTable && i >= rows.length - AVERAGE_ROWS.length) {
 							// midfield and averages
 							val *= SUBSECTOR_CT;
 						}

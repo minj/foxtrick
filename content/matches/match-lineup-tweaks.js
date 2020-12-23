@@ -1123,6 +1123,9 @@ Foxtrick.modules.MatchLineupTweaks = {
 		}
 
 		var table = Foxtrick.Pages.Match.getRatingsTable(doc);
+		if (!table)
+			return EMPTY;
+
 		var teamNr = Number(!isHome);
 
 		// don't parse pressing: affects stamina

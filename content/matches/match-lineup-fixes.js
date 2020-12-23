@@ -689,7 +689,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
 			return;
 
-		if (Foxtrick.Pages.Match.isWalkOver(doc.querySelector('div.mainBox table')))
+		let table = Foxtrick.Pages.Match.getRatingsTable(doc);
+		if (!table || Foxtrick.Pages.Match.isWalkOver(table))
 			return;
 
 		if (weatherEvents.length &&

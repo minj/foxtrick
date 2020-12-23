@@ -402,8 +402,11 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			tl = [0, 0];
 		}
 		else {
-			var ratingsTable = Foxtrick.Pages.Match.getRatingsTable(doc);
-			var tactics = Foxtrick.Pages.Match.getTacticsByTeam(ratingsTable);
+			let ratingsTable = Foxtrick.Pages.Match.getRatingsTable(doc);
+			if (!ratingsTable)
+				return;
+
+			let tactics = Foxtrick.Pages.Match.getTacticsByTeam(ratingsTable);
 			ta = tactics.tactics;
 			tl = tactics.level;
 		}
