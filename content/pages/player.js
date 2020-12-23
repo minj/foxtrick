@@ -676,7 +676,7 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 		var rows = table.rows;
 		for (var i = 0; i < order.length; ++i) {
 			var skillLink = rows[i].getElementsByTagName('a')[0];
-			if (!regE.test(skillLink.href)) {
+			if (!skillLink || !regE.test(skillLink.href)) {
 				found = false;
 				return; // skills are not visible
 			}

@@ -1195,6 +1195,9 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 			p.checkpoints = getCheckpointCount(p.FromMin, p.ToMin);
 			p.lastEvent = findEvent(p.ToMin); // TODO test OT and extension
+			if (!p.lastEvent)
+				return p;
+
 			p.lastEnergy = playerRatings[p.lastEvent].players[p.ftIdx].Stamina;
 
 			// player.isRested = hasRest(player.FromMin, player.ToMin);

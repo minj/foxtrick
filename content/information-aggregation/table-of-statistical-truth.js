@@ -27,6 +27,10 @@ Foxtrick.modules.TableOfStatisticalTruth = {
 
 		/** @type {HTMLTableElement} */
 		var leagueTable = doc.querySelector('#mainBody table');
+		if (!leagueTable) {
+			// season not available
+			return;
+		}
 		var insertBefore = leagueTable.nextSibling;
 
 		var tableHeader = Foxtrick.createFeaturedElement(doc, module, 'h2');

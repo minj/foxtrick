@@ -319,7 +319,7 @@ Foxtrick.modules.SeriesTransfers = {
 			if (loading && loading.parentNode)
 				loading.parentNode.removeChild(loading);
 			if (!hasListedPlayers) {
-				table.parentNode.removeChild(table);
+				table.remove();
 				var div = doc.createElement('div');
 				div.id = resultId;
 				div.textContent = Foxtrick.L10n.getString('SeriesTransfers.notransfers');

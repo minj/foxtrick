@@ -27,7 +27,7 @@ Foxtrick.modules['YouthSeriesEstimation'] = {
 		for (var i = 0; i < rows.length; ++i) {
 			var row = rows[i];
 			var cells = row.getElementsByTagName('td');
-			if (cells.length == 1)
+			if (cells.length < 3)
 				continue;
 
 			var sizeCell = cells[2];

@@ -628,7 +628,7 @@ Foxtrick.rAF = function(win, cb) {
 		return;
 	}
 
-	rAF(function() {
+	rAF.call(win, function() {
 		try {
 			cb.call(win);
 		}

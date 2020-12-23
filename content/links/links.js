@@ -153,14 +153,20 @@ Foxtrick.modules.Links = {
 			}
 			catch (e) {
 				let resp = /** @type {FetchError} */ e;
-				Foxtrick.log('Error', resp.status, 'loading links from:', resp.url,
-				             '. Using cached feed.');
+				if (resp.url) {
+					Foxtrick.log('Error', resp.status, 'loading links from:', resp.url,
+					             '. Using cached feed.');
+				}
+				else {
+					Foxtrick.log('Fatal Error', e, 'loading links from:', feed,
+					             '. Using cached feed.');
+				}
 
 				return Foxtrick.storage.get('LinksFeed.' + feed);
 			}
 		}).map(p => p.catch(Foxtrick.catch('StoreLinksCollection')));
 
-		const feedTexts = (await Promise.all(promises)).filter(Boolean);
+		const feedTexts = (await Promise.all(promises)).filter(Boolean).map(String);
 		return parseFeeds(feedTexts);
 	},
 
