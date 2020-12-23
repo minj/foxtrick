@@ -690,15 +690,15 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 	/** @param {HTMLTableElement} table */
 	var parseSeniorTable = function(table) {
 		var order = skillMap.senior;
-		var cells = table.getElementsByTagName('td');
+		var cells = table.querySelectorAll('td');
 		for (var i = 0; i < order.length; ++i) {
 			var cell = cells[2 * i + 1];
 			if (!cell) {
 				found = false;
 				return; // skills are not visible
 			}
-			var skillLink = cell.getElementsByTagName('a')[0];
-			if (!regE.test(skillLink.href)) {
+			var skillLink = cell.querySelector('a');
+			if (!skillLink || !regE.test(skillLink.href)) {
 				found = false;
 				return; // skills are not visible
 			}
