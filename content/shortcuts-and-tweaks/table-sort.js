@@ -29,16 +29,14 @@ Foxtrick.modules.TableSort = {
 				var table = thisTh.closest('table');
 				var row = /** @type {HTMLTableRowElement} */ (thisTh.parentElement);
 				var sortStart = row.rowIndex;
-				var thisIndex = thisTh.cellIndex;
-				var index = 0;
-				for (let i = 0; i <= thisIndex; ++i) {
-					let cell = row.cells[i];
 
-					// adjust for colspan in header
-					index += cell.colSpan;
-				}
+				// this tracks cells before thisTh
+				let before = [...row.cells].slice(0, thisTh.cellIndex);
+				const index = before.map(c => c.colSpan).reduce((s, c) => s + c, 0);
 
-				// Foxtrick.log('sort_start:',sort_start,'index: ',index);
+				var tdIndex = index; // will be adjusted as needed
+
+				// Foxtrick.log('sortStart:', sortStart, 'index:', index);
 
 				// determine sort direction
 				var direction = thisTh.hasAttribute('sort-asc') ? 1 : -1;
@@ -83,8 +81,17 @@ Foxtrick.modules.TableSort = {
 					if (numCols != row.cells.length)
 						break;
 
+					// this is to handle cases where THs and TDs have different colSpans
+					// usually td.colSpan <= th.colSpan for all columns but this is not required
+					tdIndex = index;
+					for (let j = 0; j < tdIndex && j < numCols; ++j) {
+						let offset = row.cells[j].colSpan - 1;
+						tdIndex -= offset;
+					}
+					tdIndex = Math.min(tdIndex, numCols - 1);
+
 					// get sorting format
-					let cell = row.cells[thisIndex];
+					let cell = row.cells[tdIndex];
 					if (!cell)
 						continue;
 
@@ -126,8 +133,8 @@ Foxtrick.modules.TableSort = {
 					var lastSort = Number(a.getAttribute('lastSort')) -
 						Number(b.getAttribute('lastSort'));
 
-					var aCell = a.cells[thisIndex];
-					var bCell = b.cells[thisIndex];
+					var aCell = a.cells[tdIndex];
+					var bCell = b.cells[tdIndex];
 
 					if (aCell.innerHTML === bCell.innerHTML)
 						return lastSort;
