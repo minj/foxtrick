@@ -364,6 +364,7 @@ Foxtrick.util.matchEvent.eventIcons = {
 	510: 'yellow_card',
 	511: 'yellow_card',
 	512: { team: ['yellow_card', 'red_card'] },
+	513: { team: ['yellow_card', 'red_card'] },
 	514: 'red_card',
 	596: false, // new-live
 	597: false, // new-live
