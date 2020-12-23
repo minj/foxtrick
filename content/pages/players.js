@@ -975,21 +975,25 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 						let matchDate = xml.date('Date', lastMatch);
 						matchDate = Foxtrick.util.time.toUser(doc, matchDate);
-						player.lastMatchDate = matchDate;
 
-						let link = doc.createElement('a');
+						if (matchDate) {
+							player.lastMatchDate = matchDate;
 
-						link.href = Foxtrick.format(lastMatchUrlTemplate, {
-							matchId: player.lastMatchId,
-							teamId,
-							sourceSystem,
-							youthParam,
-						});
+							let link = doc.createElement('a');
 
-						let dateStr = Foxtrick.util.time.buildDate(matchDate, { showTime: false });
-						link.textContent = dateStr;
-						link.target = '_blank';
-						player.lastMatch = link;
+							link.href = Foxtrick.format(lastMatchUrlTemplate, {
+								matchId: player.lastMatchId,
+								teamId,
+								sourceSystem,
+								youthParam,
+							});
+
+							let dateStr =
+								Foxtrick.util.time.buildDate(matchDate, { showTime: false });
+							link.textContent = dateStr;
+							link.target = '_blank';
+							player.lastMatch = link;
+						}
 
 						let lastPositionCode = num('PositionCode', lastMatch);
 						let pos = Foxtrick.L10n.getPositionTypeById(lastPositionCode);

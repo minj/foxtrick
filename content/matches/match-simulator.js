@@ -211,15 +211,17 @@ Foxtrick.modules.MatchSimulator = {
 			option.dataset.SourceSystem = SourceSystem;
 			option.dataset.homeAway = homeAway;
 
+			var date = null;
 			var MatchDate = matchXML.time('MatchDate');
 			MatchDate = Foxtrick.util.time.toUser(doc, MatchDate);
-			var date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
-			var howeAwayStr = Foxtrick.L10n.getString('matchOrder.homeAway.' + homeAway + '.abbr');
+			if (MatchDate)
+				date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
 
+			var howeAwayStr = Foxtrick.L10n.getString('matchOrder.homeAway.' + homeAway + '.abbr');
 			var tmpl = '{HA}: ' + MATCH_LIST_TMPL;
 			var info = {
 				HA: howeAwayStr,
-				date: date,
+				date: date || '???',
 				HomeTeamName: matchXML.text('HomeTeamName').slice(0, 20),
 				AwayTeamName: matchXML.text('AwayTeamName').slice(0, 20),
 				HomeGoals: matchXML.text('HomeGoals'),
@@ -546,21 +548,25 @@ Foxtrick.modules.MatchSimulator = {
 				if (isFriendly)
 					return;
 
+				var date = null;
 				var MatchDate = matchesXML.time('MatchDate', match);
 				MatchDate = Foxtrick.util.time.toUser(doc, MatchDate);
-				var date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
+				if (MatchDate)
+					date = Foxtrick.util.time.buildDate(MatchDate, { showTime: false });
+
 				var MatchID = matchesXML.text('MatchID', match);
 				var AwayTeamID = matchesXML.text('AwayTeamID', match);
 
 				var option = doc.createElement('option');
 				option.className = module.getIconClass(MatchType);
 				option.dataset.SourceSystem = SourceSystem;
+
 				// ensure homeAway exists for automatically added matches
 				option.dataset.homeAway = selectedTeamID == AwayTeamID ? 'away' : 'home';
 				option.value = MatchID;
 
 				var info = {
-					date: date,
+					date: date || '???',
 					HomeTeamName: matchesXML.text('HomeTeamName', match).slice(0, 20),
 					AwayTeamName: matchesXML.text('AwayTeamName', match).slice(0, 20),
 					HomeGoals: matchesXML.text('HomeGoals', match),

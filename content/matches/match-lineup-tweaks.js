@@ -968,6 +968,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		if (inProgress || isLive)
 			return;
 
+		/** @type {MatchSide} */
 		var team = 'away';
 		var ownId = Foxtrick.util.id.getOwnTeamId();
 
@@ -991,6 +992,8 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 		var matchDate = Foxtrick.Pages.Match.getDate(doc);
 		matchDate = Foxtrick.util.time.toHT(doc, matchDate);
+		if (!matchDate)
+			return;
 
 		let players = module.getPlayersWithStamina(doc, team);
 		Foxtrick.forEach(function(player) {
@@ -1018,7 +1021,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 	/**
 	 * @param  {document}                  doc
-	 * @param  {'home'|'away'}             team
+	 * @param  {MatchSide}                 team
 	 * @return {MatchReportRatingPlayer[]}
 	 */
 	getPlayersWithStamina: function(doc, team) {
@@ -1368,4 +1371,5 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 /**
  * @typedef {HTMatchReportRatingPlayer & FTMatchReportRatingPlayer} MatchReportRatingPlayer
+ * @typedef {'home'|'away'} MatchSide
  */

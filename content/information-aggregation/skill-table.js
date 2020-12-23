@@ -657,7 +657,8 @@ Foxtrick.modules.SkillTable = {
 						cell.textContent = value;
 						let htDate = new Date(pred.date);
 						let userDate = Foxtrick.util.time.toUser(doc, htDate);
-						cell.title = Foxtrick.util.time.buildDate(userDate);
+						if (userDate)
+							cell.title = Foxtrick.util.time.buildDate(userDate);
 						cell.setAttribute('index', parseFloat(value).toFixed(2));
 					}
 					else {
@@ -761,7 +762,8 @@ Foxtrick.modules.SkillTable = {
 					cell.appendChild(span);
 
 					let user = Foxtrick.util.time.toUser(doc, deadline);
-					cell.title = Foxtrick.util.time.buildDate(user);
+					if (user)
+						cell.title = Foxtrick.util.time.buildDate(user);
 					Foxtrick.addClass(cell, 'align-left');
 					cell.setAttribute('index', String(diff));
 				},

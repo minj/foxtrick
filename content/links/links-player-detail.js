@@ -94,7 +94,8 @@ Foxtrick.modules.LinksPlayerDetail = {
 		if (deadline) {
 			let format = 'YYYY-mm-dd HH:MM:SS';
 			deadline = Foxtrick.util.time.toUser(doc, deadline);
-			info.deadline = Foxtrick.util.time.buildDate(deadline, { format });
+			if (deadline)
+				info.deadline = Foxtrick.util.time.buildDate(deadline, { format });
 		}
 
 		var skills = Foxtrick.Pages.Player.getSkills(doc);

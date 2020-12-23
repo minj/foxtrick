@@ -103,6 +103,8 @@ Foxtrick.modules.LocalTime = {
 					return; // may only contain time without date
 
 				let localDate = Foxtrick.util.time.toLocal(doc, userDate);
+				if (!localDate)
+					return;
 
 				let ddl = date.querySelector('.ft-deadline');
 

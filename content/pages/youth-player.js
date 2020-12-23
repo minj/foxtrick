@@ -57,6 +57,9 @@ Foxtrick.Pages.YouthPlayer.getPromotionDate = function(doc) {
 			let daysToSeventeen = daysInSeventeen - days;
 
 			joinedDate = Foxtrick.util.time.toHT(doc, joinedDate);
+			if (!joinedDate)
+				return null;
+
 			Foxtrick.util.time.setMidnight(joinedDate);
 			let seasonDate = Foxtrick.util.time.addDaysToDate(joinedDate, DAYS_IN_SEASON);
 

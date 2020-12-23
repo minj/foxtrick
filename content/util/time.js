@@ -386,6 +386,9 @@ Foxtrick.util.time.getTimeStamp = function(doc) {
  */
 Foxtrick.util.time.getBrowserOffset = function(doc) {
 	let htDate = this.getHTDate(doc);
+	if (htDate == null)
+		return null;
+
 	let now = new Date();
 	let hourDiff = (now.getTime() - htDate.getTime()) / this.MSECS_IN_HOUR;
 
@@ -407,6 +410,9 @@ Foxtrick.util.time.getBrowserOffset = function(doc) {
  */
 Foxtrick.util.time.getUserOffset = function(doc) {
 	let htDate = this.getHTDate(doc);
+	if (htDate == null)
+		return null;
+
 	let userDate = this.getDate(doc);
 	let hourDiff = (userDate.getTime() - htDate.getTime()) / this.MSECS_IN_HOUR;
 
@@ -427,7 +433,12 @@ Foxtrick.util.time.getUserOffset = function(doc) {
  * @return {number}       {Float}
  */
 Foxtrick.util.time.getLocalOffset = function(doc) {
-	return this.getBrowserOffset(doc) - this.getUserOffset(doc);
+	let browser = this.getBrowserOffset(doc);
+	let user = this.getUserOffset(doc);
+	if (browser == null || user == null)
+		return null;
+
+	return browser - user;
 };
 
 /**
@@ -438,6 +449,9 @@ Foxtrick.util.time.getLocalOffset = function(doc) {
  */
 Foxtrick.util.time.toHT = function(doc, userDate) {
 	let offset = this.getUserOffset(doc);
+	if (offset == null)
+		return null;
+
 	let ret = new Date(userDate);
 	ret.setMinutes(ret.getMinutes() - this.MINS_IN_HOUR * offset);
 	return ret;
@@ -451,6 +465,9 @@ Foxtrick.util.time.toHT = function(doc, userDate) {
  */
 Foxtrick.util.time.toUser = function(doc, htDate) {
 	let offset = this.getUserOffset(doc);
+	if (offset == null)
+		return null;
+
 	let ret = new Date(htDate);
 	ret.setMinutes(ret.getMinutes() + this.MINS_IN_HOUR * offset);
 	return ret;
@@ -464,6 +481,9 @@ Foxtrick.util.time.toUser = function(doc, htDate) {
  */
 Foxtrick.util.time.toLocal = function(doc, userDate) {
 	let offset = this.getLocalOffset(doc);
+	if (offset == null)
+		return null;
+
 	let ret = new Date(userDate);
 	ret.setMinutes(ret.getMinutes() + this.MINS_IN_HOUR * offset);
 	return ret;
