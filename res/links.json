@@ -526,5 +526,18 @@
 		},
 		"title": "Hattid (AlltidLike)",
 		"img": "https://www.foxtrick.org/res/linkicons/hattid.png"
+	},
+	"ratemyacademy": {
+		"youthlink": {
+			"url": "https://www.rate-my.academy/"
+		},
+		"youthplayerlistlink": {
+			"url": "https://www.rate-my.academy/"
+		},
+		"youthplayerdetaillink": {
+			"url": "https://www.rate-my.academy/"
+		},
+		"title": "Rate My Academy",
+		"img": "https://www.foxtrick.org/res/linkicons/ratemyacademy.ico"
 	}
 }
