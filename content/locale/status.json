@@ -222,11 +222,11 @@
 			"code": "fr",
 			"name": "French",
 			"phrases": "2383",
-			"translated": "2339",
-			"translated_progress": "98",
+			"translated": "2370",
+			"translated_progress": "99",
 			"words": "17056",
 			"words_approved": "16559",
-			"words_translated": "16728"
+			"words_translated": "16967"
 		},
 		{
 			"approved": "0",
@@ -282,11 +282,11 @@
 			"code": "de",
 			"name": "German",
 			"phrases": "2383",
-			"translated": "2177",
+			"translated": "2190",
 			"translated_progress": "88",
 			"words": "17056",
 			"words_approved": "41",
-			"words_translated": "15041"
+			"words_translated": "15091"
 		},
 		{
 			"approved": "0",
