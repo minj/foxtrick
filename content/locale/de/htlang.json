@@ -819,15 +819,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Passspiel (Verteidiger, Mittelfeldspieler)"
+				"value": "Passkombinationen (VT, ZM, FL)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Verteidigung (Torhüter, Verteidiger, Mittelfeldspieler)"
+				"value": "Abwehrverhalten (TW, VT, ZM, FL)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Flügelspiel (Flügelspieler, Stürmer)"
+				"value": "Außenangriff (FL, ST)"
 			},
 			{
 				"type": "Indiv",
