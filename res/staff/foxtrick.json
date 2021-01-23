@@ -342,7 +342,7 @@
 		{
 			"duty": "translator",
 			"id": "11869364",
-			"name": "LucaXVI"
+			"name": "<LucaXVI>"
 		},
 		{
 			"duty": "supporter",
@@ -1118,6 +1118,11 @@
 			"duty": "supporter",
 			"id": "4476273",
 			"name": "fbog31"
+		},
+		{
+			"duty": "supporter",
+			"id": "4504069",
+			"name": "-leenders-"
 		},
 		{
 			"duty": "translator",
