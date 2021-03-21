@@ -145,6 +145,11 @@
 			"name": "Ucha_Cuervo"
 		},
 		{
+			"duty": "supporter",
+			"id": "10780200",
+			"name": "welwelsken"
+		},
+		{
 			"duty": "developer",
 			"id": "10800601",
 			"name": "HT-Tasos"
@@ -1133,6 +1138,11 @@
 			"duty": "supporter",
 			"id": "4666835",
 			"name": "Ermezzo"
+		},
+		{
+			"duty": "supporter",
+			"id": "4718062",
+			"name": "czork"
 		},
 		{
 			"duty": "translator",
