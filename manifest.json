@@ -139,6 +139,7 @@
 			"content/information-aggregation/last-login.js",
 			"content/information-aggregation/match-weather.js",
 			"content/information-aggregation/mercattrick-stats.js",
+			"content/information-aggregation/maxtools.js",
 			"content/information-aggregation/my-monitor.js",
 			"content/information-aggregation/nt-peek.js",
 			"content/information-aggregation/player-birthday.js",
@@ -283,7 +284,8 @@
 		"clipboardWrite",
 		"*://chpp.hattrick.org/*",
 		"*://*.foxtrick.org/*",
-		"http://www.fantamondi.it/*"
+		"http://www.fantamondi.it/*",		
+		"https://ht-mt.org/*"
 	],
 	"optional_permissions": [
 		"https://*.hattrick-youthclub.org/*",
