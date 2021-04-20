@@ -119,9 +119,9 @@ Foxtrick.modules.U21LastMatch = {
 		for (let i of Foxtrick.range(1, 11))
 			matchDesc.push(CONTINENTAL_STR.replace(/%1/, String(i)));
 
-		matchDesc.push(CONTINENTAL_STR.replace(/%1/, QUARTER_STR));
-		matchDesc.push(CONTINENTAL_STR.replace(/%1/, SEMI_STR));
-		matchDesc.push(CONTINENTAL_STR.replace(/%1/, FINAL_STR));
+		matchDesc.push(CONTINENTAL_STR.replace(/#%1/, QUARTER_STR));
+		matchDesc.push(CONTINENTAL_STR.replace(/#%1/, SEMI_STR));
+		matchDesc.push(CONTINENTAL_STR.replace(/#%1/, FINAL_STR));
 		
 		for (let i of Foxtrick.range(1, 11))
 			matchDesc.push(round1.replace(/%1/, String(i)));
@@ -266,7 +266,7 @@ Foxtrick.modules.U21LastMatch = {
 
 		let players = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 		for (let player of players) {
-			if (player.age.years > 20)
+			if (player.age.years > 21)
 				continue;
 
 			let { worldCupNumber, lastMatch, matchNumber, dateWhen22 } =
