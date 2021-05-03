@@ -27,6 +27,11 @@
 			"duty": "support"
 		},
 		{
+			"id": "1693272",
+			"name": "Max_Schreck",
+			"duty": "support"
+		},
+		{
 			"id": "8652247",
 			"name": "GM-Gorschi",
 			"duty": "helper"
@@ -55,11 +60,6 @@
 			"id": "4649269",
 			"name": "Chiefik",
 			"duty": "translator"
-		},
-		{
-			"id": "1693272",
-			"name": "Max_Schreck",
-			"duty": "support"
 		},
 		{
 			"id": "6170192",
