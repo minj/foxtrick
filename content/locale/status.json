@@ -582,11 +582,11 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "2383",
-			"translated": "2354",
-			"translated_progress": "98",
+			"translated": "2383",
+			"translated_progress": "100",
 			"words": "17056",
 			"words_approved": "1",
-			"words_translated": "16827"
+			"words_translated": "17056"
 		},
 		{
 			"approved": "0",
@@ -594,11 +594,11 @@
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
 			"phrases": "2383",
-			"translated": "2318",
-			"translated_progress": "97",
+			"translated": "2383",
+			"translated_progress": "100",
 			"words": "17056",
 			"words_approved": "0",
-			"words_translated": "16649"
+			"words_translated": "17056"
 		},
 		{
 			"approved": "0",
