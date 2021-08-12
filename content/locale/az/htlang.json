@@ -807,7 +807,7 @@
 			},
 			{
 				"type": "Pass",
-				"value": "Paslaşma"
+				"value": "Ötürmə"
 			},
 			{
 				"type": "PM",
@@ -819,11 +819,11 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Paslaşma (Müdafiəçilər + Bütün Yarım Müdafiəçilər)"
+				"value": "Ötürmə (Müdafiəçilər + Bütün Yarımmüdafiəçilər)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Müdafiə (Qapıçılar, Müdafiəçilər + Bütün Yarım Müdafiəçilər)"
+				"value": "Müdafiə (Qapıçılar, Müdafiəçilər + Bütün Yarımmüdafiəçilər)"
 			},
 			{
 				"type": "WingAtt",
