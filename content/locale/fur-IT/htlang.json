@@ -270,6 +270,7 @@
 			"1": "Svezie",
 			"100": "El Salvador",
 			"1000": "Hattrick International",
+			"1001": "Leghe Apache (Edizion Limitade)",
 			"101": "Malte",
 			"102": "Kyrgyzstan",
 			"103": "Moldova",
@@ -619,7 +620,7 @@
 		"specialties": [
 			{
 				"type": "None",
-				"value": "Nissune"
+				"value": "Nissune specialitât"
 			},
 			{
 				"type": "Technical",
