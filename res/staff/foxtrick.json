@@ -67,7 +67,7 @@
 		{
 			"duty": "supporter",
 			"id": "10380313",
-			"name": "ehemaliger-manager"
+			"name": "<ehemaliger-manager>"
 		},
 		{
 			"duty": "supporter",
@@ -145,6 +145,11 @@
 			"name": "Ucha_Cuervo"
 		},
 		{
+			"duty": "supporter",
+			"id": "10780200",
+			"name": "welwelsken"
+		},
+		{
 			"duty": "developer",
 			"id": "10800601",
 			"name": "HT-Tasos"
@@ -177,7 +182,7 @@
 		{
 			"duty": "supporter",
 			"id": "11035584",
-			"name": "thejohn"
+			"name": "<thejohn>"
 		},
 		{
 			"duty": "supporter",
@@ -342,7 +347,7 @@
 		{
 			"duty": "translator",
 			"id": "11869364",
-			"name": "LucaXVI"
+			"name": "<LucaXVI>"
 		},
 		{
 			"duty": "supporter",
@@ -392,7 +397,7 @@
 		{
 			"duty": "supporter",
 			"id": "12220830",
-			"name": "Alienjake"
+			"name": "<Alienjake>"
 		},
 		{
 			"duty": "supporter",
@@ -447,7 +452,7 @@
 		{
 			"duty": "supporter",
 			"id": "12511204",
-			"name": "Domek_69"
+			"name": "<Domek_69>"
 		},
 		{
 			"duty": "supporter",
@@ -467,7 +472,7 @@
 		{
 			"duty": "supporter",
 			"id": "12538647",
-			"name": "Red-J0hn"
+			"name": "GM-RedJ0hn"
 		},
 		{
 			"duty": "supporter",
@@ -497,7 +502,7 @@
 		{
 			"duty": "supporter",
 			"id": "12620856",
-			"name": "jad933"
+			"name": "<jad933>"
 		},
 		{
 			"duty": "supporter",
@@ -591,6 +596,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13088253",
+			"name": "C-J-9"
+		},
+		{
+			"duty": "supporter",
 			"id": "13099132",
 			"name": "harrylan"
 		},
@@ -612,7 +622,7 @@
 		{
 			"duty": "translator",
 			"id": "13121281",
-			"name": "<DrDrunkenstein>"
+			"name": "DrDrunkenstein"
 		},
 		{
 			"duty": "translator",
@@ -643,6 +653,11 @@
 			"duty": "supporter",
 			"id": "13359636",
 			"name": "Latic_"
+		},
+		{
+			"duty": "supporter",
+			"id": "13495368",
+			"name": "Mr_Eaton"
 		},
 		{
 			"duty": "supporter",
@@ -752,7 +767,7 @@
 		{
 			"duty": "translator",
 			"id": "1966508",
-			"name": "SLV-Ferovejecs"
+			"name": "<SLV-Ferovejecs>"
 		},
 		{
 			"duty": "supporter",
@@ -982,7 +997,7 @@
 		{
 			"duty": "supporter",
 			"id": "3745622",
-			"name": "kikinhtev"
+			"name": "<kikinhtev>"
 		},
 		{
 			"duty": "supporter",
@@ -1022,7 +1037,7 @@
 		{
 			"duty": "translator",
 			"id": "3955847",
-			"name": "<Unknown_Guy>"
+			"name": "Unknown_Guy"
 		},
 		{
 			"duty": "translator",
@@ -1057,7 +1072,7 @@
 		{
 			"duty": "supporter",
 			"id": "4149601",
-			"name": "Triplex1963"
+			"name": "<Triplex1963>"
 		},
 		{
 			"duty": "supporter",
@@ -1115,6 +1130,11 @@
 			"name": "fbog31"
 		},
 		{
+			"duty": "supporter",
+			"id": "4504069",
+			"name": "-leenders-"
+		},
+		{
 			"duty": "translator",
 			"id": "4577648",
 			"name": "<ampulka>"
@@ -1123,6 +1143,11 @@
 			"duty": "supporter",
 			"id": "4666835",
 			"name": "Ermezzo"
+		},
+		{
+			"duty": "supporter",
+			"id": "4718062",
+			"name": "czork"
 		},
 		{
 			"duty": "translator",
@@ -1175,6 +1200,11 @@
 			"name": "ironm-DETISTE"
 		},
 		{
+			"duty": "supporter",
+			"id": "5216334",
+			"name": "konny"
+		},
+		{
 			"duty": "translator",
 			"id": "524111",
 			"name": "<piper_101>"
@@ -1187,7 +1217,7 @@
 		{
 			"duty": "supporter",
 			"id": "536514",
-			"name": "Piero00"
+			"name": "Mod-Piero"
 		},
 		{
 			"duty": "supporter",
@@ -1227,7 +1257,7 @@
 		{
 			"duty": "translator",
 			"id": "5547377",
-			"name": "Mod-Guaipeca"
+			"name": "Guaipeca"
 		},
 		{
 			"duty": "supporter",
@@ -1257,7 +1287,7 @@
 		{
 			"duty": "supporter",
 			"id": "575455",
-			"name": "Bephep"
+			"name": "<Bephep>"
 		},
 		{
 			"duty": "translator",
@@ -1412,7 +1442,7 @@
 		{
 			"duty": "translator",
 			"id": "7230071",
-			"name": "TheZayc"
+			"name": "<TheZayc>"
 		},
 		{
 			"duty": "translator",
@@ -1546,6 +1576,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "8168001",
+			"name": "Hantelfix"
+		},
+		{
+			"duty": "supporter",
 			"id": "8179870",
 			"name": "Rummm"
 		},
@@ -1637,7 +1672,7 @@
 		{
 			"duty": "supporter",
 			"id": "8997758",
-			"name": "Ir_pa_na"
+			"name": "<Ir_pa_na>"
 		},
 		{
 			"duty": "supporter",
@@ -1687,7 +1722,7 @@
 		{
 			"duty": "translator",
 			"id": "9469076",
-			"name": "Comandante"
+			"name": "<Comandante>"
 		},
 		{
 			"duty": "supporter",
@@ -1762,7 +1797,7 @@
 		{
 			"duty": "supporter",
 			"id": "9816045",
-			"name": "-kuna-"
+			"name": "_kuna_"
 		},
 		{
 			"duty": "supporter",
@@ -1782,7 +1817,7 @@
 		{
 			"duty": "translator",
 			"id": "9855688",
-			"name": "LA-Nika_Kvrivishvili"
+			"name": "LA-Dzigo"
 		},
 		{
 			"duty": "supporter",

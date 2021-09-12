@@ -1,6 +1,6 @@
 {
 	"type": "hy",
-	"url": "http://www.hattrick-youthclub.org/site/user/manager/[id]",
+	"url": "https://www.hattrick-youthclub.org/site/user/manager/[id]",
 	"duties": {
 		"developer": {
 			"alt": "hattrick youthclub Developer"
@@ -27,8 +27,8 @@
 			"duty": "support"
 		},
 		{
-			"id": "6604640",
-			"name": "Smekke",
+			"id": "1693272",
+			"name": "Max_Schreck",
 			"duty": "support"
 		},
 		{
@@ -57,9 +57,9 @@
 			"duty": "helper"
 		},
 		{
-			"id": "1693272",
-			"name": "Max_Schreck",
-			"duty": "support"
+			"id": "4649269",
+			"name": "Chiefik",
+			"duty": "translator"
 		},
 		{
 			"id": "6170192",
@@ -198,7 +198,7 @@
 		},
 		{
 			"id": "9607801",
-			"name": "-Kostitsyn46-",
+			"name": "Nelson_Mandela_Muntz",
 			"duty": "translator"
 		},
 		{
@@ -272,18 +272,8 @@
 			"duty": "translator"
 		},
 		{
-			"id": "6263697",
-			"name": "LA-Ron_Riverboat",
-			"duty": "translator"
-		},
-		{
-			"id": "11014585",
-			"name": "-Deuterium-",
-			"duty": "translator"
-		},
-		{
-			"id": "12714984",
-			"name": "provonost",
+			"id": "424",
+			"name": "Torsberg",
 			"duty": "translator"
 		},
 		{
