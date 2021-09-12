@@ -596,6 +596,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13088253",
+			"name": "C-J-9"
+		},
+		{
+			"duty": "supporter",
 			"id": "13099132",
 			"name": "harrylan"
 		},
@@ -1568,6 +1573,11 @@
 			"duty": "supporter",
 			"id": "8131534",
 			"name": "necrospettro"
+		},
+		{
+			"duty": "supporter",
+			"id": "8168001",
+			"name": "Hantelfix"
 		},
 		{
 			"duty": "supporter",
