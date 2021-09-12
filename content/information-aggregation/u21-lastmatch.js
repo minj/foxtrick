@@ -8,7 +8,7 @@
 
 /* eslint-disable no-magic-numbers */
 
-Foxtrick.modules.U20LastMatch = {
+Foxtrick.modules.U21LastMatch = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: [
 		'youthPlayerDetails', 'playerDetails',
@@ -17,6 +17,7 @@ Foxtrick.modules.U20LastMatch = {
 	],
 	OPTIONS: ['YouthPlayers', 'SeniorPlayers', 'AllPlayers'],
 	DATE_CUTOFFS: [
+		3,
 		7,
 		14,
 		21,
@@ -25,58 +26,74 @@ Foxtrick.modules.U20LastMatch = {
 		42,
 		49,
 		56,
+		59,
 		63,
-		70,
+		65,
+		70, // WC R1 M1
+		73,
 		77,
 		84,
-		91,
+		91, // WC R1 M5
+		98,
+		105,
+		112,
+		119,
+		126,
+		133, // WC R2 M1
+		136,
+		140,
 		147,
-		150,
 		154,
-		182,
+		161,
+		171, // WC R3 M1
+		175,
+		178,
+		182, // WC R4 M1
 		185,
 		189,
-		192,
+		192, // WC R5 M1
 		196,
 		199,
-		203,
-		205,
-		224,
+		203, // Semi
+		205,  // Final
+		224
 	],
 
 	/**
-	 * @typedef U20LastMatch
+	 * @typedef U21LastMatch
 	 * @prop {string} lastMatch
 	 * @prop {number} worldCupNumber
 	 * @prop {number} matchNumber
-	 * @prop {Date} dateWhen21
+	 * @prop {Date} dateWhen22
 	 */
 
 	/**
 	 * @param  {document} doc
 	 * @param  {{years: number, days: number}} age
-	 * @return {U20LastMatch}
+	 * @return {U21LastMatch}
 	 */
 	calculate: function(doc, age) {
 		const module = this;
 
-		const ROUND_STR = Foxtrick.L10n.getString('U20LastMatch.round');
-		const SEMI_STR = Foxtrick.L10n.getString('U20LastMatch.semi');
-		const FINAL_STR = Foxtrick.L10n.getString('U20LastMatch.final');
+		const CONTINENTAL_STR = Foxtrick.L10n.getString('U21LastMatch.continental');
+		const ROUND_STR = Foxtrick.L10n.getString('U21LastMatch.round');
+		const QUARTER_STR = Foxtrick.L10n.getString('U21LastMatch.quarter');
+		const SEMI_STR = Foxtrick.L10n.getString('U21LastMatch.semi');
+		const FINAL_STR = Foxtrick.L10n.getString('U21LastMatch.final');
 
 		const DAYS_IN_SEASON = Foxtrick.util.time.DAYS_IN_SEASON;
 		const MSECS_IN_DAY = Foxtrick.util.time.MSECS_IN_DAY;
 		const WORLD_CUP_DURATION = DAYS_IN_SEASON * 2;
 
 		let playerAgeInDays = DAYS_IN_SEASON * age.years + age.days;
-		let daysUntil21 = DAYS_IN_SEASON * 21 - playerAgeInDays;
+		let daysUntil22 = DAYS_IN_SEASON * 22 - playerAgeInDays;
 
 		let now = Foxtrick.util.time.getHTDate(doc);
-		let dateWhen21 = Foxtrick.util.time.addDaysToDate(now, daysUntil21);
+		let dateWhen22 = Foxtrick.util.time.addDaysToDate(now, daysUntil22);
 
 		// Round I, Match #1 of World Cup XXVI. (26/05/2017)
 		let origin = new Date(2017, 4, 26);
-		let msDiff = dateWhen21.getTime() - origin.getTime();
+		let msDiff = dateWhen22.getTime() - origin.getTime();
 		let dayDiff = Math.floor(msDiff / MSECS_IN_DAY) - 1;
 
 		let daysOffset = dayDiff % WORLD_CUP_DURATION;
@@ -91,21 +108,31 @@ Foxtrick.modules.U20LastMatch = {
 			}
 		}
 
-		let round1 = ROUND_STR.replace(/%1/, 'I');
-		let round2 = ROUND_STR.replace(/%1/, 'II');
-		let round3 = ROUND_STR.replace(/%1/, 'III');
-		let round4 = ROUND_STR.replace(/%1/, 'IV');
+		let round1 = ROUND_STR.replace(/%2/, 'I');
+		let round2 = ROUND_STR.replace(/%2/, 'II');
+		let round3 = ROUND_STR.replace(/%2/, 'III');
+		let round4 = ROUND_STR.replace(/%2/, 'IV');
+		let round5 = ROUND_STR.replace(/%2/, 'V');
 
 		// Load the Match descriptions array.
 		var matchDesc = [];
-		for (let i of Foxtrick.range(1, 15))
-			matchDesc.push(round1.replace(/%2/, String(i)));
+		for (let i of Foxtrick.range(1, 11))
+			matchDesc.push(CONTINENTAL_STR.replace(/%1/, String(i)));
+
+		matchDesc.push(CONTINENTAL_STR.replace(/#%1/, QUARTER_STR));
+		matchDesc.push(CONTINENTAL_STR.replace(/#%1/, SEMI_STR));
+		matchDesc.push(CONTINENTAL_STR.replace(/#%1/, FINAL_STR));
+		
+		for (let i of Foxtrick.range(1, 11))
+			matchDesc.push(round1.replace(/%1/, String(i)));
+		for (let i of Foxtrick.range(1, 7))
+			matchDesc.push(round2.replace(/%1/, String(i)));
 		for (let i of Foxtrick.range(1, 4))
-			matchDesc.push(round2.replace(/%2/, String(i)));
+			matchDesc.push(round3.replace(/%1/, String(i)));
 		for (let i of Foxtrick.range(1, 4))
-			matchDesc.push(round3.replace(/%2/, String(i)));
+			matchDesc.push(round4.replace(/%1/, String(i)));
 		for (let i of Foxtrick.range(1, 4))
-			matchDesc.push(round4.replace(/%2/, String(i)));
+			matchDesc.push(round5.replace(/%1/, String(i)));
 
 		matchDesc.push(SEMI_STR);
 		matchDesc.push(FINAL_STR);
@@ -114,7 +141,7 @@ Foxtrick.modules.U20LastMatch = {
 			lastMatch: matchDesc[index],
 			worldCupNumber,
 			matchNumber: index + 1,
-			dateWhen21,
+			dateWhen22,
 		};
 	},
 
@@ -156,16 +183,16 @@ Foxtrick.modules.U20LastMatch = {
 	runPlayer: function(doc) {
 		const module = this;
 
-		const TITLE_STR = Foxtrick.L10n.getString('U20LastMatch.eligibilityTitle');
-		const TEXT_STR = Foxtrick.L10n.getString('U20LastMatch.eligibilityText');
-		const WC_STR = Foxtrick.L10n.getString('U20LastMatch.worldcup');
-		const TMPL_STR = Foxtrick.L10n.getString('U20LastMatch.templateWithoutTable');
+		const TITLE_STR = Foxtrick.L10n.getString('U21LastMatch.eligibilityTitle');
+		const TEXT_STR = Foxtrick.L10n.getString('U21LastMatch.eligibilityText');
+		const WC_STR = Foxtrick.L10n.getString('U21LastMatch.worldcup');
+		const TMPL_STR = Foxtrick.L10n.getString('U21LastMatch.templateWithoutTable');
 
 		if (Foxtrick.Pages.Player.wasFired(doc))
 			return;
 
 		let age = Foxtrick.Pages.Player.getAge(doc);
-		if (!age || age.years > 20)
+		if (!age || age.years > 21)
 			return;
 
 		let { worldCupNumber, lastMatch } = module.calculate(doc, age);
@@ -196,16 +223,16 @@ Foxtrick.modules.U20LastMatch = {
 	/** @param {document} doc */
 	runPlayerList: function(doc) {
 		const module = this;
-		const TITLE_STR = Foxtrick.L10n.getString('U20LastMatch.title');
-		const WC_STR = Foxtrick.L10n.getString('U20LastMatch.worldcup');
-		const TMPL_STR = Foxtrick.L10n.getString('U20LastMatch.templateWithoutTable');
+		const TITLE_STR = Foxtrick.L10n.getString('U21LastMatch.title');
+		const WC_STR = Foxtrick.L10n.getString('U21LastMatch.worldcup');
+		const TMPL_STR = Foxtrick.L10n.getString('U21LastMatch.templateWithoutTable');
 
 		let players = Foxtrick.modules.Core.getPlayerList();
 		for (let player of players) {
-			if (player.age.years > 20)
+			if (player.age.years > 21)
 				continue;
 
-			let { worldCupNumber, lastMatch, matchNumber, dateWhen21 } =
+			let { worldCupNumber, lastMatch, matchNumber, dateWhen22 } =
 				module.calculate(doc, player.age);
 
 			let wcNum = Foxtrick.decToRoman(worldCupNumber);
@@ -217,9 +244,9 @@ Foxtrick.modules.U20LastMatch = {
 			text = text.replace(/%4/, lastMatch);
 
 			let container = Foxtrick.createFeaturedElement(doc, module, 'p');
-			Foxtrick.addClass(container, 'ft-u20lastmatch');
+			Foxtrick.addClass(container, 'ft-U21LastMatch');
 			container.textContent = text;
-			container.dataset.value = String(dateWhen21.getTime());
+			container.dataset.value = String(dateWhen22.getTime());
 			container.dataset.valueString = `${wcNum}:${matchNumber}`;
 
 			let entry = player.playerNode.querySelector('table') || player.playerNode.lastChild;
@@ -233,16 +260,16 @@ Foxtrick.modules.U20LastMatch = {
 	/** @param {document} doc */
 	runTransferList: function(doc) {
 		const module = this;
-		const TITLE_STR = Foxtrick.L10n.getString('U20LastMatch.title');
-		const WC_STR = Foxtrick.L10n.getString('U20LastMatch.worldcup');
-		const TMPL_STR = Foxtrick.L10n.getString('U20LastMatch.templateWithoutTable');
+		const TITLE_STR = Foxtrick.L10n.getString('U21LastMatch.title');
+		const WC_STR = Foxtrick.L10n.getString('U21LastMatch.worldcup');
+		const TMPL_STR = Foxtrick.L10n.getString('U21LastMatch.templateWithoutTable');
 
 		let players = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 		for (let player of players) {
-			if (player.age.years > 20)
+			if (player.age.years > 21)
 				continue;
 
-			let { worldCupNumber, lastMatch, matchNumber, dateWhen21 } =
+			let { worldCupNumber, lastMatch, matchNumber, dateWhen22 } =
 				module.calculate(doc, player.age);
 
 			let wcNum = Foxtrick.decToRoman(worldCupNumber);
@@ -254,9 +281,9 @@ Foxtrick.modules.U20LastMatch = {
 			text = text.replace(/%4/, lastMatch);
 
 			let container = Foxtrick.createFeaturedElement(doc, module, 'div');
-			Foxtrick.addClass(container, 'ft-u20lastmatch');
+			Foxtrick.addClass(container, 'ft-U21LastMatch');
 			container.textContent = text;
-			container.dataset.value = String(dateWhen21.getTime());
+			container.dataset.value = String(dateWhen22.getTime());
 			container.dataset.valueString = `${wcNum}:${matchNumber}`;
 
 			let element = player.playerNode.querySelector('.flex') || player.playerNode.lastChild;

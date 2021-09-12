@@ -315,7 +315,7 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  * @prop {number} [lastRatingEndOfGame]
  * @prop {number} [lastRatingDecline]
  *
- * @prop {U20LastMatchDef} u20
+ * @prop {U21LastMatchDef} u21
  *
  * @prop {boolean} [currentSquad]
  * @prop {boolean} [active]
@@ -330,7 +330,7 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  */
 
 /**
- * @typedef U20LastMatchDef
+ * @typedef U21LastMatchDef
  * @prop {string} title
  * @prop {string} text
  * @prop {number} value
@@ -1505,12 +1505,12 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 			}
 
 			/** @type {HTMLElement} */
-			let u20 = playerNode.querySelector('.ft-u20lastmatch');
-			if (u20) {
-				let title = u20.textContent;
-				let text = u20.dataset.valueString;
-				let value = parseInt(u20.dataset.value, 10);
-				player.u20 = { title, text, value };
+			let u21 = playerNode.querySelector('.ft-u21lastmatch');
+			if (u21) {
+				let title = u21.textContent;
+				let text = u21.dataset.valueString;
+				let value = parseInt(u21.dataset.value, 10);
+				player.u21 = { title, text, value };
 			}
 
 			// last match
