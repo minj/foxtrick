@@ -244,7 +244,7 @@ def rm_util(args):
         search = tar['prefix'] + util + tar['suffix']
         try:
             pos = lines.index(search)
-        except:
+        except ValueError:
             print('No \'%s\' in %s. Skipping.' % (util, pathfile))
             continue
 

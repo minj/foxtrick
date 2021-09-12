@@ -91,7 +91,6 @@ def parseLanguage(o, code):
         'aggressiveness': 'PlayerAgressiveness',
         'confidence': 'Confidence',
         'sponsors': 'Sponsors',
-        'confidence': 'Confidence',
         'fans': 'FanMood',
         'fans_match': 'FanMatchExpectations',
         'fans_season': 'FanSeasonExpectations',

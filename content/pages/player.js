@@ -505,7 +505,7 @@ Foxtrick.Pages.Player.getWage = function(doc, wageCell) {
 	// we need to trim front text if any
 	// unfortunately new lines force using multiline mode
 	// thus '.' does not match '\n', /sigh
-	wageText = wageText.replace(/^(.|\s)*?(?=[\d\u00a0]{3,})/m, '');
+	wageText = wageText.replace(/^(.|[\r\n])*?(?=[\d\u00a0]{3,})/m, '');
 	wageText = wageText.replace(/\u00a0/g, '');
 
 	var wage = parseInt(wageText, 10);

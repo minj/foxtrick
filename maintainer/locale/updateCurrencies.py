@@ -1,23 +1,26 @@
 #!/usr/bin/env python
 from __future__ import print_function
 
-import os, sys
+import os
+import sys
 import codecs
 import json
 
 from Hattrick.Parsers import XMLParser
 
-'''
-Currency dict constructor
-'''
+
 class Currency(dict):
+    '''
+    Currency dict constructor
+    '''
     def __init__(self, league):
-        super(dict, self).__init__()
+        super(Currency, self).__init__()
         self['symbol'] = league['currency']
         self['eurorate'] = league['rate']
         self['code'] = ''
         self['name'] = ''
-        self['leagues'] = { int(league['id']): league['name'] }
+        self['leagues'] = {int(league['id']): league['name']}
+
 
 def parse_worlddetails(input_file):
     with codecs.open(input_path, mode='r', encoding='utf-8') as input_file:
@@ -38,19 +41,21 @@ def parse_worlddetails(input_file):
 
         # deal with HT number system and convert from SEK to EUR
         c_rate = str(float(c_rate.replace(',', '.')) / 10)
-        league_map[l_id] = { 'id': l_id, 'name': l_name, 'currency': c_name, 'rate': c_rate }
+        league_map[l_id] = {'id': l_id, 'name': l_name, 'currency': c_name, 'rate': c_rate}
 
     return league_map
 
+
 def make_currency_map(league_map):
     cur_map = {}
-    for l in league_map.values():
+    for league in league_map.values():
         # index cur_map by (symbol, rate)
-        cur = cur_map.setdefault((l['currency'], l['rate']), Currency(league=l))
+        cur = cur_map.setdefault((league['currency'], league['rate']), Currency(league=league))
         # use integer keys for better sorting in JSON
-        cur['leagues'][int(l['id'])] = l['name']
+        cur['leagues'][int(league['id'])] = league['name']
 
     return cur_map
+
 
 def get_old_currencies(input_dir):
     input_path = input_dir + '/htcurrency.json'
@@ -59,11 +64,13 @@ def get_old_currencies(input_dir):
 
     return cur_json['hattrickcurrencies']
 
+
 def output_currencies(output_dir, cur_list):
     output_path = output_dir + '/htcurrency.json'
-    output = { 'hattrickcurrencies': cur_list }
+    output = {'hattrickcurrencies': cur_list}
     with codecs.open(output_path, mode='w', encoding='utf-8') as cur_file:
         cur_file.write(XMLParser.python_to_json(output))
+
 
 def run(input_path):
     leagues = parse_worlddetails(input_path)
@@ -92,11 +99,10 @@ def run(input_path):
         else:
             # old currency not found
             missing.append(cur)
-            pass
 
     # add new currencies: ORDER BY symbol, eurorate
-    new_list = sorted(sorted(new_curs.values(), key=lambda c:c['eurorate']),
-                      key=lambda c:c['symbol'])
+    new_list = sorted(sorted(new_curs.values(), key=lambda c: c['eurorate']),
+                      key=lambda c: c['symbol'])
     cur_list.extend(new_list)
     # backup missing currencies
     for cur in missing:
@@ -109,6 +115,7 @@ def run(input_path):
     cur_list.extend(missing)
 
     output_currencies(input_dir, cur_list)
+
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:

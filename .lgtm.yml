@@ -2,3 +2,7 @@ path_classifiers:
   library:
     - content/lib
     - exclude: content/lib/psico.js
+queries:
+  - exclude: js/incomplete-multi-character-sanitization
+  - exclude: js/insecure-randomness
+  - exclude: py/unused-import

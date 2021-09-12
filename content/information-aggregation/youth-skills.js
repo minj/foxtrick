@@ -605,7 +605,7 @@ Foxtrick.modules['YouthSkills'] = {
 			var text = response;
 
 			try {
-				let payload = { error: 'Unknown error' };
+				let payload = { error: 'Unknown error' }; // lgtm[js/useless-assignment-to-local]
 				if (response) {
 					payload = JSON.parse(response);
 					let { error } = payload;
