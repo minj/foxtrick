@@ -552,15 +552,15 @@
 			},
 			{
 				"type": "RightDefense",
-				"value": "Δεξιά Αμυνα"
+				"value": "Δεξιά Άμυνα"
 			},
 			{
 				"type": "CentralDefense",
-				"value": "Κεντρική Αμυνα"
+				"value": "Κεντρική Άμυνα"
 			},
 			{
 				"type": "LeftDefense",
-				"value": "Αριστερή Αμυνα"
+				"value": "Αριστερή Άμυνα"
 			},
 			{
 				"type": "RightAttack",
