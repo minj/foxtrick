@@ -243,6 +243,17 @@ Foxtrick.modules.DashboardCalendar = {
 
 		Foxtrick.util.time.setMidnight(userToday);
 
+		const { season } = Foxtrick.util.time.gregorianToHT(userToday);
+
+		var weekText = doc.querySelector('.calendarWeekText').textContent.trim();
+		var week = Number(weekText.match(/\d+/).toString());
+
+		var monday = Foxtrick.util.time.HTToGregorian({ season, week });
+		if (monday.getDay() == 0) {
+			// DST problems
+			monday.setHours(Foxtrick.util.time.HOURS_IN_DAY);
+		}
+
 		/** @type {DashboardEvent[][]} */
 		var htDays = [];
 
@@ -254,7 +265,7 @@ Foxtrick.modules.DashboardCalendar = {
 			var dayNumberSpan = dayHeader.querySelector('.eventCalendarDay');
 			var dayNumber = parseInt(dayNumberSpan.textContent.trim(), 10);
 
-			var userDate = new Date(userToday);
+			var userDate = new Date(monday);
 			var userDayNumber = userDate.getDate();
 
 			var dayDiff = dayNumber - userDayNumber;
