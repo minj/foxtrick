@@ -855,6 +855,11 @@
 			"name": "CarryOn"
 		},
 		{
+			"duty": "supporter",
+			"id": "2726644",
+			"name": "Giveman"
+		},
+		{
 			"duty": "translator",
 			"id": "2765378",
 			"name": "summercloud"
