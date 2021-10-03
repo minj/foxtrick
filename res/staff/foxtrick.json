@@ -337,7 +337,7 @@
 		{
 			"duty": "supporter",
 			"id": "11793121",
-			"name": "neandertal"
+			"name": "<neandertal>"
 		},
 		{
 			"duty": "translator",
@@ -853,6 +853,11 @@
 			"duty": "supporter",
 			"id": "2724749",
 			"name": "CarryOn"
+		},
+		{
+			"duty": "supporter",
+			"id": "2726644",
+			"name": "Giveman"
 		},
 		{
 			"duty": "translator",
