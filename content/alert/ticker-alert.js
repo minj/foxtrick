@@ -153,14 +153,17 @@
 					var newTickers = Foxtrick.filter(function(n) {
 						if (!n.isNew)
 							return false;
-						for (var i = 0; i < tickers.length; ++i) {
-							var old = tickers[i];
+						for (let old of tickers) {
+							if (!old)
+								Foxtrick.log(new Error(`old is ${old}`));
+
 							if (old.text == n.text && old.link.replace(/http:\/\/.+\//, '/') == n.link.replace(/http:\/\/.+\//, '/'))
 								return false;
 						}
 						return true;
 					}, tickersNow);
-					//Foxtrick.log('tickersNow filtered',newTickers)
+
+					// Foxtrick.log('tickersNow filtered',newTickers)
 
 					var open = Foxtrick.L10n.getString('notify.open');
 					Foxtrick.map(function(n) {

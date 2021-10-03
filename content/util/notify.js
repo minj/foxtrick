@@ -50,6 +50,9 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 		};
 
 		return new Promise(function(resolve) {
+			if (!tabOpts)
+				Foxtrick.log(new Error(`tabOpts is ${tabOpts}`));
+
 			if (tabOpts.url) {
 				// open URLs in a new tab next to original
 				// set correct position
