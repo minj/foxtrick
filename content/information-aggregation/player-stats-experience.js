@@ -202,7 +202,7 @@ Foxtrick.modules.PlayerStatsExperience = {
 			 * @return {MatchTypeClass}
 			 */
 			var getGameType = function(node, isodate, juniors) {
-				let date = Foxtrick.util.time.getDateFromText(isodate, 'yyyy-mm-dd', true);
+				let date = Foxtrick.util.time.getDateFromText(isodate);
 				var { season, week } = Foxtrick.util.time.gregorianToHT(date);
 				// eslint-disable-next-line no-bitwise
 				var isFinalSeason = season % 2 ^ Number(juniors);
