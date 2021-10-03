@@ -96,7 +96,7 @@ Foxtrick.modules['NewMail'] = {
 
 		let forum = menu.querySelector('a[href^="/Forum/"]');
 
-		if (forum.textContent.indexOf('(') > -1) {
+		if (forum && forum.textContent.indexOf('(') > -1) {
 			// has new message, no span this time, we need to add it
 			newForumCount = Number(forum.textContent.match(/\d+/)[0]);
 			forum.textContent = forum.textContent.replace(/\(\d+\)/, '');
