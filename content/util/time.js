@@ -372,7 +372,11 @@ Foxtrick.util.time.getDate = function(doc) {
  * @return {number}
  */
 Foxtrick.util.time.getTimeStamp = function(doc) {
-	return this.getDate(doc).getTime();
+	var date = this.getDate(doc);
+	if (!date)
+		return null;
+
+	return date.getTime();
 };
 
 /**

@@ -16,6 +16,13 @@ Foxtrick.modules['YouthSeriesEstimation'] = {
 		if (!table || table.hasAttribute(this.ATTRIB_NAME)) {
 			return;
 		}
+
+		var nowTime = Foxtrick.util.time.getTimeStamp(doc);
+		if (nowTime == null) {
+			Foxtrick.log('User time missing');
+			return;
+		}
+
 		var tbody;
 		for (var i = 0; i < table.childNodes.length; ++i) {
 			if (table.childNodes[i].nodeName.toLowerCase() === 'tbody') {
@@ -23,6 +30,7 @@ Foxtrick.modules['YouthSeriesEstimation'] = {
 				break;
 			}
 		}
+
 		var rows = tbody.getElementsByTagName('tr');
 		for (var i = 0; i < rows.length; ++i) {
 			var row = rows[i];
@@ -50,7 +58,6 @@ Foxtrick.modules['YouthSeriesEstimation'] = {
 				date = Foxtrick.util.time.getDateFromText(startsSpan.textContent);
 			}
 			var time = date.getTime();
-			var nowTime = Foxtrick.util.time.getTimeStamp(doc);
 
 			var MSECS_IN_HOUR = Foxtrick.util.time.MSECS_IN_HOUR;
 			var MSECS_IN_DAY = Foxtrick.util.time.MSECS_IN_DAY;
