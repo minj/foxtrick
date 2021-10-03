@@ -37,7 +37,7 @@ Foxtrick.modules.LinksNational = {
 		let LeagueOfficeTypeID = -1;
 		if (header) {
 			// eslint-disable-next-line no-magic-numbers
-			LeagueOfficeTypeID = /U-20/.test(header.textContent) ? 4 : 2;
+			LeagueOfficeTypeID = /U21/.test(header.textContent) ? 4 : 2;
 		}
 
 		let leagueId = Foxtrick.util.id.findLeagueId(main);

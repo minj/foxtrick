@@ -354,7 +354,7 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  * @prop {number} [matchesCurrentTeam]
  *
  * @prop {number} [caps]
- * @prop {number} [capsU20]
+ * @prop {number} [capsU20] NOTE: remains != U21
  * @prop {number} [nationalTeamId]
  * @prop {number} [matchCount] README: NT supp stats
  *
@@ -901,7 +901,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				/** @type {PlayerProp[]} */
 				let optionalNums = [
 					'Caps',
-					'CapsU20',
+					'CapsU20', // NOTE: remains != U21
 					['category', 'PlayerCategoryId'],
 				];
 				Foxtrick.forEach(addProperty(xPlayer, ifPositive), optionalNums);

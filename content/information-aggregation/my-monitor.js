@@ -48,13 +48,13 @@ Foxtrick.modules.MyMonitor = {
 					if (leagueId in Foxtrick.XMLData.League) {
 						let league = Foxtrick.XMLData.League[leagueId];
 						let ntId = Number(league.NationalTeamId);
-						let u20Id = Number(league.U20TeamId);
+						let u21Id = Number(league.U20TeamId); // NOTE: property remains != U21
 						let ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
-						let u20Name = 'U-20 ' + ntName;
+						let u21Name = 'U21 ' + ntName;
 
 						teams = [
 							{ id: ntId, name: ntName, type: 'nt' },
-							{ id: u20Id, name: u20Name, type: 'nt' },
+							{ id: u21Id, name: u21Name, type: 'nt' },
 						];
 						teams = teams.filter(t => !!t.id);
 					}

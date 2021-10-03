@@ -34,9 +34,9 @@ Foxtrick.modules['FriendlyInterface'] = {
 				let league = Foxtrick.XMLData.League[leagueId];
 				if (league) {
 					var ntId = league.NationalTeamId;
-					var u20Id = league.U20TeamId;
+					var u21Id = league.U20TeamId; // NOTE: property remains != U21
 					var ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
-					var u20NameRe = new RegExp(`U-20 .*?${Foxtrick.strToRe(ntName)}`);
+					var u21NameRe = new RegExp(`U21 .*?${Foxtrick.strToRe(ntName)}`);
 
 					var replace = function(team, id) {
 						highlight.textContent = text.slice(0, text.indexOf(team));
@@ -49,10 +49,10 @@ Foxtrick.modules['FriendlyInterface'] = {
 						highlight.appendChild(suffix);
 					};
 
-					// find U20 first because generally NT name is a substring of U20 name
-					if (u20NameRe.test(text)) {
-						let [u20Name] = u20NameRe.exec(text);
-						replace(u20Name, u20Id);
+					// find U21 first because generally NT name is a substring of U21 name
+					if (u21NameRe.test(text)) {
+						let [u21Name] = u21NameRe.exec(text);
+						replace(u21Name, u21Id);
 					}
 					else if (text.indexOf(ntName) > -1) {
 						replace(ntName, ntId);

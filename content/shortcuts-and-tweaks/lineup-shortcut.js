@@ -55,14 +55,14 @@ Foxtrick.modules['LineupShortcut'] = {
 
 		// get leagueId for ntName and u20Name
 		var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
-		var league, ntName, ntId, u20Name, u20Id;
+		var league, ntName, ntId, u21Name, u21Id;
 		if (leagueId) {
 			league = Foxtrick.XMLData.League[leagueId];
 			if (league) {
 				ntId = league.NationalTeamId;
-				u20Id = league.U20TeamId;
+				u21Id = league.U20TeamId; // NOTE: property remains != U21
 				ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
-				u20Name = 'U-20 ' + ntName;
+				u21Name = 'U21 ' + ntName;
 			}
 			else {
 				Foxtrick.log(new Error(`League ${leagueId} missing!`));
@@ -123,12 +123,12 @@ Foxtrick.modules['LineupShortcut'] = {
 				this._Add_Lineup_Link(doc, row, opts);
 				hasMatch = true;
 			}
-			else if (leagueId && Foxtrick.has(fullNames, u20Name)) {
+			else if (leagueId && Foxtrick.has(fullNames, u21Name)) {
 				opts = {
-					type: 'U20',
+					type: 'U21',
 					matchId: matchId,
 					playerId: playerId,
-					teamId: u20Id,
+					teamId: u21Id,
 				};
 				this._Add_Lineup_Link(doc, row, opts);
 				hasMatch = true;
@@ -172,10 +172,10 @@ Foxtrick.modules['LineupShortcut'] = {
 	},
 
 	/**
-	 * {type: NT|U20|Youth|normal, matchId, teamId, playerId, youthTeamId: number}
+	 * {type: NT|U21|Youth|normal, matchId, teamId, playerId, youthTeamId: number}
 	 * @param {document}            doc
 	 * @param {HTMLTableRowElement} row
-	 * @param {object}              opts {type: NT|U20|Youth|normal,
+	 * @param {object}              opts {type: NT|U21|Youth|normal,
 	 *                                    matchId, teamId, playerId, youthTeamId: number}
 	 */
 	_Add_Lineup_Link: function(doc, row, opts) {
@@ -197,8 +197,8 @@ Foxtrick.modules['LineupShortcut'] = {
 		var src = '';
 		if (opts.type == 'NT')
 			src = 'formation.nt.png';
-		else if (opts.type == 'U20')
-			src = 'formation.u20.png';
+		else if (opts.type == 'U21')
+			src = 'formation.u20.png'; // NOTE: remains != U21
 		else
 			src = 'formation.png';
 		Foxtrick.addImage(doc, link, { src: Foxtrick.InternalPath + 'resources/img/' + src });

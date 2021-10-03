@@ -1,6 +1,6 @@
 /**
- * u20-lastmatch.js
- * Shows which would be the last official u20 match of a certain player.
+ * u21-lastmatch.js
+ * Shows which would be the last official u21 match of a certain player.
  * @author: rferromoreno, LA-MJ
  */
 
@@ -122,7 +122,7 @@ Foxtrick.modules.U21LastMatch = {
 		matchDesc.push(CONTINENTAL_STR.replace(/#%1/, QUARTER_STR));
 		matchDesc.push(CONTINENTAL_STR.replace(/#%1/, SEMI_STR));
 		matchDesc.push(CONTINENTAL_STR.replace(/#%1/, FINAL_STR));
-		
+
 		for (let i of Foxtrick.range(1, 11))
 			matchDesc.push(round1.replace(/%1/, String(i)));
 		for (let i of Foxtrick.range(1, 7))

@@ -1,6 +1,6 @@
 /**
  * nt-peek.js
- * peeks NT/U20 matches at MyHT
+ * peeks NT/U21 matches at MyHT
  * @author ryanli, convincedd, ryanli
  */
 
@@ -45,7 +45,7 @@ Foxtrick.modules.NtPeek = {
 			if (isNt)
 				container.className = 'ft-nt-peek-nt';
 			else
-				container.className = 'ft-nt-peek-u20';
+				container.className = 'ft-nt-peek-u20'; // NOTE: remains != U21
 
 			let header = buildTeamHeader();
 			container.appendChild(header);
@@ -70,9 +70,9 @@ Foxtrick.modules.NtPeek = {
 			return;
 
 		var ntId = league.NationalTeamId;
-		var u20Id = league.U20TeamId;
+		var u21Id = league.U20TeamId; // NOTE: property remains != U21
 		let ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
-		let u20Name = 'U-20 ' + ntName;
+		let u21Name = 'U21 ' + ntName;
 
 		let container = Foxtrick.createFeaturedElement(doc, module, 'div');
 		container.className = 'ft-nt-peek';
@@ -83,9 +83,9 @@ Foxtrick.modules.NtPeek = {
 		var ntContainer = buildContainer(ntName, ntId, true);
 		container.appendChild(ntContainer);
 
-		// U20 container
-		var u20Container = buildContainer(u20Name, u20Id, false);
-		container.appendChild(u20Container);
+		// U21 container
+		var u21Container = buildContainer(u21Name, u21Id, false);
+		container.appendChild(u21Container);
 
 		// separator
 		let separator = doc.createElement('div');
@@ -112,11 +112,11 @@ Foxtrick.modules.NtPeek = {
 		let u20Args = [
 			['file', 'matches'],
 			['version', '2.8'],
-			['teamId', parseInt(u20Id, 10)],
+			['teamId', parseInt(u21Id, 10)],
 		];
 		let u20ArgStr = JSON.stringify(u20Args);
 		Foxtrick.util.api.retrieve(doc, u20Args, { cache: 'default' }, (xml, errorText) => {
-			let div = u20Container.querySelector('div');
+			let div = u21Container.querySelector('div');
 			let nextMatchDate = Foxtrick.util.matchView.fillMatches(div, xml, errorText);
 
 			if (nextMatchDate)

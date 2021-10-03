@@ -85,7 +85,7 @@ Foxtrick.modules.StaffMarker = {
 		'chpp-holder',
 
 		// supporters use custom scheme
-		['coach', 'nt', 'u20'],
+		['coach', 'nt', 'u20'], // NOTE: remains != U21
 	],
 
 	/**
