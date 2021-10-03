@@ -58,10 +58,16 @@ Foxtrick.modules['LineupShortcut'] = {
 		var league, ntName, ntId, u20Name, u20Id;
 		if (leagueId) {
 			league = Foxtrick.XMLData.League[leagueId];
-			ntId = league.NationalTeamId;
-			u20Id = league.U20TeamId;
-			ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
-			u20Name = 'U-20 ' + ntName;
+			if (league) {
+				ntId = league.NationalTeamId;
+				u20Id = league.U20TeamId;
+				ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
+				u20Name = 'U-20 ' + ntName;
+			}
+			else {
+				Foxtrick.log(new Error(`League ${leagueId} missing!`));
+				leagueId = null;
+			}
 		}
 
 		var hasTransfer = false;

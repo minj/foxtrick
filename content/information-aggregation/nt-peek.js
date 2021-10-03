@@ -59,8 +59,12 @@ Foxtrick.modules.NtPeek = {
 
 		let leagueId = Foxtrick.Pages.All.getId(doc);
 
-		// TODO type
 		let league = Foxtrick.XMLData.League[leagueId];
+		if (!league) {
+			Foxtrick.log(new Error(`League ${leagueId} missing!`));
+			return;
+		}
+
 		let hasCountry = league.Country.Available == 'True';
 		if (!hasCountry)
 			return;

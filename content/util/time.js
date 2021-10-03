@@ -505,7 +505,7 @@ Foxtrick.util.time.getSeasonOffset = function() {
 		}
 	}
 
-	Foxtrick.log('WARNING: no league found');
+	Foxtrick.log(new Error(`No League for '${country}' found!`));
 	return 0;
 };
 
