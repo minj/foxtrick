@@ -34,8 +34,12 @@ Foxtrick.modules.PlayerStatsExperience = {
 
 	/** @typedef {XPRecord & {minutes: number, count: number} & LastXPRecordMixin} LastXPRecord */
 
+	// TODO: globe?
 	// eslint-disable-next-line max-len
-	/** @typedef {'matchFriendly'|'matchLeague'|'matchCupA'|'matchCupB1'|'matchCupB2'|'matchCupB3'|'matchCupC'|'matchQualification'|'matchMasters'|'matchNtFriendly'|'matchNtLeague'|'matchNtFinals'} MatchTypeClass */
+	/** @typedef {'matchCup'|'matchCupA'|'matchCupB1'|'matchCupB2'|'matchCupB3'|'matchCupC'|'matchFriendly'|'matchLeague'|'matchMasters'|'matchNewbie'|'matchNtAfricaCup'|'matchNtAmericaCup'|'matchNtAsiaCup'|'matchNtEuropeCup'|'matchNtNationsCup'|'matchNtWildcard'|'matchNtWorldCup'|'matchQualification'|'matchSingleMatch'|'matchSingleMatchFast'|'matchTournament'|'matchTournamentFast'|'matchTournamentLadder'} MatchTypeClassRaw */
+
+	// eslint-disable-next-line max-len
+	/** @typedef {'matchCupA'|'matchCupB1'|'matchCupB2'|'matchCupB3'|'matchCupC'|'matchFriendly'|'matchLeague'|'matchMasters'|'matchNtContinental'|'matchNtContinentalKO'|'matchNtNationsCup'|'matchNtNationsCupKO'|'matchNtWildcard'|'matchNtWorldCup'|'matchQualification'|'matchNtFriendly'|'matchNtLeague'|'matchNtFinals'|'matchNtFriendlyNew'|'matchNtWorldCupFinals'} MatchTypeClass */
 
 	// don't randomly rename, parts of this are taken from hattrick using image classnames
 	/** @type {Record<MatchTypeClass, number>} */
@@ -52,11 +56,31 @@ Foxtrick.modules.PlayerStatsExperience = {
 		matchQualification: 7,
 		matchMasters: 17.5,
 
-		// NT
+		// globe: NaN,
+		// matchCup: NaN,
+		// matchNewbie: NaN,
+		// matchSingleMatch: NaN,
+		// matchSingleMatchFast: NaN,
+		// matchTournament: NaN,
+		// matchTournamentFast: NaN,
+		// matchTournamentLadder: NaN,
+
+		// old NT
 		// fakenames: we generate these types
-		matchNtFriendly: 7, // (iconsytle + gametype)
+		matchNtFriendly: 7.0, // (iconsytle + gametype)
 		matchNtLeague: 35.0, // (iconsytle + gametype + match date)
-		matchNtFinals: 70.0, // (iconsytle + gametype + match date)
+		matchNtFinals: 70.0, // (iconsytle + gametype + match date); semi+
+
+		matchNtContinental: 14.0,
+		matchNtContinentalKO: 21.0, // 1/4f+
+		matchNtNationsCup: 7.0,
+		matchNtNationsCupKO: 14.0, // 1/4f+
+
+		matchNtWildcard: 21.0, // FIXME just a guess
+		matchNtWorldCup: 28.0,
+		matchNtWorldCupFinals: 56.0, // semi+
+
+		matchNtFriendlyNew: 3.5,
 	},
 
 	store: {
@@ -76,7 +100,11 @@ Foxtrick.modules.PlayerStatsExperience = {
 	/** @type {MatchTypeClass[]} */
 	matchTypes: [],
 
-	/** @param {document} doc */
+	// eslint-disable-next-line valid-jsdoc
+	/**
+	 * @param {document} doc
+	 * @this {typeof Foxtrick.modules.PlayerStatsExperience}
+	 */
 	run: function(doc) {
 		const module = this;
 		const MAX_XP_MIN = 90.0;
@@ -84,7 +112,9 @@ Foxtrick.modules.PlayerStatsExperience = {
 
 		const WEEK_OF_FINALS = 16;
 		const DAY_OF_FINAL = 0; // Sunday
-		const DAY_OF_SEMIS = 5; // Saturday
+		const DAY_OF_SEMIS = 5; // Friday
+		const DAY_OF_FINAL_NEW = 5; // Friday
+		const DAY_OF_SEMIS_NEW = 1; // Monday
 
 		// setup the 'database'
 		module.matchTypes = /** @type {MatchTypeClass[]} */ (Object.keys(module.XP));
@@ -117,7 +147,8 @@ Foxtrick.modules.PlayerStatsExperience = {
 				// var gameTypeImage = gametypeParent.querySelector('.iconMatchtype img');
 
 				var iconParent = gametypeParent.querySelector('.iconMatchtype');
-				return iconParent.getAttribute('style') !== null;
+				return iconParent.getAttribute('style') !== null ||
+					!!iconParent.querySelector('img[class^="matchNt"]');
 			};
 
 			/**
@@ -166,48 +197,113 @@ Foxtrick.modules.PlayerStatsExperience = {
 			 * figure out the gametype, most important to figure out how many xp pts are gained
 			 *
 			 * @param  {HTMLTableRowElement} node
-			 * @param  {Date}           date
-			 * @param  {boolean}        u20
+			 * @param  {string}              isodate
+			 * @param  {boolean}             juniors
 			 * @return {MatchTypeClass}
 			 */
-			var getGameType = function(node, date, u20) {
+			var getGameType = function(node, isodate, juniors) {
+				let date = Foxtrick.util.time.getDateFromText(isodate, 'yyyy-mm-dd', true);
+				var { season, week } = Foxtrick.util.time.gregorianToHT(date);
+				// eslint-disable-next-line no-bitwise
+				var isFinalSeason = season % 2 ^ Number(juniors);
+
 				// most games can be identified by the classname directly, NT needs some tricks
 				/**
 				 * @param  {HTMLTableRowElement} node
-				 * @return {MatchTypeClass}
+				 * @return {MatchTypeClassRaw}
 				 */
 				var getBasicGameType = function(node) {
 					var gametypeParent = node.querySelector('td.keyColumn');
 					var gameTypeImage = gametypeParent.querySelector('.iconMatchtype img');
-					return /** @type {MatchTypeClass} */ (gameTypeImage.className);
+					return /** @type {MatchTypeClassRaw} */ (gameTypeImage.className);
 				};
 
-				var gameType = getBasicGameType(node);
-				var isNT = isNTMatch(node);
-				if (!isNT)
-					return gameType;
+				/**
+				 * @param  {MatchTypeClassRaw} raw
+				 * @return {MatchTypeClass}
+				 */
+				// eslint-disable-next-line complexity
+				var getNTType = function(raw) {
+					if (raw == 'matchFriendly') {
+						if (juniors)
+							// eslint-disable-next-line no-magic-numbers
+							return season >= 77 ? 'matchNtFriendlyNew' : 'matchNtFriendly';
 
-				if (gameType == 'matchFriendly')
-					return 'matchNtFriendly';
+						// eslint-disable-next-line no-magic-numbers
+						return season >= 78 ? 'matchNtFriendlyNew' : 'matchNtFriendly';
+					}
 
-				if (gameType == 'matchLeague') {
-					let { season, week } = Foxtrick.util.time.gregorianToHT(date);
+					if (raw == 'matchLeague') {
+						// old NT
+						// oldies wc finals are in odd seasons, juniors in even seasons
+						if (!isFinalSeason)
+							return 'matchNtLeague';
 
-					// oldies wc finals are in odd seasons, u20 in even seasons
-					// eslint-disable-next-line no-bitwise
-					let isWcFinalSeason = season % 2 ^ Number(u20);
-					if (!isWcFinalSeason)
+						let semifinal = date.getDay() == DAY_OF_SEMIS;
+						let final = date.getDay() === DAY_OF_FINAL;
+						if (week == WEEK_OF_FINALS && (semifinal || final))
+							return 'matchNtFinals';
+
 						return 'matchNtLeague';
+					}
 
-					let semifinal = date.getDay() == DAY_OF_SEMIS;
-					let final = date.getDay() === DAY_OF_FINAL;
-					if (week == WEEK_OF_FINALS && (semifinal || final))
-						return 'matchNtFinals';
+					if (raw == 'matchNtWorldCup') {
+						if (!isFinalSeason)
+							return 'matchNtWorldCup';
 
-					return 'matchNtLeague';
+						let semifinal = date.getDay() == DAY_OF_SEMIS_NEW;
+						let final = date.getDay() === DAY_OF_FINAL_NEW;
+						if (week == WEEK_OF_FINALS && (semifinal || final))
+							return 'matchNtWorldCupFinals';
+
+						return 'matchNtWorldCup';
+					}
+
+					if (raw == 'matchNtNationsCup') {
+						// weeks 14-16 in final season are KO
+						// eslint-disable-next-line no-magic-numbers
+						return isFinalSeason && week >= 14
+							? 'matchNtNationsCupKO'
+							: 'matchNtNationsCup';
+					}
+
+					/** @type {MatchTypeClassRaw[]} */
+					const CONT_CUPS = [
+						'matchNtAfricaCup',
+						'matchNtAmericaCup',
+						'matchNtAsiaCup',
+						'matchNtEuropeCup',
+					];
+					if (CONT_CUPS.includes(raw)) {
+						// weeks 11-12 are KO
+						// eslint-disable-next-line no-magic-numbers
+						return !isFinalSeason && week >= 11
+							? 'matchNtContinentalKO'
+							: 'matchNtContinental';
+					}
+
+					return raw in module.XP ? /** @type {MatchTypeClass} */ (raw) : null;
+				};
+
+				var cls = getBasicGameType(node);
+				var isNT = isNTMatch(node);
+
+				if (isNT) {
+					let nt = getNTType(cls);
+					if (nt != null)
+						return nt;
 				}
 
-				return null;
+				var ret = cls in module.XP ? /** @type {MatchTypeClass} */ (cls) : null;
+
+				if (ret === null) {
+					// report failure
+					Foxtrick.log(new Error(`Type dection failed: ${cls},
+						d=${isodate} (${season}/${week}), isNT=${isNT}, junions=${juniors}
+					`));
+				}
+
+				return ret;
 			};
 
 			/**
@@ -268,8 +364,6 @@ Foxtrick.modules.PlayerStatsExperience = {
 
 				/** @type {HTMLElement} */
 				let dateSpan = matchDate.querySelector('span.float_left');
-				let dateStr = dateSpan.title || dateSpan.dataset.dateiso;
-				let date = Foxtrick.util.time.getDateFromText(dateStr);
 
 				// current skilllevel
 				let xpNow = parseInt(row.cells[module.XP_CELL_IDX].textContent, 10);
@@ -278,9 +372,9 @@ Foxtrick.modules.PlayerStatsExperience = {
 				if (store.currentSkill === null)
 					store.currentSkill = xpNow;
 
-				let u20 = /U-20/.test(row.querySelector('a').textContent);
 				let ntMatch = isNTMatch(row);
-				let gameType = getGameType(row, date, u20);
+				let juniors = /U-20|U21/.test(row.querySelector('a').textContent);
+				let gameType = getGameType(row, dateSpan.dataset.dateiso, juniors);
 				let minutes = getPlayedMinutes(row);
 				let pseudoPoints = getXpGain(minutes, gameType); // for visualization
 				let walkover = isWalkover(row);
@@ -291,27 +385,29 @@ Foxtrick.modules.PlayerStatsExperience = {
 				// set min/max values for friendlies
 				let dxp = getXPMinMaxDifference(ntMatch, xpGain, gameType);
 				if (xpNow === store.currentSkill) {
-					// store all until XP is lower than curremt
-					store.matches[gameType].xp.min += dxp.min;
-					store.matches[gameType].xp.max += dxp.max;
-					store.matches[gameType].minutes.min += minutes;
-					store.matches[gameType].minutes.max += minutes;
-					store.matches[gameType].count.min += minutes / MAX_XP_MIN;
-					store.matches[gameType].count.max += minutes / MAX_XP_MIN;
+					if (gameType != null) {
+						// store all until XP is lower than curremt
+						store.matches[gameType].xp.min += dxp.min;
+						store.matches[gameType].xp.max += dxp.max;
+						store.matches[gameType].minutes.min += minutes;
+						store.matches[gameType].minutes.max += minutes;
+						store.matches[gameType].count.min += minutes / MAX_XP_MIN;
+						store.matches[gameType].count.max += minutes / MAX_XP_MIN;
 
-					store.xp.points.min += dxp.min;
-					store.xp.points.max += dxp.max;
-					store.xp.xp.min += dxp.min / module.XP_PTS_PER_LEVEL;
-					store.xp.xp.max += dxp.max / module.XP_PTS_PER_LEVEL;
+						store.xp.points.min += dxp.min;
+						store.xp.points.max += dxp.max;
+						store.xp.xp.min += dxp.min / module.XP_PTS_PER_LEVEL;
+						store.xp.xp.max += dxp.max / module.XP_PTS_PER_LEVEL;
 
-					store.last = {
-						node: row,
-						gameType: gameType,
-						min: dxp.min,
-						max: dxp.max,
-						minutes: minutes,
-						count: minutes / MAX_XP_MIN,
-					};
+						store.last = {
+							node: row,
+							gameType: gameType,
+							min: dxp.min,
+							max: dxp.max,
+							minutes: minutes,
+							count: minutes / MAX_XP_MIN,
+						};
+					}
 				}
 				else {
 					// store.last points to the skill up row
