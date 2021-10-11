@@ -26,7 +26,9 @@ Foxtrick.modules['ForumChangePosts'] = {
 			link.appendChild(img);
 			Foxtrick.onClick(img, function() {
 				var idExpanded = (idLink.href.search(/MInd/i) >= 0);
-				var postId = idExpanded ? idLink.href.match(/\d+\.\d+/g)[0] : idLink.title;
+				var postId = idExpanded
+					? decodeURIComponent(idLink.href.match(/\d+\.\d+/g)[0])
+					: idLink.title;
 				Foxtrick.copy(doc, '[post=Oops]'.replace('Oops', postId));
 				var insertBefore = idLink;
 				while (!Foxtrick.hasClass(insertBefore, 'cfWrapper') &&
