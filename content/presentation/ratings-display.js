@@ -40,8 +40,8 @@ Foxtrick.modules.RatingsDisplay = {
 			Foxtrick.forEach(function(row, i, rows) {
 
 				/**
-				 * @param {HTMLTableDataCellElement} textTd
-				 * @param {HTMLTableDataCellElement} valueTd
+				 * @param {HTMLTableCellElement} textTd
+				 * @param {HTMLTableCellElement} valueTd
 				 */
 				var convertHTSums = function(textTd, valueTd) {
 					// skip labels, headers, FT ratings etc

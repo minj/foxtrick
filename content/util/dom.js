@@ -99,7 +99,7 @@ Foxtrick.insertFeaturedRow = function(table, module, index) {
  * @param  {HTMLTableRowElement} row
  * @param  {any}                 module // TODO module type
  * @param  {number}              index
- * @return {HTMLTableDataCellElement}
+ * @return {HTMLTableCellElement}
  */
 // eslint-disable-next-line consistent-this
 Foxtrick.insertFeaturedCell = function(row, module, index) {
@@ -1186,7 +1186,7 @@ Foxtrick.getNodes = function(parent) {
 	// @ts-ignore
 	// eslint-disable-next-line no-bitwise
 	let bitMask = win.NodeFilter.SHOW_TEXT | win.NodeFilter.SHOW_ELEMENT;
-	let walker = doc.createTreeWalker(parent, bitMask, null, false);
+	let walker = doc.createTreeWalker(parent, bitMask, null);
 
 	let node;
 	while ((node = walker.nextNode()))
