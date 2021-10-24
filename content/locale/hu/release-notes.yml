@@ -90,15 +90,20 @@ hu:
       sandbox: 'Hozzáadta a következő Hattrick meccs homokozó funkciót.'
       and_more: 'Különböző egyéb kisebb változások és javítások.'
     0.15.2:
+      twitter: 'A legújabb híreket, frissítéseket és bejelentéseket követheted a <linkTwitter>Foxtrick Twitteren</linkTwitter>.'
       bugs: '<header>Hibajavítások</header>'
       other: '<header>Egyéb változások</header>'
       and_more: 'Különböző egyéb kisebb változások és javítások.'
     0.15.1:
       bugs: '<header>Hibajavítások</header>'
+      other: '<header>Egyéb változtatások</header>'
       and_more: 'Különböző egyéb kisebb változások és javítások.'
     0.15.0:
+      twitter: 'A legújabb híreket, frissítéseket és bejelentéseket követheted a <linkTwitter>Foxtrick Twitteren</linkTwitter>.'
+      new: '<header>Új modulok</header>'
       breakages: 'A Foxtrick most megfelelően működik a Safari 7.1+ és a Firefox Android rendszeren.'
       https: 'A Foxtrick-nek ismét megfelelően kell működnie a Hattrick Stage-ban.'
+      other: '<header>Egyéb változtatások</header>'
       nt: 'Rengeteg olyan funkciót korrigált, amelyek korábban nem működtek megfelelően az NT edzők számára.'
       en-US: 'Hozzáadta a megfelelő támogatást az amerikai angol nyelvhez.'
       code: 'Nagyobb karbantartás történt a Foxtrick kóddal kapcsolatban. Ez lehetővé teszi számunkra, hogy megtaláljuk és javítsuk a rejtett hibákat, javítsuk a kiegészítő stabilitást és megkönnyítsük annak további fejlődését.'
@@ -107,21 +112,30 @@ hu:
       sorry: "Bocsánatot kérve az utolsó 'hibajavítás' kiadáshoz, amely valójában több dolgot törött, mint amit rögzített. Ennek jobbnak kell lennie."
       street_teams: 'Az utcai csapatok bevezetése az új csésze rendszerben számos különös problémát okozott, amelyeket most rögzítettek.'
     0.14.0.2:
+      other: '<header>Egyéb változtatások</header>'
       and_more: 'Különböző egyéb kisebb változások és javítások.'
     0.14.0.1:
       ff_cache: 'A Foxtrick csomagok többé nem lesznek tömörítve a Firefoxban. Ez megakadályoz minden olyan furcsa problémát, amelyet a felhasználók a 0.14.0 verzióval tapasztaltunk.'
     0.14.0:
+      twitter: 'A legújabb híreket, frissítéseket és bejelentéseket követheted a <linkTwitter>Foxtrick Twitteren</linkTwitter>.'
+      new: '<header>Új modulok</header>'
       australis: 'A Firefox ikon menüt rögzítették az új böngésző témához.'
       chrome_notes: 'A Foxtrick értesítéseket rögzítették az új értesítési rendszer használatára a Google Chrome-ban.'
       player_cache: 'A Foxtrick most új játékosokat fog észrevenni a csapatban, és automatikusan frissíti a CHPP adatokat.'
       train_est: 'A Foxtrick már nem zavarja az asztali rendezést az új képzési becslési szolgáltatásban.'
+      other: '<header>Egyéb változtatások</header>'
       htev: 'A htev.org többé nem tudja fenntartani a Foxtrick kéréseit, így a HTEVPrediction modult eltávolították.'
       removed: 'A SmallPages és a MatchTables modulokat is eltávolították a haszontalanság miatt.'
       and_more: 'Különböző egyéb kisebb változások és javítások.'
     0.13.0.1:
+      other: '<header>Egyéb változtatások</header>'
       and_more: 'Különböző egyéb kisebb változások és javítások.'
     0.13.0:
       safari: 'A Safari 5.x verzió támogatása hamarosan leesik.'
+      twitter: 'A legújabb híreket, frissítéseket és bejelentéseket követheted a <linkTwitter>Foxtrick Twitteren</linkTwitter>.'
+      crowdin: '<header>A mi nagyszerű felhasználóink a <linkCrowdin>crowdin eszközt</linkCrowdin> használják a számtalan fordítási frissítéshez. Természetesen Te is segíthetsz!</header>'
+      new: '<header>Új modulok</header>'
+      other: '<header>Egyéb változtatások</header>'
       ht_changes: 'A Foxtrick-et frissítették a Hattrick legutóbbi változásainak támogatására az ifjúsági meccsekre vonatkozó jelentések, az egyszerű téma és a meccs rendezési felület tekintetében.'
       locale_support: 'Frissített helyi támogatás: Lettország euro valuta, új spanyol nyelvjárási nevek, korrigált időpontok és dátumformátumok stb.'
       custom_marker: 'A fórumüzenetek láblécéhez hozzáadtunk egy felhasználói név színek egyszerű hozzáadását lehetővé tevő felületet.'
@@ -157,6 +171,7 @@ hu:
     0.11.0:
       note_12: '<header>Hibajavítások</header>'
       note_18: 'A háttértároló modult eltávolítottuk.'
+      note_19: '<header>Modulok másolása</header>'
       note_23: 'Általános HT-ML másolási javítások.'
       note_29: "A fórummodulok mostantól egy speciális karaktert használnak a szöveg helyett a \"·\" helyett: ez segítheti a katalán nyelvet."
       note_30: 'Megakadályozza, hogy a HT elrendezés zavarja a Foxtrick-et.'
