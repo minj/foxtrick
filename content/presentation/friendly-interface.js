@@ -15,6 +15,7 @@ Foxtrick.modules['FriendlyInterface'] = {
 		'HideSpeechlessSecretary',
 	],
 
+	// eslint-disable-next-line complexity
 	run: function(doc) {
 		var module = this;
 		if (Foxtrick.isPage(doc, 'playerDetails') &&
@@ -30,29 +31,35 @@ Foxtrick.modules['FriendlyInterface'] = {
 			if (highlight) {
 				var text = highlight.textContent;
 				var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
-				var league = Foxtrick.XMLData.League[leagueId];
-				var ntId = league.NationalTeamId;
-				var u20Id = league.U20TeamId;
-				var ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
-				var u20NameRe = new RegExp(`U-20 .*${Foxtrick.strToRe(ntName)}`);
+				let league = Foxtrick.XMLData.League[leagueId];
+				if (league) {
+					var ntId = league.NationalTeamId;
+					var u21Id = league.U20TeamId; // NOTE: property remains != U21
+					var ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
+					var u21NameRe = new RegExp(`U21 .*?${Foxtrick.strToRe(ntName)}`);
 
-				var replace = function(team, id) {
-					highlight.textContent = text.slice(0, text.indexOf(team));
-					var link = Foxtrick.createFeaturedElement(doc, module, 'a');
-					link.textContent = team;
-					link.href = '/Club/NationalTeam/NationalTeam.aspx?teamId=' + id;
-					highlight.appendChild(link);
-					var suffix = doc.createTextNode(text.slice(text.indexOf(team) + team.length));
-					highlight.appendChild(suffix);
-				};
+					var replace = function(team, id) {
+						highlight.textContent = text.slice(0, text.indexOf(team));
+						var link = Foxtrick.createFeaturedElement(doc, module, 'a');
+						link.textContent = team;
+						link.href = '/Club/NationalTeam/NationalTeam.aspx?teamId=' + id;
+						highlight.appendChild(link);
+						var suffix =
+							doc.createTextNode(text.slice(text.indexOf(team) + team.length));
+						highlight.appendChild(suffix);
+					};
 
-				// find U20 first because generally NT name is a substring of U20 name
-				if (u20NameRe.test(text)) {
-					let [u20Name] = u20NameRe.exec(text);
-					replace(u20Name, u20Id);
+					// find U21 first because generally NT name is a substring of U21 name
+					if (u21NameRe.test(text)) {
+						let [u21Name] = u21NameRe.exec(text);
+						replace(u21Name, u21Id);
+					}
+					else if (text.indexOf(ntName) > -1) {
+						replace(ntName, ntId);
+					}
 				}
-				else if (text.indexOf(ntName) > -1) {
-					replace(ntName, ntId);
+				else {
+					Foxtrick.log(new Error(`League ${leagueId} missing!`));
 				}
 			}
 		}

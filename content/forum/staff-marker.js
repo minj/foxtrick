@@ -85,7 +85,7 @@ Foxtrick.modules.StaffMarker = {
 		'chpp-holder',
 
 		// supporters use custom scheme
-		['coach', 'nt', 'u20'],
+		['coach', 'nt', 'u20'], // NOTE: remains != U21
 	],
 
 	/**
@@ -432,6 +432,9 @@ Foxtrick.modules.StaffMarker = {
 					Foxtrick.log('StaffMarker parsing failed:', url, text);
 
 			}, function(resp) {
+
+				if (!resp)
+					Foxtrick.log(new Error(`resp is ${resp} (${url})`));
 
 				Foxtrick.log('Failure loading file:', resp.url, '. Using cached markers.');
 

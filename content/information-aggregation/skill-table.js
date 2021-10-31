@@ -313,7 +313,7 @@ Foxtrick.modules.SkillTable = {
 					method: 'formatNum',
 				},
 				{ name: 'IsAbroad', property: 'isAbroad', method: 'bool', },
-				{ name: 'U20Match', property: 'u20', method: 'def' },
+				{ name: 'U20Match', property: 'u21', method: 'def' },
 				{ name: 'NrOfMatches', property: 'matchCount', }, // NT
 				{ name: 'TeamMatches', property: 'matchesCurrentTeam', },
 				{ name: 'LeagueGoals', property: 'leagueGoals', },

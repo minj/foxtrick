@@ -578,6 +578,9 @@ Foxtrick.util.load.async = function(url, callback, params) {
 	Foxtrick.load(url, params).then((text) => {
 		callback(/** @type {string} */ (text), HTTP_OK);
 	}, (/** @type {FetchError} */ resp) => {
+		if (!resp)
+			Foxtrick.log(new Error(`resp is ${resp} (${url})`));
+
 		callback(resp.text, resp.status);
 	}).catch((e) => {
 		Foxtrick.log('Uncaught callback error: - url:', url, 'params:', params, e);
@@ -604,6 +607,9 @@ Foxtrick.util.load.fetch = function(url, callback, params) {
 
 		callback(text, HTTP_OK);
 	}, (/** @type {FetchError} */ resp) => {
+		if (!resp)
+			Foxtrick.log(new Error(`resp is ${resp} (${url})`));
+
 		callback(resp.text, resp.status);
 	}).catch((e) => {
 		Foxtrick.log('Uncaught callback error: - url:', url, 'params:', params, e);

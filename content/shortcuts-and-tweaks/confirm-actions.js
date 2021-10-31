@@ -68,13 +68,13 @@ Foxtrick.modules.ConfirmActions = {
 	confirmNT: function(doc) {
 		const module = this;
 
-		// one may coach both a U-20 and an NT team
+		// one may coach both a U-21 and an NT team
 		let ntId =
 			'ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl00_lnkNTAction';
-		let u20Id =
+		let u21Id =
 			'ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl01_lnkNTAction';
 
-		let submitLink = doc.getElementById(ntId) || doc.getElementById(u20Id);
+		let submitLink = doc.getElementById(ntId) || doc.getElementById(u21Id);
 		if (!submitLink)
 			return;
 

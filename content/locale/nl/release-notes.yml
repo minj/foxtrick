@@ -7,6 +7,8 @@ nl:
       note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.17.0.1:
       important: '<header>Belangrijke aankondigingen</header>'
+      safari_cert: 'Wij zoeken iemand in de Hattrick community die ontwikkelt voor iOS of OSX om te helpen om de ondersteuning voor Foxtrick te repareren bij Safari gebruikers. Zie onze <linkSafariCertBug>issue tracker</linkSafariCertBug> voor meer informatie.'
+      beta: 'Overweeg alstjeblief het gebruik van <linkFTBeta>Foxtrick beta</linkFTBeta> om vroeg nieuwe features te krijgen, invloed te hebben op de ontwikkeling en te helpen met het oplossen van problemen die wellicht kunnen voorkomen. '
       support: '<header>Waardeer je wat wij doen? Steun ons dan aub<linkContribute>Steun Foxtrick</linkContribute>.</header>'
       bugs: '<header>Fout herstel</header>'
       other: '<header>Andere veranderingen</header>'

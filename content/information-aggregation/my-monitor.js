@@ -45,17 +45,23 @@ Foxtrick.modules.MyMonitor = {
 				// return national teams if first run
 				var leagueId = Foxtrick.util.id.getOwnLeagueId();
 				if (leagueId) {
-					let league = Foxtrick.XMLData.League[leagueId];
-					let ntId = Number(league.NationalTeamId);
-					let u20Id = Number(league.U20TeamId);
-					let ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
-					let u20Name = 'U-20 ' + ntName;
+					if (leagueId in Foxtrick.XMLData.League) {
+						let league = Foxtrick.XMLData.League[leagueId];
+						let ntId = Number(league.NationalTeamId);
+						let u21Id = Number(league.U20TeamId); // NOTE: property remains != U21
+						let ntName = Foxtrick.XMLData.getNTNameByLeagueId(leagueId);
+						let u21Name = 'U21 ' + ntName;
 
-					teams = [
-						{ id: ntId, name: ntName, type: 'nt' },
-						{ id: u20Id, name: u20Name, type: 'nt' },
-					];
-					teams = teams.filter(t => !!t.id);
+						teams = [
+							{ id: ntId, name: ntName, type: 'nt' },
+							{ id: u21Id, name: u21Name, type: 'nt' },
+						];
+						teams = teams.filter(t => !!t.id);
+					}
+					else {
+						Foxtrick.log(new Error(`League ${leagueId} missing!`));
+						teams = [];
+					}
 				}
 				else {
 					// inactive team

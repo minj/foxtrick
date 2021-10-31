@@ -150,6 +150,9 @@ Foxtrick.util.links.showLinks = function(doc, ownBoxBody, linkSet) {
 
 		let links = Foxtrick.util.links.getCustomLinks(linkSet);
 		let anchors = Foxtrick.map(function(link) {
+			if (!link)
+				Foxtrick.log(new Error(`link is ${link}`));
+
 			// replace tags
 			let url = Foxtrick.util.links.makeUrl(link.url, args);
 			let { title, imgSrc, key } = link;

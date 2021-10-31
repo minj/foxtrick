@@ -153,6 +153,9 @@ Foxtrick.modules.Links = {
 			}
 			catch (e) {
 				let resp = /** @type {FetchError} */ e;
+				if (!resp)
+					Foxtrick.log(new Error(`resp is ${resp} (${feed})`));
+
 				if (resp.url) {
 					Foxtrick.log('Error', resp.status, 'loading links from:', resp.url,
 					             '. Using cached feed.');

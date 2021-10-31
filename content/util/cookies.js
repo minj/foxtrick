@@ -216,6 +216,9 @@ Foxtrick.cookies = (function() {
 	 */
 	var get = function(key, cookieName) {
 		const spec = COOKIE_SPEC[key];
+		if (!spec)
+			Foxtrick.log(new Error(`spec is ${spec}`));
+
 		let name = cookieName ||
 			(spec.addId ? spec.name + '_' + Foxtrick.util.id.getOwnTeamId() : spec.name);
 

@@ -312,8 +312,13 @@ Foxtrick.util.currency.findSymbol = function(id) {
 		return '€';
 	}
 
-	let country = Foxtrick.XMLData.League[leagueId].Country;
+	let league = Foxtrick.XMLData.League[leagueId];
+	if (!league) {
+		Foxtrick.log(new Error(`League ${leagueId} missing!`));
+		return null;
+	}
 
+	let country = league.Country;
 	if (country.Available === 'False')
 		return null;
 
@@ -340,8 +345,13 @@ Foxtrick.util.currency.findRate = function(id) {
 		return 1.0;
 	}
 
-	let country = Foxtrick.XMLData.League[leagueId].Country;
+	let league = Foxtrick.XMLData.League[leagueId];
+	if (!league) {
+		Foxtrick.log(new Error(`League ${leagueId} missing!`));
+		return null;
+	}
 
+	let country = league.Country;
 	if (country.Available === 'False')
 		return null;
 

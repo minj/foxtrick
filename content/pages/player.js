@@ -1164,7 +1164,7 @@ Foxtrick.Pages.Player.getPlayer = function(doc, playerId, callback) {
 
 			var optionalNums = [
 				'Caps',
-				'CapsU20',
+				'CapsU20', // NOTE: remains != U21
 				['category', 'PlayerCategoryID'], // inconsistent spelling
 			];
 			Foxtrick.forEach(addProperty(player, ifPositive), optionalNums);

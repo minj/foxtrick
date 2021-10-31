@@ -270,7 +270,7 @@
 			"1": "Suedia",
 			"100": "El Salvador",
 			"1000": "Hattrick International",
-			"1001": "Apache League (Limited Edition)",
+			"1001": "Liga Apache (Numri i kufizuar)",
 			"101": "Malta",
 			"102": "Kirgistan",
 			"103": "Moldavia",
@@ -620,7 +620,7 @@
 		"specialties": [
 			{
 				"type": "None",
-				"value": "Asnjë specialitet"
+				"value": "Pa veçori"
 			},
 			{
 				"type": "Technical",
@@ -648,7 +648,7 @@
 			},
 			{
 				"type": "Support",
-				"value": "Suport"
+				"value": "Mbështetës"
 			}
 		],
 		"spirit": [

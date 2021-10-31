@@ -303,16 +303,25 @@ Foxtrick.storage.get = function(key) {
 	return Foxtrick.localStore.then(function(/** @type {IDBStore} */ store) {
 
 		return new Promise(function(resolve, reject) {
-			store.get(key, function onStoreGet(value) {
-				let val = value;
+			try {
+				store.get(key, function onStoreGet(value) {
+					let val = value;
 
-				// cast undefined to null
-				if (val == null)
-					val = null;
+					// cast undefined to null
+					if (val == null)
+						val = null;
 
-				resolve(val);
+					resolve(val);
 
-			}, reject);
+				}, reject);
+			}
+			catch (e) {
+				if (e instanceof DOMException && e.name == 'InvalidStateError') {
+					resolve(null);
+					return;
+				}
+				reject(e);
+			}
 		});
 
 	}, function() {

@@ -1,6 +1,6 @@
 /**
- * u20-lastmatch.js
- * Shows which would be the last official u20 match of a certain player.
+ * u21-lastmatch.js
+ * Shows which would be the last official u21 match of a certain player.
  * @author: rferromoreno, LA-MJ
  */
 
@@ -76,6 +76,7 @@ Foxtrick.modules.U21LastMatch = {
 		const module = this;
 
 		const CONTINENTAL_STR = Foxtrick.L10n.getString('U21LastMatch.continental');
+		const CONTINENTALPO_STR = Foxtrick.L10n.getString('U21LastMatch.continentalpo');
 		const ROUND_STR = Foxtrick.L10n.getString('U21LastMatch.round');
 		const QUARTER_STR = Foxtrick.L10n.getString('U21LastMatch.quarter');
 		const SEMI_STR = Foxtrick.L10n.getString('U21LastMatch.semi');
@@ -119,10 +120,10 @@ Foxtrick.modules.U21LastMatch = {
 		for (let i of Foxtrick.range(1, 11))
 			matchDesc.push(CONTINENTAL_STR.replace(/%1/, String(i)));
 
-		matchDesc.push(CONTINENTAL_STR.replace(/#%1/, QUARTER_STR));
-		matchDesc.push(CONTINENTAL_STR.replace(/#%1/, SEMI_STR));
-		matchDesc.push(CONTINENTAL_STR.replace(/#%1/, FINAL_STR));
-		
+		matchDesc.push(CONTINENTALPO_STR.replace(/%1/, QUARTER_STR));
+		matchDesc.push(CONTINENTALPO_STR.replace(/%1/, SEMI_STR));
+		matchDesc.push(CONTINENTALPO_STR.replace(/%1/, FINAL_STR));
+
 		for (let i of Foxtrick.range(1, 11))
 			matchDesc.push(round1.replace(/%1/, String(i)));
 		for (let i of Foxtrick.range(1, 7))
