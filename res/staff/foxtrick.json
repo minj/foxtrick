@@ -676,6 +676,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13774488",
+			"name": "Uglerimosen"
+		},
+		{
+			"duty": "supporter",
 			"id": "1397713",
 			"name": "VvJ-Beckham"
 		},
@@ -1218,6 +1223,11 @@
 			"duty": "translator",
 			"id": "5345125",
 			"name": "GM-Marin"
+		},
+		{
+			"duty": "supporter",
+			"id": "5358688",
+			"name": "Graben53"
 		},
 		{
 			"duty": "supporter",
