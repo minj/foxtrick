@@ -1,16 +1,122 @@
 {
 	"type": "htls",
 	"url": "http://htlivesight.sourceforge.net/",
-	"duties" : {
-		"developer" : {
+	"duties": {
+		"developer": {
 			"alt": "HTLiveSight developer"
+		},
+		"tester": {
+			"alt": "HTLiveSight tester"
+		},
+		"translator": {
+			"alt": "HTLiveSight translator"
 		}
 	},
 	"list": [
-		{ "id": "10246801", "name": "silkevicious", "duty": "developer"},
-		{ "id": "7967145", "name": "bigpapy", "duty": "developer"},
-		{ "id": "9100817", "name": "davidatorus", "duty": "developer"},
-		{ "id": "11288067", "name": "pietrisque", "duty": "developer"},
-		{ "id": "11176924", "name": "dame_sans_merci", "duty": "developer"}
+		{
+			"id": "10246801",
+			"name": "silkevicious",
+			"duty": "developer"
+		},
+		{
+			"id": "7967145",
+			"name": "bigpapy",
+			"duty": "developer"
+		},
+		{
+			"id": "9100817",
+			"name": "davidatorus",
+			"duty": "tester"
+		},
+		{
+			"id": "11288067",
+			"name": "pietrisque",
+			"duty": "tester"
+		},
+		{
+			"id": "9855688",
+			"name": "LA-Dzigo",
+			"duty": "translator"
+		},
+		{
+			"id": "12166",
+			"name": "murko",
+			"duty": "translator"
+		},
+		{
+			"id": "4342858",
+			"name": "ljushaff",
+			"duty": "translator"
+		},
+		{
+			"id": "335181",
+			"name": "Baler0",
+			"duty": "translator"
+		},
+		{
+			"id": "1313253",
+			"name": "Peaso",
+			"duty": "translator"
+		},
+		{
+			"id": "5390536",
+			"name": "Djalma8_JCV21",
+			"duty": "translator"
+		},
+		{
+			"id": "983367",
+			"name": "RadrianO",
+			"duty": "translator"
+		},
+		{
+			"id": "1731487",
+			"name": "pmeyer",
+			"duty": "translator"
+		},
+		{
+			"id": "3889624",
+			"name": "titico",
+			"duty": "translator"
+		},
+		{
+			"id": "3608831",
+			"name": "Misiak_",
+			"duty": "translator"
+		},
+		{
+			"id": "8366392",
+			"name": "LA-MJ",
+			"duty": "translator"
+		},
+		{
+			"id": "9668661",
+			"name": "dzsoo",
+			"duty": "translator"
+		},
+		{
+			"id": "2915990",
+			"name": "GZ-grobas",
+			"duty": "translator"
+		},
+		{
+			"id": "5639894",
+			"name": "-Lupi-",
+			"duty": "translator"
+		},
+		{
+			"id": "12326398",
+			"name": "LA-Jalal",
+			"duty": "translator"
+		},
+		{
+			"id": "10032805",
+			"name": "Mod-Simokas",
+			"duty": "translator"
+		},
+		{
+			"id": "10063129",
+			"name": "felix_90",
+			"duty": "translator"
+		}
 	]
 }
