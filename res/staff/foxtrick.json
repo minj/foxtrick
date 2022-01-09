@@ -1475,6 +1475,11 @@
 			"name": "-TheChef-"
 		},
 		{
+			"duty": "supporter",
+			"id": "7353465",
+			"name": "Wasted_Penguin"
+		},
+		{
 			"duty": "developer",
 			"id": "7409095",
 			"name": "<stephan57>"
