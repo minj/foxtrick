@@ -17,18 +17,18 @@ Foxtrick.modules.U21LastMatch = {
 	],
 	OPTIONS: ['YouthPlayers', 'SeniorPlayers', 'AllPlayers'],
 	DATE_CUTOFFS: [
-		3,
+		3, // CC M2
 		7,
-		14,
-		21,
+		10,
+		14, // CC M5
+		21, 
 		28,
-		35,
+		35, // CC M8
 		42,
-		49,
-		56,
-		59,
-		63,
-		65,
+		49, 
+		56, // CC QF
+		59, // CC SF
+		63, // CC Finals
 		70, // WC R1 M1
 		73,
 		77,
@@ -42,20 +42,20 @@ Foxtrick.modules.U21LastMatch = {
 		133, // WC R2 M1
 		136,
 		140,
+		143,
 		147,
 		154,
-		161,
-		171, // WC R3 M1
-		175,
+		161, // WC R3 M1
+		164,
+		168, 
+		175, // WC R4 M1
 		178,
-		182, // WC R4 M1
-		185,
-		189,
-		192, // WC R5 M1
+		182, 
+		189, // WC R5 M1
+		192, 
 		196,
-		199,
-		203, // Semi
-		205,  // Final
+		199, // Semi
+		203, // Finals
 		224
 	],
 
