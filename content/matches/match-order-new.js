@@ -50,7 +50,7 @@ Foxtrick.modules.MatchOrderNew = {
 			ratingsTable = doc.createElement('table');
 			ratingsDiv.appendChild(ratingsTable).id = TABLE_ID;
 
-			let scope = document.querySelector('ng-app');
+			let scope = doc.querySelector('ng-app');
 
 			// let content = scope.querySelector('.mo-field .htbox-content');
 
