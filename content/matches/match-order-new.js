@@ -50,7 +50,7 @@ Foxtrick.modules.MatchOrderNew = {
 			ratingsTable = doc.createElement('table');
 			ratingsDiv.appendChild(ratingsTable).id = TABLE_ID;
 
-			let scope = doc.querySelector('.ng-scope[ng-if="lineupMgr"]');
+			let scope = doc.querySelector('ng-app');
 
 			// let content = scope.querySelector('.mo-field .htbox-content');
 
@@ -66,7 +66,7 @@ Foxtrick.modules.MatchOrderNew = {
 			// doc.querySelectorAll(`.${PRED_CLS} div.ng-binding[ng-repeat*='SectorRatings'i]`)
 
 			var predictions =
-				doc.querySelectorAll(`.${PRED_CLS} .ng-binding:not(.${PRED_DIFF_CLS})`);
+				doc.querySelectorAll(`.${PRED_CLS} span:not(.${PRED_DIFF_CLS})`);
 
 			if (predictions.length === 0)
 				return;
