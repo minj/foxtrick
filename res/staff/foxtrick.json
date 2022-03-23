@@ -686,6 +686,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13802910",
+			"name": "Puccinello"
+		},
+		{
+			"duty": "supporter",
 			"id": "1397713",
 			"name": "VvJ-Beckham"
 		},
@@ -1153,6 +1158,11 @@
 			"duty": "translator",
 			"id": "4577648",
 			"name": "<ampulka>"
+		},
+		{
+			"duty": "supporter",
+			"id": "4622749",
+			"name": "SirRagnar"
 		},
 		{
 			"duty": "supporter",
