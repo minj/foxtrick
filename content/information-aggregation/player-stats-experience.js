@@ -76,7 +76,7 @@ Foxtrick.modules.PlayerStatsExperience = {
 		matchNtNationsCup: 7.0,
 		matchNtNationsCupKO: 14.0, // 1/4f+
 
-		matchNtWildcard: 21.0, // FIXME just a guess
+		matchNtWildcard: 14.0,
 		matchNtWorldCup: 28.0,
 		matchNtWorldCupFinals: 56.0, // semi+
 
