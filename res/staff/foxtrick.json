@@ -42,7 +42,7 @@
 		{
 			"duty": "translator",
 			"id": "1028143",
-			"name": "kosio"
+			"name": "<kosio>"
 		},
 		{
 			"duty": "supporter",
@@ -172,7 +172,7 @@
 		{
 			"duty": "translator",
 			"id": "11006315",
-			"name": "McTimh1704"
+			"name": "timh1704"
 		},
 		{
 			"duty": "supporter",
@@ -371,6 +371,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "12029988",
+			"name": "Ingepepe"
+		},
+		{
+			"duty": "supporter",
 			"id": "12058681",
 			"name": "<robertkr>"
 		},
@@ -407,7 +412,7 @@
 		{
 			"duty": "translator",
 			"id": "12326398",
-			"name": "LA-Jalal"
+			"name": "-Jalal-"
 		},
 		{
 			"duty": "supporter",
@@ -447,7 +452,7 @@
 		{
 			"duty": "supporter",
 			"id": "12508540",
-			"name": "Mc_Oppa-JoMar"
+			"name": "Oppa-JoMar"
 		},
 		{
 			"duty": "supporter",
@@ -472,7 +477,7 @@
 		{
 			"duty": "supporter",
 			"id": "12538647",
-			"name": "GM-RedJ0hn"
+			"name": "Red-J0hn"
 		},
 		{
 			"duty": "supporter",
@@ -670,6 +675,11 @@
 			"name": "Stipe_GAK"
 		},
 		{
+			"duty": "supporter",
+			"id": "13700240",
+			"name": "JoeMacarra"
+		},
+		{
 			"duty": "translator",
 			"id": "1370102",
 			"name": "Iltios"
@@ -678,6 +688,11 @@
 			"duty": "supporter",
 			"id": "13774488",
 			"name": "Uglerimosen"
+		},
+		{
+			"duty": "supporter",
+			"id": "13802910",
+			"name": "Puccinello"
 		},
 		{
 			"duty": "supporter",
@@ -797,7 +812,7 @@
 		{
 			"duty": "supporter",
 			"id": "2117265",
-			"name": "Regador"
+			"name": "<Regador>"
 		},
 		{
 			"duty": "translator",
@@ -898,6 +913,11 @@
 			"duty": "supporter",
 			"id": "3013185",
 			"name": "<AfroSeb>"
+		},
+		{
+			"duty": "supporter",
+			"id": "3061886",
+			"name": "HappyPlayer"
 		},
 		{
 			"duty": "supporter",
@@ -1151,6 +1171,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "4622749",
+			"name": "SirRagnar"
+		},
+		{
+			"duty": "supporter",
 			"id": "4666835",
 			"name": "Ermezzo"
 		},
@@ -1232,7 +1257,7 @@
 		{
 			"duty": "supporter",
 			"id": "536514",
-			"name": "Mod-Piero"
+			"name": "GM-Piero"
 		},
 		{
 			"duty": "supporter",
@@ -1287,7 +1312,7 @@
 		{
 			"duty": "supporter",
 			"id": "569551",
-			"name": "Bentstein"
+			"name": "Bentstein-V_UA"
 		},
 		{
 			"duty": "supporter",
@@ -1470,6 +1495,11 @@
 			"name": "-TheChef-"
 		},
 		{
+			"duty": "supporter",
+			"id": "7353465",
+			"name": "Wasted_Penguin"
+		},
+		{
 			"duty": "developer",
 			"id": "7409095",
 			"name": "<stephan57>"
@@ -1513,6 +1543,11 @@
 			"duty": "supporter",
 			"id": "7611458",
 			"name": "geboren1948"
+		},
+		{
+			"duty": "supporter",
+			"id": "763947",
+			"name": "GM-Schumi-47"
 		},
 		{
 			"duty": "developer",
@@ -1647,7 +1682,7 @@
 		{
 			"duty": "supporter",
 			"id": "8554797",
-			"name": "McGurkenglas"
+			"name": "Bokko_"
 		},
 		{
 			"duty": "translator",
@@ -1792,7 +1827,7 @@
 		{
 			"duty": "translator",
 			"id": "9724171",
-			"name": "LuizGreg"
+			"name": "<LuizGreg>"
 		},
 		{
 			"duty": "supporter",
@@ -1802,7 +1837,7 @@
 		{
 			"duty": "supporter",
 			"id": "9786585",
-			"name": "OneCore"
+			"name": "<OneCore>"
 		},
 		{
 			"duty": "translator",
