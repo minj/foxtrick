@@ -147,9 +147,9 @@ Foxtrick.modules['SeasonStats'] = {
 				// skip other matches: HTO/qualifiers etc
 				continue;
 
-			var islost = span.className == 'lost';
-			var iswon = span.className == 'won';
-			var isdraw = span.className == 'draw';
+			var islost = span.className.trim() == 'lost';
+			var iswon = span.className.trim() == 'won';
+			var isdraw = span.className.trim() == 'draw';
 			var goals = b.textContent.match(/\d+/g);
 			var goals0 = parseInt(goals[0], 10);
 			var goals1 = parseInt(goals[1], 10);
