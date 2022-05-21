@@ -76,9 +76,9 @@ Foxtrick.modules['PsicoTSI'] = {
 				Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'enableTLPage'))
 				module.runTL(doc);
 
-		}).catch(function(reason) {
+		}, function(reason) {
 			Foxtrick.log('WARNING: currency.detect aborted:', reason);
-		});
+		}).catch(Foxtrick.catch(module));
 
 	},
 
@@ -91,9 +91,12 @@ Foxtrick.modules['PsicoTSI'] = {
 			return;
 
 		var p = Foxtrick.Pages.Player.getSkills(doc);
+		var entryPoint = doc.querySelector('.ownerAndStatusPlayerInfo ~ .flex') ||
+			Foxtrick.getMBElement(doc, 'updBestLatest') ||
+			Foxtrick.getMBElement(doc, 'updPlayerTabs');
 
 		if (!p) {
-			this.drawMessage(doc, Foxtrick.getMBElement(doc, 'updBestLatest'));
+			this.drawMessage(doc, entryPoint);
 			return;
 		}
 
@@ -114,8 +117,6 @@ Foxtrick.modules['PsicoTSI'] = {
 			return;
 
 		// assuming player skills is the first mainBox
-		var entryPoint = doc.querySelector('#mainBody > .mainBox');
-
 		this.drawMessage(doc, entryPoint, pr.isGK, pr.undef, injured, age > 27, pr.maxSkill,
 						 pr.formHigh, pr.formAvg, pr.formLow,
 						 pr.wageHigh, pr.wageAvg, pr.wageLow, pr.limit);
