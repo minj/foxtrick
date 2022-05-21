@@ -406,7 +406,7 @@
 			"88": "Dominikanesch Republik",
 			"89": "Zypern",
 			"9": "Norwegen",
-			"91": "Wäissrussland",
+			"91": "Belarus",
 			"93": "Nord Irland",
 			"94": "Jamaika",
 			"95": "Kenia",
@@ -505,7 +505,7 @@
 		"positions": [
 			{
 				"type": "Keeper",
-				"value": "Goalkeeper"
+				"value": "Golkeeper"
 			},
 			{
 				"type": "WingBack",
@@ -579,7 +579,7 @@
 		"skills": [
 			{
 				"type": "Keeper",
-				"value": "Goalkeeper"
+				"value": "Golkeeper"
 			},
 			{
 				"type": "Stamina",
@@ -607,11 +607,11 @@
 			},
 			{
 				"type": "Passer",
-				"value": "Passpill"
+				"value": "Passspill"
 			},
 			{
 				"type": "Experience",
-				"value": "Erfahrung"
+				"value": "Erfarung"
 			},
 			{
 				"type": "LeaderShip",
@@ -801,11 +801,11 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Bandetraining"
+				"value": "Bandentraining"
 			},
 			{
 				"type": "Shoot",
-				"value": "Schoss an Strofstéiss Training"
+				"value": "Schoss a Strofstéiss Training"
 			},
 			{
 				"type": "Pass",
@@ -817,11 +817,11 @@
 			},
 			{
 				"type": "GK",
-				"value": "Goalkeepstraining"
+				"value": "Golkeepstraining"
 			},
 			{
 				"type": "ThPass",
-				"value": "Erweiderten Passtraining (Verteideger, Mëttelfeld a Banden)"
+				"value": "Erweiderte Passtraining (Verteideger, Mëttelfeld a Banden)"
 			},
 			{
 				"type": "DefPos",
