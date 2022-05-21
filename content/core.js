@@ -123,10 +123,16 @@ Foxtrick.modules.Core = {
 			let online = doc.getElementById('online');
 
 			let week;
-			let weekMatch = online.textContent.trim().match(/\d+$/);
+			let fullText = online.textContent.trim().replace(/\u00a0/g, '');
+			let weekMatch = fullText.match(/\d+/g);
 			if (weekMatch) {
-				let [weekStr] = weekMatch;
-				week = parseInt(weekStr, 10);
+				for (let weekStr of weekMatch) {
+					let match = parseInt(weekStr, 10);
+					if (match > 0 && match <= Foxtrick.util.time.WEEKS_IN_SEASON) {
+						week = match;
+						break;
+					}
+				}
 			}
 
 			if (!week) {
