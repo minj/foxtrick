@@ -52,7 +52,7 @@
 		{
 			"duty": "supporter",
 			"id": "10344768",
-			"name": "raetselecke"
+			"name": "<raetselecke>"
 		},
 		{
 			"duty": "supporter",
@@ -362,7 +362,7 @@
 		{
 			"duty": "translator",
 			"id": "11988102",
-			"name": "LA-levang"
+			"name": "levang"
 		},
 		{
 			"duty": "supporter",
@@ -438,6 +438,11 @@
 			"duty": "supporter",
 			"id": "12408163",
 			"name": "broda210"
+		},
+		{
+			"duty": "supporter",
+			"id": "12438824",
+			"name": "SarandonReturns"
 		},
 		{
 			"duty": "translator",
@@ -532,7 +537,7 @@
 		{
 			"duty": "supporter",
 			"id": "12903605",
-			"name": "1910pauli1910"
+			"name": "<1910pauli1910>"
 		},
 		{
 			"duty": "supporter",
@@ -567,7 +572,7 @@
 		{
 			"duty": "supporter",
 			"id": "12990065",
-			"name": "Lion_Holland"
+			"name": "<Lion_Holland>"
 		},
 		{
 			"duty": "supporter",
@@ -661,6 +666,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13446273",
+			"name": "il_Diavolo_Cro"
+		},
+		{
+			"duty": "supporter",
 			"id": "13495368",
 			"name": "Mr_Eaton"
 		},
@@ -673,6 +683,11 @@
 			"duty": "supporter",
 			"id": "1360148",
 			"name": "Stipe_GAK"
+		},
+		{
+			"duty": "supporter",
+			"id": "13607267",
+			"name": "MrMessina"
 		},
 		{
 			"duty": "supporter",
@@ -693,6 +708,11 @@
 			"duty": "supporter",
 			"id": "13802910",
 			"name": "Puccinello"
+		},
+		{
+			"duty": "supporter",
+			"id": "13827209",
+			"name": "Justin_Yang"
 		},
 		{
 			"duty": "supporter",
