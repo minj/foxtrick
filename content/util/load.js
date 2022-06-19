@@ -204,7 +204,13 @@ Foxtrick.fetch = function(url, params) {
 				}
 
 				/** @type {FetchError} */
-				let error = { url: pUrl, status: this.status, text: this.responseText, params };
+				let error = {
+					url: pUrl,
+					status: this.status,
+					text: this.responseText,
+					params,
+					_cls: Foxtrick.FETCH_ERROR,
+				};
 
 				// eslint-disable-next-line prefer-promise-reject-errors
 				reject(error);
@@ -212,7 +218,13 @@ Foxtrick.fetch = function(url, params) {
 
 			req.onerror = function() {
 				/** @type {FetchError} */
-				let error = { url: pUrl, status: this.status, text: this.responseText, params };
+				let error = {
+					url: pUrl,
+					status: this.status,
+					text: this.responseText,
+					params,
+					_cls: Foxtrick.FETCH_ERROR,
+				};
 
 				// eslint-disable-next-line prefer-promise-reject-errors
 				reject(error);
@@ -220,7 +232,13 @@ Foxtrick.fetch = function(url, params) {
 
 			req.onabort = function() {
 				/** @type {FetchError} */
-				let error = { url: pUrl, status: -1, text: this.responseText, params };
+				let error = {
+					url: pUrl,
+					status: -1,
+					text: this.responseText,
+					params,
+					_cls: Foxtrick.FETCH_ERROR,
+				};
 
 				// eslint-disable-next-line prefer-promise-reject-errors
 				reject(error);
@@ -234,7 +252,13 @@ Foxtrick.fetch = function(url, params) {
 			Foxtrick.log(ERROR_XHR_FATAL, e);
 
 			/** @type {FetchError} */
-			let error = { url: pUrl, status: -1, text: ERROR_XHR_FATAL + e.message, params };
+			let error = {
+				url: pUrl,
+				status: -1,
+				text: ERROR_XHR_FATAL + e.message,
+				params,
+				_cls: Foxtrick.FETCH_ERROR,
+			};
 
 			// eslint-disable-next-line prefer-promise-reject-errors
 			reject(error);
@@ -311,6 +335,7 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 
 /**
  * @typedef FetchError
+ * @prop {FETCH_ERROR} _cls
  * @prop {number} status
  * @prop {string} text
  * @prop {string} [url]
@@ -370,7 +395,7 @@ Foxtrick.cache = (function() {
 		 * obj should be {promise: Promise, lifeTime}.
 		 *
 		 * @param  {string}        url
-		 * @param  {object}        [params]
+		 * @param  {object}        params
 		 * @param  {FTCacheObject} obj
 		 */
 		var set = function(url, params, obj) {

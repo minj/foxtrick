@@ -34,6 +34,8 @@ Foxtrick.modules['CrossTable'] = {
 
 		// insert graph and table
 		var insertBefore = Foxtrick.getMBElement(doc, 'repFixtures');
+		if (!insertBefore)
+			return;
 
 		// season graph
 		var graphHeader = Foxtrick.createFeaturedElement(doc, this, 'h2');

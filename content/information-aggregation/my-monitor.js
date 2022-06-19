@@ -364,13 +364,15 @@ Foxtrick.modules.MyMonitor = {
 				removeBox.appendChild(removeButton);
 
 				Foxtrick.onClick(removeButton, function() {
-					var index = removeSelect.selectedIndex;
-					removeSelect.removeChild(removeSelect.options[index]);
+					let index = removeSelect.selectedIndex;
+					let opt = removeSelect.options[index];
+					if (opt)
+						removeSelect.removeChild(opt);
 
 					gTeams.splice(index, 1); // remove the selected from teams
 					setSavedTeams(gTeams);
 
-					var frame = doc.getElementsByClassName('ft-monitor-frame')[index];
+					let frame = doc.getElementsByClassName('ft-monitor-frame')[index];
 					frame.parentNode.removeChild(frame);
 				});
 

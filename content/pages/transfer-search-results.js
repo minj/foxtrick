@@ -125,6 +125,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			return Foxtrick.Pages.Player.getSkillLevel(cell);
 		};
 
+		player.skills = {};
 		for (let [idx, skill] of skills.entries()) {
 			player[skill] = getSkill(idx);
 			player.skills[skill] = player[skill];
@@ -411,7 +412,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 	 */
 	var parsePlayer = (playerNode) => {
 		/** @type {Partial<Player>} */
-		let player = { playerNode, skills: {}};
+		let player = { playerNode };
 		var p = /** @type {Player} */ (player);
 
 		try {

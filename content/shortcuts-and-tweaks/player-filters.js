@@ -51,6 +51,8 @@ Foxtrick.modules['PlayerFilters'] = {
 		insertBefore.parentNode.insertBefore(container, insertBefore);
 
 		var playerList = Foxtrick.modules.Core.getPlayerList();
+		if (!playerList)
+			return;
 
 		var addFilters = function() {
 			try {

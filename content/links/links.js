@@ -98,7 +98,7 @@ Foxtrick.modules.Links = {
 				}
 				catch (e) {
 					// eslint-disable-next-line no-magic-numbers
-					Foxtrick.log('Failure parsing links:', text.slice(0, 200), e);
+					Foxtrick.log('Failure parsing links:', text.slice(0, 200));
 					return;
 				}
 
@@ -153,10 +153,10 @@ Foxtrick.modules.Links = {
 			}
 			catch (e) {
 				let resp = /** @type {FetchError} */ e;
-				if (!resp)
+				if (!resp) {
 					Foxtrick.log(new Error(`resp is ${resp} (${feed})`));
-
-				if (resp.url) {
+				}
+				else if (resp.url) {
 					Foxtrick.log('Error', resp.status, 'loading links from:', resp.url,
 					             '. Using cached feed.');
 				}

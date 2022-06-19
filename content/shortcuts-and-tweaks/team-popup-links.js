@@ -363,8 +363,15 @@ Foxtrick.modules['TeamPopupLinks'] = {
 								for (let ownLink of ownLinks.map(l => l.trim()).filter(Boolean)) {
 									try {
 										let redirToCustom = false;
-										let json = JSON.parse(ownLink);
+										let json = null;
 
+										try {
+											json = JSON.parse(ownLink);
+										}
+										catch (e) {
+											Foxtrick.log('teampopup failed to parse:', e.message);
+											continue;
+										}
 										if (showMore != json.more) {
 											showLessMore = true;
 											continue;

@@ -102,7 +102,8 @@ Foxtrick.modules['PsicoTSI'] = {
 
 		p.age = Foxtrick.Pages.Player.getAge(doc);
 		p.tsi = Foxtrick.Pages.Player.getTsi(doc);
-		p.salary = Foxtrick.Pages.Player.getWage(doc).base;
+		let wo = Foxtrick.Pages.Player.getWage(doc);
+		p.salary = wo && wo.base;
 		p.isAbroad = false;
 
 		var attrs = Foxtrick.Pages.Player.getAttributes(doc);
@@ -162,17 +163,16 @@ Foxtrick.modules['PsicoTSI'] = {
 			var playerContainers = doc.getElementById('mainBody')
 				.getElementsByClassName('transferPlayerInfo');
 
-			for (var i = 0, p; i < players.length && (p = players[i]); ++i) {
+			for (let [i, p] of players.entries()) {
 
 				var entry = playerContainers[i];
-
-				if (!Foxtrick.hasProp(p, 'keeper'))
-					continue;
-
 				var age = p.ageYears;
 				var injured = p.injured;
 
-				var pr = p.psico || module.getPrediction(p, rate);
+				if (!Foxtrick.hasProp(p, 'keeper') || !age && !Foxtrick.hasProp(p, 'age'))
+					continue;
+
+				var pr = module.getPrediction(p, rate);
 				if (!pr)
 					continue;
 

@@ -189,7 +189,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 					if (opts.linksOnly)
 						return null;
 
-					ret = a.text || ret || '';
+					ret = a && a.text || ret || '';
 					if (ret && /^javascript:/.test(link.href))
 						ret = `[u]${ret}[/u]`;
 				}
@@ -292,6 +292,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 		 * They are called as tag(content, node, opts).
 		 */
 		cont: {
+			// eslint-disable-next-line complexity
 			a: function(content, node, opts) {
 				let ret = content;
 				let link = /** @type {HTMLAnchorElement} */ (node);
@@ -312,7 +313,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 						if (opts.linksOnly)
 							return null;
 
-						ret = ret || a.text || '';
+						ret = ret || a && a.text || '';
 						if (ret && /^javascript:/.test(link.href))
 							ret = '_' + ret.trim() + '_ ';
 

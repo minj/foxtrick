@@ -129,8 +129,17 @@ Foxtrick.modules.CopyYouth = {
 						payload = JSON.parse(text);
 				}
 				catch (e) {
-					let msg = `[sendTrainingReportToHY]: could not parse '${text}'`;
-					Foxtrick.log(new Error(msg));
+					const DTD = '<!DOCTYPE';
+					const HTML = '<html>';
+					if (text && text.slice(0, DTD.length).toUpperCase() == DTD.toUpperCase() ||
+					    text && text.slice(0, HTML.length).toUpperCase() == HTML.toUpperCase()
+					) {
+						payload.error = 'hy failed to accept training report';
+					}
+					else {
+						let msg = `[sendTrainingReportToHY]: could not parse '${text}'`;
+						Foxtrick.log(new Error(msg));
+					}
 				}
 				let { error } = payload;
 

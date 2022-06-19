@@ -142,9 +142,12 @@ Foxtrick.modules.CurrentTransfers = {
 		return Foxtrick.map((row) => {
 			let playerCell = module.getPlayerCell(row);
 			let playerLink = playerCell.querySelector('a');
+
+			if (!playerLink)
+				return void 0;
+
 			let playerId = Foxtrick.getUrlParam(playerLink.href, 'playerId');
 			Foxtrick.addClass(row, 'ft-transfer-' + playerId);
-
 			let id = parseInt(playerId, 10);
 			if (memo.has(id)) {
 				// same player on different lists

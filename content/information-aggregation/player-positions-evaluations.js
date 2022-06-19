@@ -182,6 +182,8 @@ Foxtrick.modules.PlayerPositionsEvaluations = {
 			}
 			else if (Foxtrick.isPage(doc, 'ownPlayers')) {
 				var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
+				if (!playerList)
+					return;
 				Foxtrick.forEach(function(p) {
 					var table = p.playerNode.querySelector('table');
 					var container = Foxtrick.createFeaturedElement(doc, module, 'div');

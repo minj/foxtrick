@@ -307,6 +307,8 @@ Foxtrick.Pages.Match.getArenaId = function(doc) {
 
 		/** @type {HTMLAnchorElement} */
 		var arena = matchReport.querySelector('a[href^="/Club/Arena/"]');
+		if (!arena)
+			return null;
 		arenaId = parseInt(Foxtrick.getUrlParam(arena.href, 'ArenaID'), 10);
 	}
 	catch (e) {

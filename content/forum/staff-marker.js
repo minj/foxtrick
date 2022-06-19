@@ -433,10 +433,10 @@ Foxtrick.modules.StaffMarker = {
 
 			}, function(resp) {
 
-				if (!resp)
+				if (resp)
+					Foxtrick.log('Failure loading file:', resp.url, '. Using cached markers.');
+				else
 					Foxtrick.log(new Error(`resp is ${resp} (${url})`));
-
-				Foxtrick.log('Failure loading file:', resp.url, '. Using cached markers.');
 
 				return Foxtrick.storage.get('Markers.' + url).then(parseMarkers);
 

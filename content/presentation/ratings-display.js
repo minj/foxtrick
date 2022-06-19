@@ -94,6 +94,7 @@ Foxtrick.modules.RatingsDisplay = {
 				const ATT_DEF_FACTOR = SECTION_COUNT * MID_VS_ATT_DEF;
 				const MID_FACTOR = ATT_DEF_FACTOR / MID_VS_ATT_DEF;
 
+				let failure = false;
 				Foxtrick.forEach(function(row, _, rows) {
 					Foxtrick.forEach(function(cell, j) {
 						Foxtrick.addClass(cell, 'ft-dummy');
@@ -105,6 +106,11 @@ Foxtrick.modules.RatingsDisplay = {
 
 						averagesMax[j] += valMax / rows.length;
 						averagesAvg[j] += valAvg / rows.length;
+
+						if (!elMax || !elAvg) {
+							failure = true;
+							return;
+						}
 
 						if (DISPLAY_DENOM) {
 							elMax.textContent = Foxtrick.Math.hsToFloat(valMax, true).toFixed(2);
@@ -127,6 +133,9 @@ Foxtrick.modules.RatingsDisplay = {
 						}
 					}, Foxtrick.toArray(row.cells).slice(2)); // skip first two columns
 				}, Foxtrick.toArray(ratingsTable.rows).slice(1)); // skip header
+
+				if (failure)
+					Foxtrick.log(new Error('failed to parse ratings display avgs'));
 
 				// add averages
 				let tbody = ratingsTable.appendChild(doc.createElement('tbody'));

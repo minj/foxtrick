@@ -172,20 +172,22 @@ Foxtrick.modules['LinksYouthPlayerList'] = {
 	links: function(doc) {
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 		if (!teamId)
-			return;
+			return void 0;
 
 		var youthTeamId = Foxtrick.Pages.All.getTeamIdFromBC(doc);
+		if (!youthTeamId)
+			return void 0;
 
 		var main = doc.getElementById('mainBody');
 		var player = main.querySelector('a[href*="rowseI"]');
 		var playerIds = Foxtrick.getUrlParam(player.href, 'browseIds');
 
 		var info = {
-			teamId: teamId,
-			youthTeamId: youthTeamId,
-			playerIds: playerIds,
+			teamId,
+			youthTeamId,
+			playerIds,
 		};
-		return { info: info };
+		return { info };
 	},
 
 };

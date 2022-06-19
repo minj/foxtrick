@@ -37,7 +37,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 	 * @param {string[]} lattack
 	 * @param {string[]} tactics
 	 * @param {string[]} tacticsLevel
-	 * @param {any[]} teams
+	 * @param {any[]} [teams]
 	 */
 	// eslint-disable-next-line complexity
 	insertPrediction: function(doc, targetNode, midfieldLevel, rdefence, cdefence, ldefence,
@@ -183,7 +183,8 @@ Foxtrick.modules['HTMSPrediction'] = {
 			if (loading && loading.parentNode)
 				loading.parentNode.removeChild(loading);
 
-			var htmstable = doc.getElementById('ft-htmstable');
+			var htmstable =
+				/** @type {HTMLTableElement} */ (doc.getElementById('ft-htmstable'));
 			let row = htmstable.rows[htmstable.rows.length - 1];
 			let cell;
 

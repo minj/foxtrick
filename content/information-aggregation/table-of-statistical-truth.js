@@ -31,27 +31,37 @@ Foxtrick.modules.TableOfStatisticalTruth = {
 			// season not available
 			return;
 		}
-		var insertBefore = leagueTable.nextSibling;
-
 		var tableHeader = Foxtrick.createFeaturedElement(doc, module, 'h2');
 		tableHeader.textContent = Foxtrick.L10n.getString('truthTable.table');
 		tableHeader.className = 'ft-expander-unexpanded';
 		tableHeader.id = 'ft-truth-table-h2';
-		insertBefore.parentNode.insertBefore(tableHeader, insertBefore);
+
+		var insert = (() => {
+			let last = leagueTable;
+
+			return (what) => {
+				Foxtrick.insertAfter(what, last);
+				last = what;
+			};
+		})();
+
+		insert(tableHeader);
 		var div = Foxtrick.createFeaturedElement(doc, module, 'div');
 		div.className = 'ft-truth-table-div';
-		insertBefore.parentNode.insertBefore(div, insertBefore);
+		insert(div);
 
 		/** @type {HTMLElement} */
 		var table;
 
 		/** @param {XMLDocument} xml */
+		// eslint-disable-next-line complexity
 		var buildTable = function(xml) {
 			if (!xml) {
 				// TODO: feedback
 				return;
 			}
-			else if (xml.getElementsByTagName('available')[0].textContent == 'false') {
+			else if (!xml.getElementsByTagName('available')[0] ||
+			         xml.getElementsByTagName('available')[0].textContent == 'false') {
 
 				let link = doc.createElement('a');
 				link.href = 'http://www.fantamondi.it/HTMS/index.php?page=truthtable&lang=' +
@@ -59,7 +69,7 @@ Foxtrick.modules.TableOfStatisticalTruth = {
 				link.id = 'createTableLink';
 				link.target = '_blank';
 				link.textContent = Foxtrick.L10n.getString('truthTable.notAvailableYet');
-				insertBefore.parentNode.insertBefore(link, insertBefore);
+				insert(link);
 
 				table = link;
 				return;
@@ -100,10 +110,13 @@ Foxtrick.modules.TableOfStatisticalTruth = {
 					let cell = doc.createElement('td');
 					cell.className = colTypes[i];
 
+					let data = team.querySelector(i);
+					let dataText = data && data.textContent || '';
+
 					if (i == 'name') {
 						let a = doc.createElement('a');
 						a.href = '/Club/?TeamID=' + team.querySelector('id').textContent;
-						a.textContent = team.querySelector(i).textContent;
+						a.textContent = dataText;
 						cell.appendChild(a);
 					}
 					else if (i == 'difference') {
@@ -119,7 +132,7 @@ Foxtrick.modules.TableOfStatisticalTruth = {
 						cell.textContent = String(trimmed);
 					}
 					else {
-						let text = team.querySelector(i).textContent;
+						let text = dataText;
 						if (i == 'predicted_points')
 							text = Number(text).toFixed(2);
 
@@ -129,17 +142,17 @@ Foxtrick.modules.TableOfStatisticalTruth = {
 				}
 			}
 
-			insertBefore.parentNode.insertBefore(table, insertBefore);
+			insert(table);
 
 			var br = doc.createElement('br');
-			insertBefore.parentNode.insertBefore(br, insertBefore);
+			insert(br);
 
 			var link = doc.createElement('a');
 			link.href = 'http://www.fantamondi.it/HTMS/index.php?page=truthtable&lang=' +
 				lang + '&serie=' + serie + '&season=' + season;
 			link.target = '_blank';
 			link.textContent = Foxtrick.L10n.getString('truthTable.tableAtHTMS');
-			insertBefore.parentNode.insertBefore(link, insertBefore);
+			insert(link);
 
 			Foxtrick.modules.TableSort.run(doc);
 		};

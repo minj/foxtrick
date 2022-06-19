@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -18,7 +19,7 @@ Foxtrick.util.inject = {};
 
 Foxtrick.util.inject.cssLink = function(doc, url) {
 	if (Foxtrick.arch == 'Sandboxed') {
-		var id = url.match(/([^\/]+)\.css$/)[1];
+		var id = url.match(/([^/]+)\.css$/)[1];
 
 		Foxtrick.load(url).then(function(text) {
 			Foxtrick.util.inject.css(doc, text, id);

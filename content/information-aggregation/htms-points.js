@@ -91,7 +91,7 @@ Foxtrick.modules.HTMSPoints = {
 		else if (Foxtrick.isPage(doc, 'transferSearchResult') && AddToSearchResult) {
 			let transferPlayers = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 			Foxtrick.forEach(function(p) {
-				if (!p.skills)
+				if (!p.skills || !p.age)
 					return;
 
 				let totSkills = 0;
@@ -135,6 +135,8 @@ Foxtrick.modules.HTMSPoints = {
 		}
 		else if (Foxtrick.isPage(doc, 'ownPlayers') && AddToPlayerList) {
 			let players = Foxtrick.modules.Core.getPlayerList();
+			if (!players)
+				return;
 
 			Foxtrick.forEach(function(p) {
 				if (!p.skills)

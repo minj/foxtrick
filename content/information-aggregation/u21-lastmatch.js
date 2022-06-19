@@ -223,6 +223,9 @@ Foxtrick.modules.U21LastMatch = {
 		const TMPL_STR = Foxtrick.L10n.getString('U21LastMatch.templateWithoutTable');
 
 		let players = Foxtrick.modules.Core.getPlayerList();
+		if (!players)
+			return;
+
 		for (let player of players) {
 			if (player.age.years > 21)
 				continue;
@@ -261,7 +264,7 @@ Foxtrick.modules.U21LastMatch = {
 
 		let players = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 		for (let player of players) {
-			if (player.age.years > 21)
+			if (!player.age || player.age.years > 21)
 				continue;
 
 			let { worldCupNumber, lastMatch, matchNumber, dateWhen22 } =

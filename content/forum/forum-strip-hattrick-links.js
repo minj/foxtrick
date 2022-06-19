@@ -60,12 +60,17 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 		if (Foxtrick.platform == 'Chrome') {
 			// this will add random dev-mode URLs
 			// in web-ext ids are always generated randomly
-			let url = chrome.runtime.getURL('content/');
-			let reUrl = Foxtrick.strToRe(url);
-			URLs.push({
-				reg: new RegExp(`\\[link=${reUrl}`, 'g'),
-				repl: '[link=foxtrick://',
-			});
+			try {
+				let url = chrome.runtime.getURL('content/');
+				let reUrl = Foxtrick.strToRe(url);
+				URLs.push({
+					reg: new RegExp(`\\[link=${reUrl}`, 'g'),
+					repl: '[link=foxtrick://',
+				});
+			}
+			catch (e) {
+				Foxtrick.log(e.message);
+			}
 		}
 
 		const noConfirm = Foxtrick.Prefs.isModuleOptionEnabled(module, 'NoConfirmStripping');
