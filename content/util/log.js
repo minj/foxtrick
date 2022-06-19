@@ -282,7 +282,6 @@ Foxtrick.reportBug = (header, bug, prefs, refIdCb) => {
  * @param {Error} err
  */
 Foxtrick.reportError = (err) => {
-	return;
 	var report = () => {
 		let client = Foxtrick.log.client;
 		let { teamId, teamName } = Foxtrick.modules.Core.TEAM;

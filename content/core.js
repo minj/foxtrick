@@ -51,7 +51,7 @@ Foxtrick.modules.Core = {
 	run: function(doc) {
 		const CORE = this;
 
-		// CORE.addBugReportLink(doc);
+		CORE.addBugReportLink(doc);
 
 		CORE.monitorWeekChanges(doc);
 
