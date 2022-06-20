@@ -55,7 +55,7 @@ Foxtrick.modules['MatchWeather'] = {
 		var preMatchPanel = Foxtrick.Pages.Match.getPreMatchPanel(doc);
 
 		// .arenaInfo for supporters, div[class=""] otherwise
-		var info = preMatchPanel.querySelector('div.arenaInfo, div[class=""]');
+		var [info] = [...preMatchPanel.children].filter(c => c.matches('div'));
 
 		var table = Foxtrick.createFeaturedElement(doc, this, 'table');
 		table.id = 'ft-matchWeather';
