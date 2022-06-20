@@ -205,7 +205,8 @@ Foxtrick.modules.U21LastMatch = {
 		text = text.replace(/%3/, wcNum);
 		text = text.replace(/%4/, lastMatch);
 
-		let panel = Foxtrick.getMBElement(doc, 'pnlplayerInfo');
+		let panel = Foxtrick.getMBElement(doc, 'pnlplayerInfo') ||
+			doc.querySelector('.playerInfo');
 		let table = panel.querySelector('table');
 		let row = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
 		Foxtrick.addClass(row, 'ft-u21-lastmatch');
