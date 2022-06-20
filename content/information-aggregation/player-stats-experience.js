@@ -158,6 +158,9 @@ Foxtrick.modules.PlayerStatsExperience = {
 			 * @return {boolean}
 			 */
 			var isWalkover = function(row) {
+				if (row.matches('.performanceIsWalkover'))
+					return true;
+
 				var starCell = [...row.cells]
 					.filter(c => c.classList.contains('center')).pop();
 				var starImg = starCell.querySelector('img[class^="star"]');
