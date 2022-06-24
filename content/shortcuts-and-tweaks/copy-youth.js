@@ -132,8 +132,10 @@ Foxtrick.modules.CopyYouth = {
 				catch (e) {
 					const DTD = '<!DOCTYPE';
 					const HTML = '<html>';
-					if (text && text.slice(0, DTD.length).toUpperCase() == DTD.toUpperCase() ||
-					    text && text.slice(0, HTML.length).toUpperCase() == HTML.toUpperCase()
+					if (text && DTD.toUpperCase() == // lgtm[js/trivial-conditional]
+					    text.slice(0, DTD.length).toUpperCase() ||
+					    text && HTML.toUpperCase() == // lgtm[js/trivial-conditional]
+					    text.slice(0, HTML.length).toUpperCase()
 					) {
 						payload.error = 'hy failed to accept training report';
 					}

@@ -128,7 +128,7 @@ function initSearch() {
  * isModule is used for breadcrumb URL generation.
  *
  * @param {string}  needle
- * @param {boolean} isModule
+ * @param {boolean} [isModule]
  */
 function search(needle, isModule) {
 
@@ -299,7 +299,7 @@ function searchEvent(ev) {
 		locateFragment(there);
 	}
 
-	search(ev.target.value);
+	search(encodeURIComponent(ev.target.value));
 	$('#js-top')[0].scrollIntoView();
 }
 
