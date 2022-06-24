@@ -168,9 +168,8 @@ Foxtrick.modules['RapidId'] = {
 		}
 
 		// get labels of optgroup and option
-		for (var i = 0; i < options.length; ++i) {
-			options[i].label = Foxtrick.L10n.getString(options[i].text);
-		}
+		for (let opt of options)
+			opt.label = Foxtrick.L10n.getString(opt.text);
 
 		var header = doc.getElementById('header');
 		var online = doc.getElementById('online');

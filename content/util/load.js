@@ -603,8 +603,11 @@ Foxtrick.util.load.async = function(url, callback, params) {
 	Foxtrick.load(url, params).then((text) => {
 		callback(/** @type {string} */ (text), HTTP_OK);
 	}, (/** @type {FetchError} */ resp) => {
-		if (!resp)
+		if (!resp) {
 			Foxtrick.log(new Error(`resp is ${resp} (${url})`));
+			callback(null, 0);
+			return;
+		}
 
 		callback(resp.text, resp.status);
 	}).catch((e) => {
@@ -632,8 +635,11 @@ Foxtrick.util.load.fetch = function(url, callback, params) {
 
 		callback(text, HTTP_OK);
 	}, (/** @type {FetchError} */ resp) => {
-		if (!resp)
+		if (!resp) {
 			Foxtrick.log(new Error(`resp is ${resp} (${url})`));
+			callback(null, 0);
+			return;
+		}
 
 		callback(resp.text, resp.status);
 	}).catch((e) => {

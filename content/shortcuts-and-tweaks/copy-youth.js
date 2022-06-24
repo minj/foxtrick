@@ -121,7 +121,8 @@ Foxtrick.modules.CopyYouth = {
 				module.addNode(doc, ok, 3000);
 			}
 			catch (rej) {
-				let { text, status } = rej;
+				let { text, status } = rej ||
+					{ status: 0, text: `unknown error: ${typeof rej}` };
 
 				let payload = { error: 'Unknown error' };
 				try {
@@ -292,7 +293,8 @@ Foxtrick.modules.CopyYouth = {
 						module.addNode(doc, ok, 3000);
 					}
 					catch (rej) {
-						let { text, status } = rej;
+						let { text, status } = rej ||
+							{ status: 0, text: `unknown error: ${typeof rej}` };
 
 						let payload = { error: 'Unknown error' };
 						try {
@@ -425,7 +427,8 @@ Foxtrick.modules.CopyYouth = {
 				module.addNode(doc, ok, 3000);
 			}
 			catch (rej) {
-				let { text, status } = rej;
+				let { text, status } = rej ||
+					{ status: 0, text: `unknown error: ${typeof rej}` };
 
 				let payload = { error: 'Unknown error' };
 				try {

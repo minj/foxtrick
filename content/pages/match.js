@@ -801,6 +801,10 @@ Foxtrick.Pages.Match.makeAvatar = function(shirtDiv, avatarXml, scale) {
 	const SZ = oldFaces ? sizesOld : sizes;
 
 	let xml = /** @type {CHPPXML} */ (avatarXml.ownerDocument);
+	if (!xml) {
+		Foxtrick.log(new Error('avatarXml is detached'));
+		return;
+	}
 	let layers = avatarXml.getElementsByTagName('Layer');
 	for (let layer of layers) {
 		let src = xml.text('Image', layer);

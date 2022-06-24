@@ -45,63 +45,63 @@ Foxtrick.api.mercattrick._fetchViaCache = async (api, fetch, cacheHours, entitie
 			let data = await fetch(entities);
 
 			if (data != null) {
-                for (let index = 0; index < data.length; index++) {
-                    let dataKey = `Mercattrick.${data[index].id}.${api}`;
-                    let timeKey = `${dataKey}.fetchTime`;
+				for (let index = 0; index < data.length; index++) {
+					let dataKey = `Mercattrick.${data[index].id}.${api}`;
+					let timeKey = `${dataKey}.fetchTime`;
 
-                    Foxtrick.storage.set(dataKey, JSON.stringify(data[index]))
-                        .catch(Foxtrick.catch(`failed to set ${dataKey}`));
+					Foxtrick.storage.set(dataKey, JSON.stringify(data[index]))
+						.catch(Foxtrick.catch(`failed to set ${dataKey}`));
 
-                    Foxtrick.storage.set(timeKey, now)
-                        .catch(Foxtrick.catch(`failed to set ${timeKey}`));
-                }
+					Foxtrick.storage.set(timeKey, now)
+						.catch(Foxtrick.catch(`failed to set ${timeKey}`));
+				}
 			}
 			return data;
 		}
 		catch (rej) {
 			/** @type {FetchError} */
-			let err = rej;
+			let err = rej || { status: 0, text: `unknown error: ${typeof rej}` };
 
 			let { status, text } = err;
 			Foxtrick.log(logKey, 'Fetch failed:', status, text);
 
-            return Promise.reject(err);
+			return Promise.reject(err);
 		}
 	};
 
 	let collected = [];
 	let missing = [];
 
-    for (let index = 0; index < entities.length; index++) {
-        let dataKey = `Mercattrick.${entities[index]}.${api}`;
-        let timeKey = `${dataKey}.fetchTime`;
+	for (let index = 0; index < entities.length; index++) {
+		let dataKey = `Mercattrick.${entities[index]}.${api}`;
+		let timeKey = `${dataKey}.fetchTime`;
 
-        /** @type {Promise<string>} */
-        let dataPromise = Foxtrick.storage.get(dataKey);
+		/** @type {Promise<string>} */
+		let dataPromise = Foxtrick.storage.get(dataKey);
 
-        const data = await dataPromise;
-        if (data) {
-            /** @type {Promise<number>} */
-            let timePromise = Foxtrick.storage.get(timeKey);
+		const data = await dataPromise;
+		if (data) {
+			/** @type {Promise<number>} */
+			let timePromise = Foxtrick.storage.get(timeKey);
 
-            const fetchTime = await timePromise;
-            const lifeTime = fetchTime + cacheTime;
-            if (lifeTime <= now) {
-                // cache is stale
-                missing.push(entities[index]);
-            } else {
-                // using cache
-                /** @type {TData} */
-                let o = JSON.parse(data);
-                collected.push(o);
+			const fetchTime = await timePromise;
+			const lifeTime = fetchTime + cacheTime;
+			if (lifeTime <= now) {
+				// cache is stale
+				missing.push(entities[index]);
+			} else {
+				// using cache
+				/** @type {TData} */
+				let o = JSON.parse(data);
+				collected.push(o);
 
-                let t = new Date(lifeTime);
-                Foxtrick.log(logKey, 'Using cache:', o, 'Valid-until:', t);
-            }
-        } else {
-            missing.push(entities[index]);
-        }
-    }
+				let t = new Date(lifeTime);
+				Foxtrick.log(logKey, 'Using cache:', o, 'Valid-until:', t);
+			}
+		} else {
+			missing.push(entities[index]);
+		}
+	}
 
 	if (missing.length) {
 		let newData = await doFetch(missing);
@@ -153,7 +153,8 @@ Foxtrick.api.mercattrick._fetchOrIgnore = async (api, url) => {
 		return /** @type {string} */ (response);
 	}
 	catch (rej) {
-		let err = /** @type {FetchError} */ (rej);
+		let err = /** @type {FetchError} */ (rej) ||
+			{ status: 0, text: `unknown error: ${typeof rej}` };
 		let { status, text } = err;
 		switch (status) {
 			case 0:
