@@ -433,7 +433,8 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			parseStatus(p, first);
 
 			let bidDiv = isNewDesign ? second.querySelector('div[id$="updFastBid"]') : first;
-			parseBidInfo(p, bidDiv);
+			if (bidDiv)
+				parseBidInfo(p, bidDiv);
 
 			// check if the player is sold
 			// if he is, the following info
