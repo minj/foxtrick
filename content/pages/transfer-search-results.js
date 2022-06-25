@@ -426,8 +426,10 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 
 			/** @type {HTMLAnchorElement} */
 			let flag = playerNode.querySelector('.flag');
-			let leagueId = Number(Foxtrick.getUrlParam(flag.href, 'leagueId'));
-			p.countryId = Foxtrick.XMLData.getCountryIdByLeagueId(leagueId);
+			if (flag) {
+				let leagueId = Number(Foxtrick.getUrlParam(flag.href, 'leagueId'));
+				p.countryId = Foxtrick.XMLData.getCountryIdByLeagueId(leagueId);
+			}
 
 			let [first, second] = playerNode.children;
 			parseStatus(p, first);
