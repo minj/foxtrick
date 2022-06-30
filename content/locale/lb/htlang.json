@@ -505,7 +505,7 @@
 		"positions": [
 			{
 				"type": "Keeper",
-				"value": "Golkeeper"
+				"value": "Golkipp"
 			},
 			{
 				"type": "WingBack",
@@ -579,7 +579,7 @@
 		"skills": [
 			{
 				"type": "Keeper",
-				"value": "Golkeeper"
+				"value": "Golkipp"
 			},
 			{
 				"type": "Stamina",
@@ -817,7 +817,7 @@
 			},
 			{
 				"type": "GK",
-				"value": "Golkeepstraining"
+				"value": "Golkippen-Training"
 			},
 			{
 				"type": "ThPass",
