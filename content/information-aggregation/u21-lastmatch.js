@@ -207,6 +207,8 @@ Foxtrick.modules.U21LastMatch = {
 
 		let panel = Foxtrick.getMBElement(doc, 'pnlplayerInfo') ||
 			doc.querySelector('.playerInfo');
+		if (!panel)
+			return;
 		let table = panel.querySelector('table');
 		let row = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
 		Foxtrick.addClass(row, 'ft-u21-lastmatch');

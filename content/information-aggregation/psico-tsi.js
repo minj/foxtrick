@@ -101,6 +101,9 @@ Foxtrick.modules['PsicoTSI'] = {
 		}
 
 		p.age = Foxtrick.Pages.Player.getAge(doc);
+		if (!p.age)
+			return;
+
 		p.tsi = Foxtrick.Pages.Player.getTsi(doc);
 		let wo = Foxtrick.Pages.Player.getWage(doc);
 		p.salary = wo && wo.base;

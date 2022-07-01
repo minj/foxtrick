@@ -280,26 +280,31 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 			attrs.coachSkill = num(personLinks.shift());
 
 		// personality
-		let idx;
+		let idx, link;
 		for (idx = 0; idx < PERSONALITY.length; idx++) {
+			link = personLinks[idx];
+			if (!link)
+				break;
 			let attr = /** @type {'gentleness'|'aggressiveness'|'honesty'} */
-				(Foxtrick.getUrlParam(personLinks[idx].href, 'lt'));
+				(Foxtrick.getUrlParam(link.href, 'lt'));
 
 			attrs[attr] = num(personLinks[idx]);
 		}
 
-		// leadership vs experience
-		if (RE_LEADERSHIP.test(personLinks[idx].href)) {
-			attrs.leadership = num(personLinks[idx]);
-			attrs.experience = num(personLinks[idx + 1]);
-		}
-		else {
-			attrs.experience = num(personLinks[idx]);
-			attrs.leadership = num(personLinks[idx + 1]);
-		}
+		if (link) {
+			// leadership vs experience
+			if (RE_LEADERSHIP.test(personLinks[idx].href)) {
+				attrs.leadership = num(personLinks[idx]);
+				attrs.experience = num(personLinks[idx + 1]);
+			}
+			else {
+				attrs.experience = num(personLinks[idx]);
+				attrs.leadership = num(personLinks[idx + 1]);
+			}
 
-		// loyalty
-		attrs.loyalty = num(personLinks[idx + 2]);
+			// loyalty
+			attrs.loyalty = num(personLinks[idx + 2]);
+		}
 	}
 	catch (e) {
 		Foxtrick.log(e);

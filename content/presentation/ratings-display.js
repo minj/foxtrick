@@ -79,6 +79,9 @@ Foxtrick.modules.RatingsDisplay = {
 		// series stats
 		// e.g.: /World/Series/Stats.aspx?LeagueLevelUnitID=25&TeamID=11598
 		var doSeriesStats = function() {
+			if (doc.querySelector('[role="alert"]'))
+				return;
+
 			let mainBody = doc.getElementById('mainBody');
 
 			var addRatingsAvgs = function() {

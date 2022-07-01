@@ -12,6 +12,7 @@ Foxtrick.modules.HTMSPoints = {
 	OPTIONS: ['AddToPlayer', 'AddToSearchResult', 'AddToPlayerList'],
 
 	/** @param {document} doc */
+	// eslint-disable-next-line complexity
 	run: function(doc) {
 		const module = this;
 
@@ -59,6 +60,9 @@ Foxtrick.modules.HTMSPoints = {
 				return; // no skills available, goodbye
 
 			let age = Foxtrick.Pages.Player.getAge(doc);
+			if (!age)
+				return;
+
 			let { days, years } = age;
 
 			let skillQuery = `&anni=${years}&giorni=${days}`;

@@ -154,7 +154,7 @@ Foxtrick.modules.Links = {
 			catch (e) {
 				let resp = /** @type {FetchError} */ e;
 				if (!resp) {
-					Foxtrick.log(new Error(`resp is ${resp} (${feed})`));
+					Foxtrick.log(`resp is ${resp} (${feed})`);
 				}
 				else if (resp.url) {
 					Foxtrick.log('Error', resp.status, 'loading links from:', resp.url,
