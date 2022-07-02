@@ -434,7 +434,9 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			let [first, second] = playerNode.children;
 			parseStatus(p, first);
 
-			let bidDiv = isNewDesign ? second.querySelector('div[id$="updFastBid"]') : first;
+			let bidDiv = isNewDesign && second
+				? second.querySelector('div[id$="updFastBid"]')
+				: first;
 			if (bidDiv)
 				parseBidInfo(p, bidDiv);
 

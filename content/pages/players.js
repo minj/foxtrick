@@ -1212,6 +1212,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 						for (let [idx, rowType] of anonRows.entries()) {
 							let row = playerInfo.rows[idx];
+							if (!row)
+								break;
 							let cell = row.cells[1];
 							anonCells[rowType] = cell;
 							anonTexts[rowType] = cell.textContent.trim();
