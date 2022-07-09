@@ -169,8 +169,17 @@ Foxtrick.fetch = function(url, params) {
 					fulfill(response);
 				}
 				else {
-					Foxtrick.log('XHR failed:', response);
-					reject(response);
+					/** @type {FetchError} */
+					let resp = response ||
+						{
+							url: pUrl,
+							status: -1,
+							text: 'undefined error',
+							_cls: Foxtrick.FETCH_ERROR,
+						};
+
+					Foxtrick.log('XHR failed:', resp);
+					reject(resp);
 				}
 			});
 		});
@@ -182,8 +191,6 @@ Foxtrick.fetch = function(url, params) {
 		try {
 			let type = params ? 'POST' : 'GET';
 
-			/** @type {XMLHttpRequest} */
-			// @ts-ignore
 			let req = new window.XMLHttpRequest();
 			req.open(type, pUrl, true);
 
@@ -604,7 +611,8 @@ Foxtrick.util.load.async = function(url, callback, params) {
 		callback(/** @type {string} */ (text), HTTP_OK);
 	}, (/** @type {FetchError} */ resp) => {
 		if (!resp) {
-			Foxtrick.log(new Error(`resp is ${resp} (${url})`));
+			// eslint-disable-next-line no-magic-numbers
+			Foxtrick.log(new Error(`resp is ${resp} (${url.slice(0, 128)})`));
 			callback(null, 0);
 			return;
 		}
@@ -636,7 +644,8 @@ Foxtrick.util.load.fetch = function(url, callback, params) {
 		callback(text, HTTP_OK);
 	}, (/** @type {FetchError} */ resp) => {
 		if (!resp) {
-			Foxtrick.log(new Error(`resp is ${resp} (${url})`));
+			// eslint-disable-next-line no-magic-numbers
+			Foxtrick.log(new Error(`resp is ${resp} (${url.slice(0, 128)})`));
 			callback(null, 0);
 			return;
 		}
