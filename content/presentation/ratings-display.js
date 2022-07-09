@@ -137,8 +137,10 @@ Foxtrick.modules.RatingsDisplay = {
 					}, Foxtrick.toArray(row.cells).slice(2)); // skip first two columns
 				}, Foxtrick.toArray(ratingsTable.rows).slice(1)); // skip header
 
-				if (failure)
-					Foxtrick.log(new Error('failed to parse ratings display avgs'));
+				if (failure) {
+					Foxtrick.log('failed to parse ratings display avgs');
+					return;
+				}
 
 				// add averages
 				let tbody = ratingsTable.appendChild(doc.createElement('tbody'));
