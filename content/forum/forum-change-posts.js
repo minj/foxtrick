@@ -411,6 +411,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 				continue; // post deleted, process next
 
 			var header = wrapper.getElementsByClassName('cfHeader')[0];
+			if (!header)
+				continue;
 
 			// +++++++++++ gather info and nodes +++++++++++++++++++++++++
 			var header_left = header.getElementsByClassName('float_left')[0];
