@@ -122,7 +122,7 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			let dIdx = (idx - mod) / 2 + 1; // first is empty
 
 			let cell = isNewDesign ? tbl.rows[idx].cells[1] : tbl.rows[dIdx].cells[mIdx];
-			return Foxtrick.Pages.Player.getSkillLevel(cell);
+			return cell ? Foxtrick.Pages.Player.getSkillLevel(cell) : null;
 		};
 
 		player.skills = {};
@@ -237,9 +237,11 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 		if (isNewDesign) {
 			/** @type {HTMLSpanElement} */
 			let ddl = bidContainer.querySelector('span[id$="lblDeadline"]');
-			player.deadline = doc.createElement('td');
-			player.deadline.dataset.isodate = ddl.dataset.isodate;
-			player.deadline.appendChild(Foxtrick.cloneElement(ddl, true));
+			if (ddl) {
+				player.deadline = doc.createElement('td');
+				player.deadline.dataset.isodate = ddl.dataset.isodate;
+				player.deadline.appendChild(Foxtrick.cloneElement(ddl, true));
+			}
 
 			/** @type {NodeListOf<HTMLAnchorElement>} */
 			let links = bidContainer.querySelectorAll('a[href*="?TeamID="i]');
@@ -419,10 +421,12 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			// first row - country, name, ID
 			/** @type {HTMLAnchorElement} */
 			let nameLink = playerNode.querySelector('.transfer_search_playername a');
-			p.id = Number(Foxtrick.getUrlParam(nameLink.href, 'playerId'));
-			p.nameLink = Foxtrick.cloneElement(nameLink, true);
-			p.nameLink.target = '_blank';
-			addLinks(p, playerNode, nameLink.href);
+			if (nameLink) {
+				p.id = Number(Foxtrick.getUrlParam(nameLink.href, 'playerId'));
+				p.nameLink = Foxtrick.cloneElement(nameLink, true);
+				p.nameLink.target = '_blank';
+				addLinks(p, playerNode, nameLink.href);
+			}
 
 			/** @type {HTMLAnchorElement} */
 			let flag = playerNode.querySelector('.flag');

@@ -725,6 +725,10 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 		var order = skillMap.seniorBars;
 		for (var i = 0; i < order.length; ++i) {
 			var row = table.rows[i];
+			if (!row) {
+				found = false;
+				return; // skills are not visible
+			}
 			var [cellName, cell, cellNum] = row.cells;
 			if (!cell) {
 				found = false;
