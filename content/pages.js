@@ -233,7 +233,8 @@ Foxtrick.isPage = function(doc, page) {
 		return false;
 	}
 
-	return Foxtrick.isPageHref(doc.location.href, Foxtrick.htPages[page]);
+	// eslint-disable-next-line no-restricted-properties
+	return Foxtrick.isPageHref(doc.location.pathname + doc.location.search, Foxtrick.htPages[page]);
 };
 
 /**
@@ -245,7 +246,7 @@ Foxtrick.isPage = function(doc, page) {
  * @return {RegExp}
  */
 Foxtrick.makePageRe = function(reStr) {
-	return new RegExp(reStr.replace(/([.?])/g, '\\$1'), 'i'); // lgtm[js/incomplete-sanitization]
+	return new RegExp('^' + reStr.replace(/([.?])/g, '\\$1'), 'i'); // lgtm[js/incomplete-sanitization]
 };
 
 /**
@@ -269,7 +270,8 @@ Foxtrick.isPageHref = function(href, reStr) {
 Foxtrick.isExcluded = function(doc) {
 	for (let i in this.pagesExcluded) {
 		let pageRe = this.pagesExcluded[i];
-		if (this.isPageHref(doc.location.href, pageRe)) {
+		// eslint-disable-next-line no-restricted-properties
+		if (this.isPageHref(doc.location.pathname + doc.location.search, pageRe)) {
 			// page excluded, return
 			return true;
 		}

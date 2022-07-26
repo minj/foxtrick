@@ -17,7 +17,9 @@ var PAGEIDS = [];
 
 // get page IDs in Foxtrick.htPages that last page matches and store them in PAGEIDS
 function getPageIds() {
-	var lastPage = Foxtrick.getLastPage();
+	var lastUrl = new URL(Foxtrick.getLastPage());
+	// eslint-disable-next-line no-restricted-properties
+	var lastPage = lastUrl.pathname + lastUrl.search;
 	for (var p in Foxtrick.htPages) {
 		// ignore PAGE all, it's shown in universal tab
 		if (p === 'all')
