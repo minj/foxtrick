@@ -241,14 +241,18 @@ Foxtrick.modules.DashboardCalendar = {
 			return;
 		}
 
-		Foxtrick.util.time.setMidnight(userToday);
-
-		const { season } = Foxtrick.util.time.gregorianToHT(userToday);
+		const season = (() => {
+			let suffixEl = doc.querySelector('.calendarWeekOf');
+			let suffix = suffixEl.textContent.trim();
+			let seasonBit = suffix.split(/,/g).pop().trimStart();
+			return Number(seasonBit.match(/\d+/).toString());
+		})();
 
 		var weekText = doc.querySelector('.calendarWeekText').textContent.trim();
 		var week = Number(weekText.match(/\d+/).toString());
 
-		var monday = Foxtrick.util.time.HTToGregorian({ season, week });
+		// eslint-disable-next-line new-cap
+		var monday = Foxtrick.util.time.HTToGregorian({ season, week }, void 0, true);
 		if (monday.getDay() == 0) {
 			// DST problems
 			monday.setHours(Foxtrick.util.time.HOURS_IN_DAY);
