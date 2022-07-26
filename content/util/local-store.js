@@ -411,10 +411,17 @@ Foxtrick.storage.deleteBranch = function(branch) {
 				return;
 			}
 
-			store.iterate(function onStoreIterate(_, /** @type {IDBStore.Cursor} */ cursor) {
-				cursor.delete();
-			}, options);
+			try {
+				store.iterate(function onStoreIterate(_, /** @type {IDBStore.Cursor} */ cursor) {
+					cursor.delete();
+				}, options);
+			}
+			catch (e) {
+				if (e.name == 'InvalidStateError')
+					return;
 
+				throw e;
+			}
 		}).catch(function(e) {
 			Foxtrick.log('Error in localDeleteBranch', branch, e);
 			throw e;
