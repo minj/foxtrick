@@ -187,24 +187,25 @@ Foxtrick.modules['ForumTemplates'] = {
 		var sControlsID = 'foxtrick_forumtemplates_controls_div';
 		if (doc.getElementById(sControlsID))
 			return;
+
 		// display templates above the message window
-		//var msg_window = doc.getElementById(newMsgWindow);
+		// var msg_window = doc.getElementById(newMsgWindow);
 
-		var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
+		var msgWindow = doc.querySelector('#mainBody textarea');
+		if (!msgWindow)
+			return; // ie mailbox overview
 
+		var templatesDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
+		templatesDiv.setAttribute('class', 'folderItem');
+		templatesDiv.setAttribute('style', 'padding-top:5px;');
+		templatesDiv.id = templatesDivId;
 
-		if (!msg_window) return; // ie mailbox overview
-		var templates_div = Foxtrick.createFeaturedElement(doc, this, 'div');
-		templates_div.setAttribute('class', 'folderItem');
-		templates_div.setAttribute('style', 'padding-top:5px;');
-		templates_div.id = templatesDivId;
-
-		msg_window.parentNode.insertBefore(templates_div, msg_window);
+		msgWindow.parentNode.insertBefore(templatesDiv, msgWindow);
 
 		var templates = Foxtrick.Prefs.getList(templatesPrefList);
 
 		for (var i = 0; i < templates.length; ++i)
-			appendTemplate(templates[i], templates_div);
+			appendTemplate(templates[i], templatesDiv);
 
 		// display add new template button
 		var controls_div = Foxtrick.createFeaturedElement(doc, this, 'div');
@@ -223,7 +224,7 @@ Foxtrick.modules['ForumTemplates'] = {
 		controls_div.appendChild(new_button);
 
 		if (!Foxtrick.Prefs.isModuleOptionEnabled('ForumTemplates', 'DefaultShow')) {
-			Foxtrick.addClass(templates_div, 'hidden');
+			Foxtrick.addClass(templatesDiv, 'hidden');
 
 			var show_button = doc.createElement('a');
 			show_button.id = 'showTemplateId';
@@ -244,7 +245,7 @@ Foxtrick.modules['ForumTemplates'] = {
 			controls_div.appendChild(hide_button);
 		}
 
-		msg_window.parentNode.insertBefore(controls_div, msg_window);
+		msgWindow.parentNode.insertBefore(controls_div, msgWindow);
 	},
 
 	change: function(doc) {

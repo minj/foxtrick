@@ -41,8 +41,9 @@ Foxtrick.modules['FormatPostingText'] = {
 				Foxtrick.log('FormatPostingText: FORMAT TEXT ', e);
 			}
 		}
+
 		// unescape edit area
-		var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
+		var textarea = doc.querySelector('#mainBody textarea');
 		if (textarea)
 			textarea.value = Foxtrick.unescapePre(textarea.value);
 
@@ -50,11 +51,12 @@ Foxtrick.modules['FormatPostingText'] = {
 		// aspx?actionType=readMail) . doesn't harm to add it to all
 		var targets = doc.querySelectorAll('#mainBody input[type="submit"]');
 		var handler = function(ev) {
-			var doc = ev.target.ownerDocument;
-			var textarea = doc.querySelector('#mainBody textarea');
+			let doc = ev.target.ownerDocument;
+			let textarea = doc.querySelector('#mainBody textarea');
 			if (textarea) {
 				// remove escaping if any (e. g. from quote tag)
-				var value = Foxtrick.unescapePre(textarea.value);
+				let value = Foxtrick.unescapePre(textarea.value);
+
 				// reapply correct escaping
 				textarea.value = Foxtrick.escapePre(value);
 			}
@@ -62,7 +64,7 @@ Foxtrick.modules['FormatPostingText'] = {
 		Foxtrick.forEach(function(target) {
 			Foxtrick.onClick(target, handler);
 		}, targets);
-	}
+	},
 };
 
 

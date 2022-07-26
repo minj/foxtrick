@@ -31,8 +31,7 @@ Foxtrick.modules['LinksLeague'] = {
 		var seriesName = Foxtrick.util.id.extractLeagueName(thisDiv);
 
 		var series = Foxtrick.util.id.parseSeries(seriesName, leagueId);
-		var levelNum = series[0];
-		var seriesNum = series[1];
+		var [levelNum, seriesNum] = series || [];
 
 		var info = {
 			leagueId: leagueId,

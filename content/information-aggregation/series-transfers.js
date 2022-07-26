@@ -24,6 +24,8 @@ Foxtrick.modules.SeriesTransfers = {
 		var ownSeriesId = Foxtrick.modules.Core.TEAM.seriesId;
 
 		var leagueTable = doc.querySelector('#mainBody table');
+		if (!leagueTable)
+			return;
 
 		/**
 		 * checks whether a team is ownerless
