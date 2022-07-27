@@ -275,9 +275,22 @@ Foxtrick.modules.DashboardCalendar = {
 			var dayDiff = dayNumber - userDayNumber;
 			if (Math.abs(dayDiff) > 10) {
 				// different month
-				userDate.setMonth(userDate.getMonth() + (dayDiff > 0 ? -1 : 1));
+				// setting month first is only safe when userDayNumber is smaller
+				// and vice versa
+				// otherwise we might overflow to yet another month
+				if (dayNumber > userDayNumber) {
+					userDate.setMonth(userDate.getMonth() - 1);
+					userDate.setDate(dayNumber);
+				}
+				else {
+					userDate.setDate(dayNumber);
+					userDate.setMonth(userDate.getMonth() + 1);
+				}
 			}
-			userDate.setDate(dayNumber);
+			else {
+				userDate.setDate(dayNumber);
+			}
+
 
 			// sanity check
 			if (userDate.getDay() !== i) {
