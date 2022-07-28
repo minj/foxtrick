@@ -270,15 +270,15 @@ Foxtrick.modules.DashboardCalendar = {
 			var dayNumber = parseInt(dayNumberSpan.textContent.trim(), 10);
 
 			var userDate = new Date(monday);
-			var userDayNumber = userDate.getDate();
+			var userDayNo = userDate.getDate();
 
-			var dayDiff = dayNumber - userDayNumber;
+			var dayDiff = dayNumber - userDayNo;
 			if (Math.abs(dayDiff) > 10) {
 				// different month
-				// setting month first is only safe when userDayNumber is smaller
+				// setting month first is only safe when userDayNo is smaller
 				// and vice versa
 				// otherwise we might overflow to yet another month
-				if (dayNumber > userDayNumber) {
+				if (dayNumber > userDayNo) {
 					userDate.setMonth(userDate.getMonth() - 1);
 					userDate.setDate(dayNumber);
 				}
@@ -294,7 +294,11 @@ Foxtrick.modules.DashboardCalendar = {
 
 			// sanity check
 			if (userDate.getDay() !== i) {
-				Foxtrick.log(new Error('Failed to detect calendar day'));
+				// eslint-disable-next-line no-magic-numbers
+				let bug = userDate.toISOString().slice(2, 13).replace(/\D/g, '');
+				let err =
+					new Error(`Calendar fail: ${userDayNo} (${season}/${week}) => ${bug} != ${i}`);
+				Foxtrick.log(err);
 				return;
 			}
 
