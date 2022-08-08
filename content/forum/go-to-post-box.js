@@ -44,7 +44,7 @@ Foxtrick.modules['GoToPostBox'] = {
 			doc.location.assign(newURL);
 		};
 
-		let main = doc.getElementById('mainBody'):
+		let main = doc.getElementById('mainBody');
 		if (!main)
 			return;
 
