@@ -1425,6 +1425,9 @@ Foxtrick.modules.SkillTable = {
 				if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
 					// on transfer search page, insert after first separator
 					var separator = doc.querySelector('#mainBody .borderSeparator');
+					if (!separator)
+						return;
+
 					var insertBefore = separator.nextSibling;
 					insertBefore.parentNode.insertBefore(tableDiv, insertBefore);
 				}

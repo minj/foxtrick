@@ -77,7 +77,7 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 	if (head && body) {
 		inject(doc);
 	}
-	else {
+	else if (doc.documentElement) {
 		Foxtrick.onChange(doc.documentElement, function(doc) {
 			var head = doc.head;
 			var body = doc.body;
@@ -85,6 +85,7 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 				inject(doc);
 				return true;
 			}
+			return void 0;
 		}, { subtree: false });
 	}
 };

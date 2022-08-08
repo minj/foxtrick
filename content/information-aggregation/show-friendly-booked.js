@@ -15,9 +15,11 @@ Foxtrick.modules.ShowFriendlyBooked = {
 	/** @param {document} doc */
 	run: function(doc) {
 		const module = this;
+		let leagueTable = Foxtrick.Pages.Series.getTable(doc);
+		if (!leagueTable)
+			return;
 
 		var show = function() {
-			let leagueTable = Foxtrick.Pages.Series.getTable(doc);
 			let rowCol = leagueTable.querySelectorAll('tr');
 
 			// remove header row and ownerless teams

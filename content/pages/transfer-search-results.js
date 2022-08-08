@@ -248,10 +248,14 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			bidderLink = [...links].pop();
 
 			let strongs = [...bidContainer.querySelectorAll('strong')];
-			bid = Foxtrick.cloneElement(strongs.pop(), true);
-			let curCalc = bid.querySelector('.ft-dummy');
-			if (curCalc)
-				curCalc.remove();
+			let bidStrong = strongs.pop();
+
+			if (bidStrong) {
+				bid = Foxtrick.cloneElement(bidStrong, true);
+				let curCalc = bid.querySelector('.ft-dummy');
+				if (curCalc)
+					curCalc.remove();
+			}
 		}
 		else {
 			/** @type {NodeListOf<HTMLElement>} */
@@ -270,7 +274,8 @@ Foxtrick.Pages.TransferSearchResults.getPlayerList = function(doc) {
 			}
 		}
 
-		player.currentBid = Foxtrick.trimnum(bid.textContent);
+		if (bid)
+			player.currentBid = Foxtrick.trimnum(bid.textContent);
 		if (!bidderLink)
 			return;
 

@@ -13,8 +13,10 @@ Foxtrick.modules.HighlightOwnerless = {
 	/** @param {document} doc */
 	run: function(doc) {
 		let table = Foxtrick.Pages.Series.getTable(doc);
-		let ownerless = table.getElementsByClassName('shy');
-		for (let shy of ownerless)
-			Foxtrick.addClass(shy, 'ft-ownerless');
+		if (table) {
+			let ownerless = table.getElementsByClassName('shy');
+			for (let shy of ownerless)
+				Foxtrick.addClass(shy, 'ft-ownerless');
+		}
 	},
 };

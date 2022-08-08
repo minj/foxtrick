@@ -758,6 +758,8 @@ Foxtrick.modules.StaffMarker = {
 				continue;
 
 			var cfFooter = elem.querySelector('.cfFooter');
+			if (!cfFooter)
+				continue;
 
 			var markerLink = Foxtrick.createFeaturedElement(doc, module, 'a');
 			markerLink.id = 'foxtrick-marker-link-' + i;
