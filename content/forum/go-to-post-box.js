@@ -44,7 +44,11 @@ Foxtrick.modules['GoToPostBox'] = {
 			doc.location.assign(newURL);
 		};
 
-		var parent = doc.getElementById('mainBody').parentNode;
+		let main = doc.getElementById('mainBody'):
+		if (!main)
+			return;
+
+		var parent = main.parentNode;
 		var parents = parent.querySelectorAll('.threadPaging');
 
 		Foxtrick.forEach(function(parent, b) {
