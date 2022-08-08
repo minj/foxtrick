@@ -372,6 +372,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		// unfortunately there is not enough info available
 		// to parse multiple subs that happen at the same time
 		// so we will have to use chpp
+		// eslint-disable-next-line complexity
 		var fixMultipleSubs = function() {
 			var subEvents = Foxtrick.filter(function(event) {
 				return Foxtrick.has(subEventTypes, event.type);
@@ -452,7 +453,15 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			}
 
 			var homeId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+			if (homeId == null) {
+				Foxtrick.log(new Error('homeId detection failed'));
+				return;
+			}
 			var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+			if (awayId == null) {
+				Foxtrick.log(new Error('awayId detection failed'));
+				return;
+			}
 
 			/** @type {CHPPParams} */
 			var homeArgs = [

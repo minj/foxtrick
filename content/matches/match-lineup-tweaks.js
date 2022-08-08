@@ -570,7 +570,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		 * @param {HTMLAnchorElement[]} pLinks
 		 */
 		var addFacesByTeamId = function(teamId, pLinks) {
-			if (teamId === null)
+			if (teamId === null || teamId < 0)
 				return;
 
 			/** @type {CHPPOpts} */
