@@ -718,10 +718,12 @@ Foxtrick.modules.SkillTable = {
 				promotion: (cell, days) => {
 					cell.textContent = days;
 					let today = Foxtrick.util.time.getHTDate(doc);
-					Foxtrick.util.time.setMidnight(today);
-					let promoDate = Foxtrick.util.time.addDaysToDate(today, days);
-					let title = Foxtrick.util.time.buildDate(promoDate);
-					cell.setAttribute('aria-label', cell.title = title);
+					if (today) {
+						Foxtrick.util.time.setMidnight(today);
+						let promoDate = Foxtrick.util.time.addDaysToDate(today, days);
+						let title = Foxtrick.util.time.buildDate(promoDate);
+						cell.setAttribute('aria-label', cell.title = title);
+					}
 				},
 
 				/**
