@@ -3,7 +3,7 @@
 	"list": [
 		{ "LeagueId": 1, "TeamId": 3000, "TeamName": "Sverige", "id": 10899299, "name": "jointen" },
 		{ "LeagueId": 2, "TeamId": 3001, "TeamName": "England", "id": 13059769, "name": "Bissy9" },
-		{ "LeagueId": 3, "TeamId": 3002, "TeamName": "Deutschland", "id": 1948865, "name": "GM-LordGelu" },
+		{ "LeagueId": 3, "TeamId": 3002, "TeamName": "Deutschland", "id": 4161517, "name": "manfred_berner" },
 		{ "LeagueId": 4, "TeamId": 3003, "TeamName": "Italia", "id": 7860193, "name": "Monco-Ultras" },
 		{ "LeagueId": 5, "TeamId": 3004, "TeamName": "France", "id": 3258272, "name": "walterformica" },
 		{ "LeagueId": 6, "TeamId": 3005, "TeamName": "México", "id": 215249, "name": "Morelos" },
@@ -47,7 +47,7 @@
 		{ "LeagueId": 52, "TeamId": 3090, "TeamName": "Česká republika", "id": 13642342, "name": "pigmentik" },
 		{ "LeagueId": 53, "TeamId": 3083, "TeamName": "Latvija", "id": 223447, "name": "Edgaras" },
 		{ "LeagueId": 54, "TeamId": 3084, "TeamName": "Indonesia", "id": 1930205, "name": "benitexz" },
-		{ "LeagueId": 55, "TeamId": 3085, "TeamName": "Pilipinas", "id": 4162713, "name": "NT-Klaudiu" },
+		{ "LeagueId": 55, "TeamId": 3085, "TeamName": "Pilipinas", "id": 4162713, "name": "Klau7" },
 		{ "LeagueId": 56, "TeamId": 3086, "TeamName": "Eesti", "id": 1657317, "name": "rhcp_" },
 		{ "LeagueId": 57, "TeamId": 3087, "TeamName": "Srbija", "id": 10876443, "name": "danilo11" },
 		{ "LeagueId": 58, "TeamId": 3088, "TeamName": "Hrvatska", "id": 13342195, "name": "prst_u_uho" },
