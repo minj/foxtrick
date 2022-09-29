@@ -607,7 +607,7 @@
 			},
 			{
 				"type": "Passer",
-				"value": "Assistências"
+				"value": "Passe"
 			},
 			{
 				"type": "Experience",
@@ -809,7 +809,7 @@
 			},
 			{
 				"type": "Pass",
-				"value": "Assistências"
+				"value": "Passe"
 			},
 			{
 				"type": "PM",
@@ -821,7 +821,7 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Assistências (Defesas + todos os Médios)"
+				"value": "Passe (Defesas + todos os Médios)"
 			},
 			{
 				"type": "DefPos",
