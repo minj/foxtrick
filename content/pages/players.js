@@ -534,7 +534,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 	var addHYLink = function(doc, player) {
 		const domain = Foxtrick.Prefs.getBool('YouthClub.useStage') ? 'stage' : 'www';
 		let hyUrl =
-		`https://${domain}.hattrick-youthclub.org/redirect/type/player_details/ht_id/${player.id}`;
+		`https://${domain}.hattrick-youthclub.org/site/player_details/player_id/${player.id}`;
 
 		let hyLink = doc.createElement('a');
 		hyLink.title = Foxtrick.L10n.getString('HyLink');
