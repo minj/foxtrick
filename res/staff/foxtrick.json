@@ -126,6 +126,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "10648080",
+			"name": "tperic"
+		},
+		{
+			"duty": "supporter",
 			"id": "10680966",
 			"name": "<vegar56>"
 		},
@@ -593,6 +598,11 @@
 			"duty": "supporter",
 			"id": "13059131",
 			"name": "<Harris92>"
+		},
+		{
+			"duty": "supporter",
+			"id": "13062950",
+			"name": "_MrEli8_"
 		},
 		{
 			"duty": "supporter",
@@ -1290,6 +1300,11 @@
 			"name": "celedon"
 		},
 		{
+			"duty": "supporter",
+			"id": "5394629",
+			"name": "Speedy-T"
+		},
+		{
 			"duty": "translator",
 			"id": "540775",
 			"name": "fcaqualung"
@@ -1478,6 +1493,11 @@
 			"duty": "supporter",
 			"id": "6977975",
 			"name": "cicix-GIGA"
+		},
+		{
+			"duty": "supporter",
+			"id": "7068855",
+			"name": "Saarfubberino"
 		},
 		{
 			"duty": "translator",
@@ -1710,6 +1730,11 @@
 			"name": "Bokko_"
 		},
 		{
+			"duty": "supporter",
+			"id": "8640745",
+			"name": "redbcn"
+		},
+		{
 			"duty": "translator",
 			"id": "8656808",
 			"name": "HHTim"
@@ -1878,6 +1903,11 @@
 			"duty": "supporter",
 			"id": "9818296",
 			"name": "<relon>"
+		},
+		{
+			"duty": "supporter",
+			"id": "9825452",
+			"name": "NicoNico92"
 		},
 		{
 			"duty": "supporter",
