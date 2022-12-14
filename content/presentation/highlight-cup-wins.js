@@ -27,16 +27,7 @@ Foxtrick.modules['HighlightCupwins'] = {
 		if (!table)
 			return;
 
-		// add a column to show the № of matches
-		var header = table.getElementsByTagName('tr')[0];
-		var numHeader = Foxtrick.createFeaturedElement(doc, this, 'th');
-		numHeader.appendChild(doc.createTextNode('#'));
-		header.insertBefore(numHeader, header.firstChild);
-
 		for (var i = 1; i < table.rows.length; ++i) {
-			var numCell = Foxtrick.insertFeaturedCell(table.rows[i], this, 0);
-			numCell.appendChild(doc.createTextNode(String(i)));
-
 			var goals = table.rows[i].cells[4].textContent.match(/\d+/g);
 			if (!goals) {
 				// perhaps some results aren't shown
