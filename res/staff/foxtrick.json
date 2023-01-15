@@ -691,6 +691,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13517350",
+			"name": "Iorda9"
+		},
+		{
+			"duty": "supporter",
 			"id": "13552149",
 			"name": "Daniel_Gringo"
 		},
@@ -728,6 +733,11 @@
 			"duty": "supporter",
 			"id": "13827209",
 			"name": "Justin_Yang"
+		},
+		{
+			"duty": "supporter",
+			"id": "13928189",
+			"name": "mfaulkie"
 		},
 		{
 			"duty": "supporter",
@@ -1448,6 +1458,11 @@
 			"duty": "translator",
 			"id": "6680572",
 			"name": "<Nanouk>"
+		},
+		{
+			"duty": "supporter",
+			"id": "6691835",
+			"name": "Xurde"
 		},
 		{
 			"duty": "supporter",
