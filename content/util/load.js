@@ -169,8 +169,17 @@ Foxtrick.fetch = function(url, params) {
 					fulfill(response);
 				}
 				else {
-					Foxtrick.log('XHR failed:', response);
-					reject(response);
+					/** @type {FetchError} */
+					let resp = response ||
+						{
+							url: pUrl,
+							status: -1,
+							text: 'undefined error',
+							_cls: Foxtrick.FETCH_ERROR,
+						};
+
+					Foxtrick.log('XHR failed:', resp);
+					reject(resp);
 				}
 			});
 		});
@@ -182,8 +191,6 @@ Foxtrick.fetch = function(url, params) {
 		try {
 			let type = params ? 'POST' : 'GET';
 
-			/** @type {XMLHttpRequest} */
-			// @ts-ignore
 			let req = new window.XMLHttpRequest();
 			req.open(type, pUrl, true);
 
@@ -204,7 +211,13 @@ Foxtrick.fetch = function(url, params) {
 				}
 
 				/** @type {FetchError} */
-				let error = { url: pUrl, status: this.status, text: this.responseText, params };
+				let error = {
+					url: pUrl,
+					status: this.status,
+					text: this.responseText,
+					params,
+					_cls: Foxtrick.FETCH_ERROR,
+				};
 
 				// eslint-disable-next-line prefer-promise-reject-errors
 				reject(error);
@@ -212,7 +225,13 @@ Foxtrick.fetch = function(url, params) {
 
 			req.onerror = function() {
 				/** @type {FetchError} */
-				let error = { url: pUrl, status: this.status, text: this.responseText, params };
+				let error = {
+					url: pUrl,
+					status: this.status,
+					text: this.responseText,
+					params,
+					_cls: Foxtrick.FETCH_ERROR,
+				};
 
 				// eslint-disable-next-line prefer-promise-reject-errors
 				reject(error);
@@ -220,7 +239,13 @@ Foxtrick.fetch = function(url, params) {
 
 			req.onabort = function() {
 				/** @type {FetchError} */
-				let error = { url: pUrl, status: -1, text: this.responseText, params };
+				let error = {
+					url: pUrl,
+					status: -1,
+					text: this.responseText,
+					params,
+					_cls: Foxtrick.FETCH_ERROR,
+				};
 
 				// eslint-disable-next-line prefer-promise-reject-errors
 				reject(error);
@@ -234,7 +259,13 @@ Foxtrick.fetch = function(url, params) {
 			Foxtrick.log(ERROR_XHR_FATAL, e);
 
 			/** @type {FetchError} */
-			let error = { url: pUrl, status: -1, text: ERROR_XHR_FATAL + e.message, params };
+			let error = {
+				url: pUrl,
+				status: -1,
+				text: ERROR_XHR_FATAL + e.message,
+				params,
+				_cls: Foxtrick.FETCH_ERROR,
+			};
 
 			// eslint-disable-next-line prefer-promise-reject-errors
 			reject(error);
@@ -311,6 +342,7 @@ Foxtrick.load = function(url, params, lifeTime, now) {
 
 /**
  * @typedef FetchError
+ * @prop {FETCH_ERROR} _cls
  * @prop {number} status
  * @prop {string} text
  * @prop {string} [url]
@@ -370,7 +402,7 @@ Foxtrick.cache = (function() {
 		 * obj should be {promise: Promise, lifeTime}.
 		 *
 		 * @param  {string}        url
-		 * @param  {object}        [params]
+		 * @param  {object}        params
 		 * @param  {FTCacheObject} obj
 		 */
 		var set = function(url, params, obj) {
@@ -578,8 +610,12 @@ Foxtrick.util.load.async = function(url, callback, params) {
 	Foxtrick.load(url, params).then((text) => {
 		callback(/** @type {string} */ (text), HTTP_OK);
 	}, (/** @type {FetchError} */ resp) => {
-		if (!resp)
-			Foxtrick.log(new Error(`resp is ${resp} (${url})`));
+		if (!resp) {
+			// eslint-disable-next-line no-magic-numbers
+			Foxtrick.log(new Error(`resp is ${resp} (${url.slice(0, 128)})`));
+			callback(null, 0);
+			return;
+		}
 
 		callback(resp.text, resp.status);
 	}).catch((e) => {
@@ -607,8 +643,12 @@ Foxtrick.util.load.fetch = function(url, callback, params) {
 
 		callback(text, HTTP_OK);
 	}, (/** @type {FetchError} */ resp) => {
-		if (!resp)
-			Foxtrick.log(new Error(`resp is ${resp} (${url})`));
+		if (!resp) {
+			// eslint-disable-next-line no-magic-numbers
+			Foxtrick.log(new Error(`resp is ${resp} (${url.slice(0, 128)})`));
+			callback(null, 0);
+			return;
+		}
 
 		callback(resp.text, resp.status);
 	}).catch((e) => {

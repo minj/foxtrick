@@ -245,7 +245,14 @@ Foxtrick.entry.change = function(doc, changes) {
 			/^\/MatchOrder\/(Default.aspx|$)/i,
 		];
 		let excluded = Foxtrick.any(function(ex) {
-			return ex.test(doc.location.pathname);
+			let ret = false;
+
+			try {
+				ret = ex.test(doc.location.pathname);
+			}
+			catch (e) { }
+
+			return ret;
 		}, mutationExcludes);
 
 		if (excluded)

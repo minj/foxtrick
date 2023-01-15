@@ -703,7 +703,7 @@ Foxtrick.Prefs.parsePrefs = function(string, eachCb) {
 
 	var stringRe = /^(["'])(.*)\1$/;
 
-	var lines = string.split(/[\r\n]+/);
+	var lines = String(string).split(/[\r\n]+/);
 	for (var line of lines) {
 		if (line === '')
 			continue;

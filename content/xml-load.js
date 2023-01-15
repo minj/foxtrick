@@ -44,6 +44,11 @@ Foxtrick.XMLData = {
 		var world = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/worlddetails.json');
 		module.worldDetailsJSON = JSON.parse(world);
 
+		if (!module.worldDetailsJSON) {
+			Foxtrick.log(new Error('loading world failed'));
+			return;
+		}
+
 		var leagueList = module.worldDetailsJSON.HattrickData.LeagueList;
 		Foxtrick.forEach(function(league) {
 			let leagueId = parseInt(league.LeagueID, 10);

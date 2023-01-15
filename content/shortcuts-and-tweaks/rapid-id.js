@@ -60,8 +60,10 @@ Foxtrick.modules['RapidId'] = {
 			setSelected(type);
 
 			let opt = Foxtrick.nth(n => n.value == type, options);
-			if (!opt)
-				Foxtrick.log(new Error(`opt is ${opt}`));
+			if (!opt) {
+				Foxtrick.log(new Error(`opt is ${opt} for ${type}`));
+				return;
+			}
 
 			var urlTmpl = doc.location.protocol + '//' + doc.location.host + '/' + opt.url;
 			// open in current tab if only one ID, in new tabs if more than one
@@ -166,9 +168,8 @@ Foxtrick.modules['RapidId'] = {
 		}
 
 		// get labels of optgroup and option
-		for (var i = 0; i < options.length; ++i) {
-			options[i].label = Foxtrick.L10n.getString(options[i].text);
-		}
+		for (let opt of options)
+			opt.label = Foxtrick.L10n.getString(opt.text);
 
 		var header = doc.getElementById('header');
 		var online = doc.getElementById('online');

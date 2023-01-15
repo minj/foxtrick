@@ -18,6 +18,7 @@ Foxtrick.modules['NewMail'] = {
 
 	CSS: Foxtrick.InternalPath + 'resources/css/new-mail.css',
 
+	// eslint-disable-next-line complexity
 	exec: function(doc, mailCount, forumCount) {
 		const MODULE = this;
 
@@ -42,6 +43,9 @@ Foxtrick.modules['NewMail'] = {
 
 		let menu = doc.getElementById('menu');
 		let myHt = menu.querySelector('a[href^="/MyHattrick/"]');
+		if (!myHt)
+			return;
+
 		if (myHt.getElementsByTagName('span').length) {
 			let mailCountSpan = myHt.getElementsByTagName('span')[0];
 			mailCountSpan.className = 'ft-new-mail';

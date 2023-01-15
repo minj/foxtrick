@@ -157,31 +157,40 @@ Foxtrick.modules.PlayerPositionsEvaluations = {
 			}
 			else if (Foxtrick.isPage(doc, 'transferSearchResult')) {
 				let isNewDesign = Foxtrick.Pages.TransferSearchResults.isNewDesign(doc);
-				var list = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
+				let list = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 
 				// filter out players with out skill data (after deadline)
-				var transfers = Foxtrick.filter(function(p) {
+				let transfers = Foxtrick.filter(function(p) {
 					return typeof p.bestPositionValue !== 'undefined';
 				}, list);
 				Foxtrick.forEach(function(p) {
-					var table = p.playerNode.querySelector('.transferPlayerSkills table');
+					var table = /** @type {HTMLTableElement} */
+						(p.playerNode.querySelector('.transferPlayerSkills table'));
 					var row = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
 					Foxtrick.addClass(row, 'ft-best-player-position');
 					var title = row.insertCell(0);
 					if (!isNewDesign)
-						title.colSpan = '2';
+						title.colSpan = 2;
 
 					var b = doc.createElement('strong');
 					b.textContent = Foxtrick.L10n.getString('BestPlayerPosition.title');
 					title.appendChild(b);
 					var bestPositionCell = row.insertCell(1);
-					bestPositionCell.colSpan = '2';
+					bestPositionCell.colSpan = 2;
 					bestPositionCell.textContent = p.bestPositionLong +
 						' (' + p.bestPositionValue.toFixed(2) + ')';
 				}, transfers);
 			}
 			else if (Foxtrick.isPage(doc, 'ownPlayers')) {
 				var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
+				if (!playerList)
+					return;
+
+				// filter out players with out skill data (after deadline)
+				let transfers = Foxtrick.filter(function(p) {
+					return typeof p.bestPositionValue !== 'undefined';
+				}, playerList);
+
 				Foxtrick.forEach(function(p) {
 					var table = p.playerNode.querySelector('table');
 					var container = Foxtrick.createFeaturedElement(doc, module, 'div');
@@ -190,7 +199,7 @@ Foxtrick.modules.PlayerPositionsEvaluations = {
 						' ' + p.bestPositionLong + ' (' + p.bestPositionValue.toFixed(2) + ')';
 
 					table.parentElement.appendChild(container);
-				}, playerList);
+				}, transfers);
 			}
 		}
 	},

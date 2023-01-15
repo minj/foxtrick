@@ -21,11 +21,11 @@ Foxtrick.modules.U21LastMatch = {
 		7,
 		10,
 		14, // CC M5
-		21, 
+		21,
 		28,
 		35, // CC M8
 		42,
-		49, 
+		49,
 		56, // CC QF
 		59, // CC SF
 		63, // CC Finals
@@ -47,12 +47,12 @@ Foxtrick.modules.U21LastMatch = {
 		154,
 		161, // WC R3 M1
 		164,
-		168, 
+		168,
 		175, // WC R4 M1
 		178,
-		182, 
+		182,
 		189, // WC R5 M1
-		192, 
+		192,
 		196,
 		199, // Semi
 		203, // Finals
@@ -205,20 +205,17 @@ Foxtrick.modules.U21LastMatch = {
 		text = text.replace(/%3/, wcNum);
 		text = text.replace(/%4/, lastMatch);
 
-
-		let entryPoint =
-			doc.querySelector('#mainBody > .mainBox') ||
-			doc.querySelector('#mainBody > .playerInfo');
-
-		let wrapper = Foxtrick.createFeaturedElement(doc, module, 'div');
-		Foxtrick.addClass(wrapper, 'mainBox');
-		let titleElement = doc.createElement('h2');
-		titleElement.textContent = TITLE_STR;
-		let textElement = doc.createElement('div');
-		textElement.textContent = text;
-		wrapper.appendChild(titleElement);
-		wrapper.appendChild(textElement);
-		entryPoint.parentNode.insertBefore(wrapper, entryPoint.nextSibling);
+		let panel = Foxtrick.getMBElement(doc, 'pnlplayerInfo') ||
+			doc.querySelector('.playerInfo');
+		if (!panel)
+			return;
+		let table = panel.querySelector('table');
+		let row = Foxtrick.insertFeaturedRow(table, module, table.rows.length);
+		Foxtrick.addClass(row, 'ft-u21-lastmatch');
+		let title = row.insertCell(-1);
+		title.textContent = TITLE_STR;
+		let val = row.insertCell(-1);
+		val.textContent = text;
 	},
 
 	/** @param {document} doc */
@@ -229,6 +226,9 @@ Foxtrick.modules.U21LastMatch = {
 		const TMPL_STR = Foxtrick.L10n.getString('U21LastMatch.templateWithoutTable');
 
 		let players = Foxtrick.modules.Core.getPlayerList();
+		if (!players)
+			return;
+
 		for (let player of players) {
 			if (player.age.years > 21)
 				continue;
@@ -267,7 +267,7 @@ Foxtrick.modules.U21LastMatch = {
 
 		let players = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 		for (let player of players) {
-			if (player.age.years > 21)
+			if (!player.age || player.age.years > 21)
 				continue;
 
 			let { worldCupNumber, lastMatch, matchNumber, dateWhen22 } =

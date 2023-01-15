@@ -550,6 +550,10 @@ Foxtrick.modules.TeamStats = {
 		};
 
 		Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
+			if (!list || !list.length) {
+				box.remove();
+				return;
+			}
 
 			/** @param {Player[]} list */
 			var cb = (list) => {

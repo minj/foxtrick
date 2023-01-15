@@ -8,6 +8,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -18,7 +19,7 @@ Foxtrick.util.inject = {};
 
 Foxtrick.util.inject.cssLink = function(doc, url) {
 	if (Foxtrick.arch == 'Sandboxed') {
-		var id = url.match(/([^\/]+)\.css$/)[1];
+		var id = url.match(/([^/]+)\.css$/)[1];
 
 		Foxtrick.load(url).then(function(text) {
 			Foxtrick.util.inject.css(doc, text, id);
@@ -76,7 +77,7 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 	if (head && body) {
 		inject(doc);
 	}
-	else {
+	else if (doc.documentElement) {
 		Foxtrick.onChange(doc.documentElement, function(doc) {
 			var head = doc.head;
 			var body = doc.body;
@@ -84,6 +85,7 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 				inject(doc);
 				return true;
 			}
+			return void 0;
 		}, { subtree: false });
 	}
 };

@@ -1,4 +1,5 @@
 'use strict';
+
 /**
 * forumstage.js
 * Foxtrick Copies post id to clipboard
@@ -11,8 +12,10 @@ Foxtrick.modules['ForumStage'] = {
 
 	run: function(doc) {
 		var crumbs = Foxtrick.Pages.All.getBreadCrumbs(doc);
+		if (!crumbs)
+			return;
 		var forum = crumbs[1];
-		if (forum.textContent.trim() !== 'Stage')
+		if (!forum || forum.textContent.trim() !== 'Stage')
 			return;
 
 		var alertDiv = doc.createElement('div');

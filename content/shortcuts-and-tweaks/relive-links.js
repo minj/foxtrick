@@ -211,6 +211,8 @@ Foxtrick.modules.ReLiveLinks = {
 		}
 		else if (Foxtrick.isPage(doc, 'fixtures') || Foxtrick.isPage(doc, 'youthFixtures')) {
 			let fixtures = Foxtrick.getMBElement(doc, 'repFixtures');
+			if (!fixtures)
+				return;
 			rows = fixtures.querySelectorAll('tr');
 
 			useColSpan = true; // fixes broken layout due to expanded 1st column

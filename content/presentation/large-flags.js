@@ -44,8 +44,18 @@ Foxtrick.modules.LargeFlags = {
 		let size = SIZES[isNewDesign ? 'new' : 'old'];
 
 		let img = flag.querySelector('img');
-		let oldStyle = img.style.background;
-		let pos = oldStyle.match(/(\d+)px/)[1];
+		let pos;
+
+		if (/\d+\.png$/.test(img.src)) {
+			let url = new window.URL(img.src).pathname;
+			let id = parseInt(url.match(/\d+/).toString(), 10);
+			pos = String(id * HT_SIZE);
+			img.src = '/Img/Icons/transparent.gif';
+		}
+		else {
+			let oldStyle = img.style.background;
+			pos = oldStyle.match(/(\d+)px/)[1];
+		}
 		let newPos = -parseInt(pos, 10) / HT_SIZE * size;
 
 		let newStyle = `transparent url(${URL}) no-repeat scroll ${newPos}px 0`;

@@ -1253,7 +1253,19 @@ Foxtrick.renderPre = function(parent) {
 					nodes.push(pre);
 
 					// target is a pointer for DOM insertion
-					target = node;
+					if (node.parentNode) {
+						target = node;
+					}
+					else if (target.parentNode) {
+						// insert dummy
+						// README: insertAfter discards the TextNode arg!
+						Foxtrick.insertAfter(doc.createTextNode(''), target);
+						target = target.nextSibling;
+					}
+					else {
+						Foxtrick.log(new Error('renderPre: unsupported state'));
+						return;
+					}
 				}
 				else if (tag === '[/pre]' && pre) {
 					let frag = doc.createDocumentFragment();

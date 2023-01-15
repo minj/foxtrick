@@ -129,8 +129,14 @@ Foxtrick.api.hy._fetchViaCache = async (api, fetch, cacheDays, teamId) => {
 			if (cachedData == null)
 				return Promise.reject(err);
 
-			let { status, text } = err;
-			Foxtrick.log(logKey, 'Fetch failed:', status, text);
+			if (err) {
+				let { status, text } = err;
+				Foxtrick.log(logKey, 'Fetch failed:', status, text);
+			}
+			else {
+				Foxtrick.log(logKey, 'Fetch failed with unknown:', status, err);
+			}
+
 
 			/** @type {TData} */
 			let o = JSON.parse(cachedData);
@@ -221,7 +227,8 @@ Foxtrick.api.hy._fetchOrIgnore = async (api, url, params) => {
 		return /** @type {string} */ (response);
 	}
 	catch (rej) {
-		let err = /** @type {FetchError} */ (rej);
+		let err = /** @type {FetchError} */ (rej) ||
+			{ status: 0, text: `unknown error: ${typeof rej}` };
 		let { status, text } = err;
 		switch (status) {
 			case 0:

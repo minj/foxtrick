@@ -25,7 +25,7 @@ Foxtrick.Pages.Series = {};
 Foxtrick.Pages.Series.getTable = function(doc) {
 	var parent = Foxtrick.getMBElement(doc, 'UpdatePanel1') ||
 		Foxtrick.getMBElement(doc, 'repLeagueTable');
-	return parent.querySelector('table');
+	return parent && parent.querySelector('table');
 };
 
 /**

@@ -76,9 +76,9 @@ Foxtrick.modules['PsicoTSI'] = {
 				Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'enableTLPage'))
 				module.runTL(doc);
 
-		}).catch(function(reason) {
+		}, function(reason) {
 			Foxtrick.log('WARNING: currency.detect aborted:', reason);
-		});
+		}).catch(Foxtrick.catch(module));
 
 	},
 
@@ -91,15 +91,22 @@ Foxtrick.modules['PsicoTSI'] = {
 			return;
 
 		var p = Foxtrick.Pages.Player.getSkills(doc);
+		var entryPoint = doc.querySelector('.ownerAndStatusPlayerInfo ~ .flex') ||
+			Foxtrick.getMBElement(doc, 'updBestLatest') ||
+			Foxtrick.getMBElement(doc, 'updPlayerTabs');
 
 		if (!p) {
-			this.drawMessage(doc, Foxtrick.getMBElement(doc, 'updBestLatest'));
+			this.drawMessage(doc, entryPoint);
 			return;
 		}
 
 		p.age = Foxtrick.Pages.Player.getAge(doc);
+		if (!p.age)
+			return;
+
 		p.tsi = Foxtrick.Pages.Player.getTsi(doc);
-		p.salary = Foxtrick.Pages.Player.getWage(doc).base;
+		let wo = Foxtrick.Pages.Player.getWage(doc);
+		p.salary = wo && wo.base;
 		p.isAbroad = false;
 
 		var attrs = Foxtrick.Pages.Player.getAttributes(doc);
@@ -114,8 +121,6 @@ Foxtrick.modules['PsicoTSI'] = {
 			return;
 
 		// assuming player skills is the first mainBox
-		var entryPoint = doc.querySelector('#mainBody > .mainBox');
-
 		this.drawMessage(doc, entryPoint, pr.isGK, pr.undef, injured, age > 27, pr.maxSkill,
 						 pr.formHigh, pr.formAvg, pr.formLow,
 						 pr.wageHigh, pr.wageAvg, pr.wageLow, pr.limit);
@@ -161,17 +166,16 @@ Foxtrick.modules['PsicoTSI'] = {
 			var playerContainers = doc.getElementById('mainBody')
 				.getElementsByClassName('transferPlayerInfo');
 
-			for (var i = 0, p; i < players.length && (p = players[i]); ++i) {
+			for (let [i, p] of players.entries()) {
 
 				var entry = playerContainers[i];
-
-				if (!Foxtrick.hasProp(p, 'keeper'))
-					continue;
-
 				var age = p.ageYears;
 				var injured = p.injured;
 
-				var pr = p.psico || module.getPrediction(p, rate);
+				if (!Foxtrick.hasProp(p, 'keeper') || !age && !Foxtrick.hasProp(p, 'age'))
+					continue;
+
+				var pr = module.getPrediction(p, rate);
 				if (!pr)
 					continue;
 

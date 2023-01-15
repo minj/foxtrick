@@ -26,13 +26,20 @@ if (!this.Foxtrick)
 
 /**
  * Error message for Foxtrick.timeout() rejects
- * @type {String}
+ * @type {string}
  */
 Foxtrick.TIMEOUT_ERROR = 'Foxtrick timeout';
 
 /**
+ * @typedef {'Foxtrick fetch failure'} FETCH_ERROR
+ * Error message for Foxtrick.fetch() rejects
+ * @type {FETCH_ERROR}
+ */
+Foxtrick.FETCH_ERROR = 'Foxtrick fetch failure';
+
+/**
  * Error message to suppress additional logging
- * @type {String}
+ * @type {string}
  */
 Foxtrick.SWALLOWED_ERROR = 'Foxtrick ignore this error';
 
@@ -87,6 +94,7 @@ Foxtrick.delay = (time, val) => new Promise(function delayFinish(fulfill) {
  * @param  {{ MODULE_NAME: string } | string} module {object}
  * @return {function(any):void}
  */
+// eslint-disable-next-line complexity
 Foxtrick.catch = module => function(e) {
 	// @ts-ignore
 	if (e === Foxtrick.SWALLOWED_ERROR ||
@@ -94,6 +102,17 @@ Foxtrick.catch = module => function(e) {
 		// @ts-ignore
 		e && e.message && e.message === Foxtrick.SWALLOWED_ERROR)
 		return e;
+
+	if (e === Foxtrick.FETCH_ERROR || e && e.message && e.message === Foxtrick.FETCH_ERROR) {
+		Foxtrick.log('Failed to load');
+		return e;
+	}
+
+	if (e && e._cls == Foxtrick.FETCH_ERROR) {
+		let f = /** @type {FetchError} */ (e);
+		Foxtrick.log('Failed to load:', f.url, f.status);
+		return e;
+	}
 
 	// @ts-ignore
 	let what = module && module.MODULE_NAME || module;

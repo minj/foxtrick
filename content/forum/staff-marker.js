@@ -433,10 +433,10 @@ Foxtrick.modules.StaffMarker = {
 
 			}, function(resp) {
 
-				if (!resp)
+				if (resp)
+					Foxtrick.log('Failure loading file:', resp.url, '. Using cached markers.');
+				else
 					Foxtrick.log(new Error(`resp is ${resp} (${url})`));
-
-				Foxtrick.log('Failure loading file:', resp.url, '. Using cached markers.');
 
 				return Foxtrick.storage.get('Markers.' + url).then(parseMarkers);
 
@@ -758,6 +758,8 @@ Foxtrick.modules.StaffMarker = {
 				continue;
 
 			var cfFooter = elem.querySelector('.cfFooter');
+			if (!cfFooter)
+				continue;
 
 			var markerLink = Foxtrick.createFeaturedElement(doc, module, 'a');
 			markerLink.id = 'foxtrick-marker-link-' + i;

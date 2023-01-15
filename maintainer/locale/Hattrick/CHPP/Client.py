@@ -97,10 +97,12 @@ class ChppClient():
         self.chppSession = self.chppService.get_session(token=self.accessToken)
         return self.chppSession
 
-    def getFile(self, file=None, params={}):
+    def getFile(self, file=None, params=None):
         if self.chppSession is None:
             self.getSession()
 
+        if params is None:
+            params = {}
         if 'file' not in params:
             if file is not None:
                 params['file'] = file

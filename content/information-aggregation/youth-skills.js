@@ -702,7 +702,8 @@ Foxtrick.modules['YouthSkills'] = {
 				skills = await Foxtrick.api.hy.getYouthSkills();
 			}
 			catch (err) {
-				let { text, status } = err;
+				let { text, status } = err ||
+					{ status: 0, text: `unknown error: ${typeof err}` };
 				showError(text, status);
 				finalize(text);
 			}

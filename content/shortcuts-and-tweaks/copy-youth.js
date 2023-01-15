@@ -121,7 +121,8 @@ Foxtrick.modules.CopyYouth = {
 				module.addNode(doc, ok, 3000);
 			}
 			catch (rej) {
-				let { text, status } = rej;
+				let { text, status } = rej ||
+					{ status: 0, text: `unknown error: ${typeof rej}` };
 
 				let payload = { error: 'Unknown error' };
 				try {
@@ -129,8 +130,19 @@ Foxtrick.modules.CopyYouth = {
 						payload = JSON.parse(text);
 				}
 				catch (e) {
-					let msg = `[sendTrainingReportToHY]: could not parse '${text}'`;
-					Foxtrick.log(new Error(msg));
+					const DTD = '<!DOCTYPE';
+					const HTML = '<html>';
+					if (text && DTD.toUpperCase() == // lgtm[js/trivial-conditional]
+					    text.slice(0, DTD.length).toUpperCase() ||
+					    text && HTML.toUpperCase() == // lgtm[js/trivial-conditional]
+					    text.slice(0, HTML.length).toUpperCase()
+					) {
+						payload.error = 'hy failed to accept training report';
+					}
+					else {
+						let msg = `[sendTrainingReportToHY]: could not parse '${text}'`;
+						Foxtrick.log(new Error(msg));
+					}
 				}
 				let { error } = payload;
 
@@ -283,7 +295,8 @@ Foxtrick.modules.CopyYouth = {
 						module.addNode(doc, ok, 3000);
 					}
 					catch (rej) {
-						let { text, status } = rej;
+						let { text, status } = rej ||
+							{ status: 0, text: `unknown error: ${typeof rej}` };
 
 						let payload = { error: 'Unknown error' };
 						try {
@@ -416,7 +429,8 @@ Foxtrick.modules.CopyYouth = {
 				module.addNode(doc, ok, 3000);
 			}
 			catch (rej) {
-				let { text, status } = rej;
+				let { text, status } = rej ||
+					{ status: 0, text: `unknown error: ${typeof rej}` };
 
 				let payload = { error: 'Unknown error' };
 				try {

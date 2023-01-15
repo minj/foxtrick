@@ -101,7 +101,29 @@ Foxtrick.Pages.Match.getAwayTeam = function(doc) {
  */
 Foxtrick.Pages.Match.getHomeTeamId = function(doc) {
 	var team = this.getHomeTeam(doc);
-	return team && team.href ? Foxtrick.util.id.getTeamIdFromUrl(team.href) : null;
+	if (team) {
+		if (team.href)
+			return Foxtrick.util.id.getTeamIdFromUrl(team.href);
+
+		// no owner, negative ID, no href
+
+		let h2h = /** @type {HTMLAnchorElement} */
+			(Foxtrick.getMBElement(doc, 'ucPostMatch_hypHeadToHead'));
+
+		if (h2h && h2h.href) {
+			let id = Foxtrick.getUrlParam(h2h.href, 'TeamID1');
+			if (id)
+				return Number(id);
+		}
+		let other = this.getAwayTeam(doc);
+		if (other && other.href) {
+			let otherId = Foxtrick.getUrlParam(other.href, 'TeamID');
+			let ids = (Foxtrick.getUrlParam(other.href, 'BrowseIds') || '').split(',');
+			if (otherId && ids.length == 2)
+				return Number(Foxtrick.nth(i => i != otherId, ids));
+		}
+	}
+	return null;
 };
 
 /**
@@ -111,7 +133,29 @@ Foxtrick.Pages.Match.getHomeTeamId = function(doc) {
  */
 Foxtrick.Pages.Match.getAwayTeamId = function(doc) {
 	var team = this.getAwayTeam(doc);
-	return team && team.href ? Foxtrick.util.id.getTeamIdFromUrl(team.href) : null;
+	if (team) {
+		if (team.href)
+			return Foxtrick.util.id.getTeamIdFromUrl(team.href);
+
+		// no owner, negative ID, no href
+
+		let h2h = /** @type {HTMLAnchorElement} */
+			(Foxtrick.getMBElement(doc, 'ucPostMatch_hypHeadToHead'));
+
+		if (h2h && h2h.href) {
+			let id = Foxtrick.getUrlParam(h2h.href, 'TeamID2');
+			if (id)
+				return Number(id);
+		}
+		let other = this.getHomeTeam(doc);
+		if (other && other.href) {
+			let otherId = Foxtrick.getUrlParam(other.href, 'TeamID');
+			let ids = (Foxtrick.getUrlParam(other.href, 'BrowseIds') || '').split(',');
+			if (otherId && ids.length == 2)
+				return Number(Foxtrick.nth(i => i != otherId, ids));
+		}
+	}
+	return null;
 };
 
 /**
@@ -307,6 +351,8 @@ Foxtrick.Pages.Match.getArenaId = function(doc) {
 
 		/** @type {HTMLAnchorElement} */
 		var arena = matchReport.querySelector('a[href^="/Club/Arena/"]');
+		if (!arena)
+			return null;
 		arenaId = parseInt(Foxtrick.getUrlParam(arena.href, 'ArenaID'), 10);
 	}
 	catch (e) {
@@ -799,6 +845,10 @@ Foxtrick.Pages.Match.makeAvatar = function(shirtDiv, avatarXml, scale) {
 	const SZ = oldFaces ? sizesOld : sizes;
 
 	let xml = /** @type {CHPPXML} */ (avatarXml.ownerDocument);
+	if (!xml) {
+		Foxtrick.log(new Error('avatarXml is detached'));
+		return;
+	}
 	let layers = avatarXml.getElementsByTagName('Layer');
 	for (let layer of layers) {
 		let src = xml.text('Image', layer);

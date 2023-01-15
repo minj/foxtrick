@@ -33,13 +33,15 @@ Foxtrick.modules['LinksEconomy'] = {
 		// only on current finances
 		var links = doc.getElementById('mainBody').getElementsByTagName('a');
 		if (links[0] && /season/.test(links[0].href))
-			return;
+			return {};
 
 		var cash = 0, newCash = 0;
 		var main = doc.getElementById('mainBody');
 		var cashTable = main.getElementsByTagName('table')[0];
 
-		var nums = cashTable.rows[0].cells[1].textContent.replace(/\u00a0/g, '').match(/\d+/g);
+		var nums = cashTable
+		    ? cashTable.rows[0].cells[1].textContent.replace(/\u00a0/g, '').match(/\d+/g)
+			: null;
 		cash = nums ? nums[0] : NaN;
 
 		// deal with currency converter
@@ -52,6 +54,6 @@ Foxtrick.modules['LinksEconomy'] = {
 			newCash: newCash,
 			currency: currencySymbol,
 		};
-		return { info: info };
+		return { info };
 	},
 };

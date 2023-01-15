@@ -154,11 +154,15 @@ Foxtrick.modules.PlayerStatsExperience = {
 			/**
 			 * new W.O detection
 			 *
-			 * @param  {Element} node
+			 * @param  {HTMLTableRowElement} row
 			 * @return {boolean}
 			 */
-			var isWalkover = function(node) {
-				var starCell = node.querySelector('td:last-child');
+			var isWalkover = function(row) {
+				if (row.matches('.performanceIsWalkover'))
+					return true;
+
+				var starCell = [...row.cells]
+					.filter(c => c.classList.contains('center')).pop();
 				var starImg = starCell.querySelector('img[class^="star"]');
 				var stars = starCell.textContent.trim();
 
@@ -350,8 +354,9 @@ Foxtrick.modules.PlayerStatsExperience = {
 			thXP.title = Foxtrick.L10n.getString('PlayerStatsExperience.ExperienceChange.title');
 
 			var store = module.store;
-			var [header, ...statsRows] = [...statsTable.rows];
+			var [header, bestPerf, ...statsRows] = [...statsTable.rows];
 			header.insertBefore(thXP, header.cells[8]);
+			bestPerf.cells[0].colSpan += 1;
 
 			// sum up xp stuff
 			for (let row of statsRows) {
@@ -362,16 +367,20 @@ Foxtrick.modules.PlayerStatsExperience = {
 				if (!matchDate)
 					break;
 
-				/** @type {HTMLElement} */
-				let dateSpan = matchDate.querySelector('span.float_left');
+				let tdXP = Foxtrick.insertFeaturedCell(row, module, module.XP_CELL_IDX + 1);
+				Foxtrick.addClass(tdXP, 'stats');
 
 				// current skilllevel
 				let xpNow = parseInt(row.cells[module.XP_CELL_IDX].textContent, 10);
+				if (Number.isNaN(xpNow))
+					continue;
 
 				// remember current XP Level to detect skilldowns
 				if (store.currentSkill === null)
 					store.currentSkill = xpNow;
 
+				/** @type {HTMLElement} */
+				let dateSpan = matchDate.querySelector('span.float_left');
 				let ntMatch = isNTMatch(row);
 				let juniors = /U-20|U21/.test(row.querySelector('a').textContent);
 				let gameType = getGameType(row, dateSpan.dataset.dateiso, juniors);
@@ -414,8 +423,6 @@ Foxtrick.modules.PlayerStatsExperience = {
 					store.skillup = true;
 				}
 
-				let tdXP = Foxtrick.insertFeaturedCell(row, module, module.XP_CELL_IDX + 1);
-				Foxtrick.addClass(tdXP, 'stats');
 				if (walkover) {
 					Foxtrick.addClass(tdXP, 'ft-xp-walkover');
 					tdXP.textContent = pseudoPoints.toFixed(PRECISION);

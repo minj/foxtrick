@@ -319,25 +319,23 @@ Foxtrick.modules['ForumChangePosts'] = {
 		alt_supporter.title = 'Hattrick Supporter';
 
 		if (do_HighlightThreadOpener) {
+			var TName_lng = false;
 			try {
 				var Ftag = doc.querySelector('[id$="ucGuestForum_ucGuestForum_updMain"]');
 				if (!Ftag)
 					Ftag = doc.getElementById('myForums');
 
-				var TName_lng;
 				if (Ftag) {
 					Ftag = Ftag.querySelector('strong');
-					// eslint-disable-next-line no-unused-vars
-					let TName = Ftag.textContent; // lgtm[js/unused-local-variable]
-					TName_lng = Ftag.parentElement.getAttribute('data-author');
-				}
-				else {
-					TName_lng = false;
+					if (Ftag) {
+						// eslint-disable-next-line no-unused-vars
+						let TName = Ftag.textContent; // lgtm[js/unused-local-variable]
+						TName_lng = Ftag.parentElement.getAttribute('data-author');
+					}
 				}
 			}
 			catch (errTag) {
 				Foxtrick.log('HTO', errTag);
-				TName_lng = false;
 			}
 		}
 
@@ -413,6 +411,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 				continue; // post deleted, process next
 
 			var header = wrapper.getElementsByClassName('cfHeader')[0];
+			if (!header)
+				continue;
 
 			// +++++++++++ gather info and nodes +++++++++++++++++++++++++
 			var header_left = header.getElementsByClassName('float_left')[0];

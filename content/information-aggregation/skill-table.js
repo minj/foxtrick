@@ -718,10 +718,12 @@ Foxtrick.modules.SkillTable = {
 				promotion: (cell, days) => {
 					cell.textContent = days;
 					let today = Foxtrick.util.time.getHTDate(doc);
-					Foxtrick.util.time.setMidnight(today);
-					let promoDate = Foxtrick.util.time.addDaysToDate(today, days);
-					let title = Foxtrick.util.time.buildDate(promoDate);
-					cell.setAttribute('aria-label', cell.title = title);
+					if (today) {
+						Foxtrick.util.time.setMidnight(today);
+						let promoDate = Foxtrick.util.time.addDaysToDate(today, days);
+						let title = Foxtrick.util.time.buildDate(promoDate);
+						cell.setAttribute('aria-label', cell.title = title);
+					}
 				},
 
 				/**
@@ -1425,6 +1427,9 @@ Foxtrick.modules.SkillTable = {
 				if (Foxtrick.Pages.TransferSearchResults.isPage(doc)) {
 					// on transfer search page, insert after first separator
 					var separator = doc.querySelector('#mainBody .borderSeparator');
+					if (!separator)
+						return;
+
 					var insertBefore = separator.nextSibling;
 					insertBefore.parentNode.insertBefore(tableDiv, insertBefore);
 				}

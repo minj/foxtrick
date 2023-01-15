@@ -112,6 +112,9 @@
 				var divs = ticker.getElementsByTagName('div');
 				var tickers = Foxtrick.map(function(n) {
 					var anchor = n.querySelector('a');
+					if (!anchor)
+						return null;
+
 					var prefix = anchor.textContent.match(/^[\d\W]+/);
 					var time = prefix.toString().trim();
 
@@ -123,7 +126,7 @@
 					};
 
 				}, divs);
-				return tickers;
+				return tickers.filter(Boolean);
 			};
 			var callbackStack = 0;
 			var tickerCheck = function() {
@@ -154,13 +157,15 @@
 						if (!n.isNew)
 							return false;
 						for (let old of tickers) {
-							if (!old)
+							if (!old) {
 								Foxtrick.log(new Error(`old is ${old}`));
+								continue;
+							}
 
 							if (old.text == n.text && old.link.replace(/http:\/\/.+\//, '/') == n.link.replace(/http:\/\/.+\//, '/'))
 								return false;
 						}
-						return true;
+						return 'link' in n && 'text' in n;
 					}, tickersNow);
 
 					// Foxtrick.log('tickersNow filtered',newTickers)

@@ -44,7 +44,8 @@ def xml_to_python(el, parent):
         else:
             parent[tag][-1] = text
 
-    elif text:
+    elif text or len(childs) == 0:
+    #elif text:
         # add textContent
         dest['textContent'] = text
 

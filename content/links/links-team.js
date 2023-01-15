@@ -37,8 +37,8 @@ Foxtrick.modules['LinksTeam'] = {
 		var seriesId = Foxtrick.util.id.findLeagueLeveUnitId(main);
 
 		var series = Foxtrick.util.id.parseSeries(seriesName, leagueId);
-		var levelNum = series[0];
-		var seriesNum = series[1];
+		var levelNum = series ? series[0] : null;
+		var seriesNum = series ? series[1] : null;
 		var seriesPos = 0, fans = 0;
 		try {
 			var teamInfo = main.querySelector('.teamInfo');

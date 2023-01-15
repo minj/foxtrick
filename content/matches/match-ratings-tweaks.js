@@ -116,6 +116,14 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 
 		// add prob description
 		var htP = doc.querySelector('#sectorWrapper ~ p');
+		if (!htP) {
+			let div = doc.querySelector('#sectorWrapper + div');
+			if (!div)
+				return;
+
+			htP = doc.createElement('p');
+			Foxtrick.insertAfter(htP, div);
+		}
 		if (!htP.hasAttribute('id'))
 			htP.id = 'ht-probabilityDesc';
 		if (doProb)
@@ -129,16 +137,19 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			Foxtrick.addClass(p, 'hidden');
 		htP.parentNode.insertBefore(p, htP);
 	},
+
 	/**
 	 * Placeholder for sector abbreviations
 	 * @type {Array}
 	 */
 	sectorAbbrs: [],
+
 	/**
 	 * Placeholder for other strings
 	 * @type {Object}
 	 */
 	l10n: {},
+
 	/**
 	 * init l10n strings
 	 */

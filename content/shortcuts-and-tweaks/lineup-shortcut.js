@@ -139,7 +139,8 @@ Foxtrick.modules['LineupShortcut'] = {
 	},
 
 	_Analyze_Stat_Page: function(doc) {
-		var teamId = Foxtrick.getMBElement(doc, 'ddlPreviousClubs').value;
+		let teamInput = Foxtrick.getMBElement(doc, 'ddlPreviousClubs').value;
+		var teamId = parseInt(teamInput, 10) || 0;
 		// Now getting playerId from top of the page:
 		var playerId = Foxtrick.Pages.All.getId(doc);
 		var lineuplabel = Foxtrick.L10n.getString('LineupShortcut.lineup');

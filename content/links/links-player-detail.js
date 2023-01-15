@@ -86,8 +86,10 @@ Foxtrick.modules.LinksPlayerDetail = {
 		var rate = Foxtrick.util.currency.getRate();
 		if (rate) {
 			let wageObj = Foxtrick.Pages.Player.getWage(doc);
-			info.wage = Math.round(wageObj.base * rate);
-			info.wageBonus = Math.round(wageObj.bonus * rate);
+			if (wageObj) {
+				info.wage = Math.round(wageObj.base * rate);
+				info.wageBonus = Math.round(wageObj.bonus * rate);
+			}
 		}
 
 		var deadline = Foxtrick.Pages.Player.getTransferDeadline(doc);

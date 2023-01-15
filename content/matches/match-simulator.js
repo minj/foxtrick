@@ -505,7 +505,8 @@ Foxtrick.modules.MatchSimulator = {
 		var buildMatchSimulator = function(matchesXML, opts) {
 			if (opts.matchesOnly) {
 				// called from addTeam: skip building
-				addMatches(matchesXML);
+				if (matchesXML)
+					addMatches(matchesXML);
 				return;
 			}
 

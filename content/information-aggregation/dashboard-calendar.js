@@ -248,6 +248,7 @@ Foxtrick.modules.DashboardCalendar = {
 		var weekText = doc.querySelector('.calendarWeekText').textContent.trim();
 		var week = Number(weekText.match(/\d+/).toString());
 
+		// eslint-disable-next-line new-cap
 		var monday = Foxtrick.util.time.HTToGregorian({ season, week });
 		if (monday.getDay() == 0) {
 			// DST problems
@@ -266,18 +267,35 @@ Foxtrick.modules.DashboardCalendar = {
 			var dayNumber = parseInt(dayNumberSpan.textContent.trim(), 10);
 
 			var userDate = new Date(monday);
-			var userDayNumber = userDate.getDate();
+			var userDayNo = userDate.getDate();
 
-			var dayDiff = dayNumber - userDayNumber;
+			var dayDiff = dayNumber - userDayNo;
 			if (Math.abs(dayDiff) > 10) {
 				// different month
-				userDate.setMonth(userDate.getMonth() + (dayDiff > 0 ? -1 : 1));
+				// setting month first is only safe when userDayNo is smaller
+				// and vice versa
+				// otherwise we might overflow to yet another month
+				if (dayNumber > userDayNo) {
+					userDate.setMonth(userDate.getMonth() - 1);
+					userDate.setDate(dayNumber);
+				}
+				else {
+					userDate.setDate(dayNumber);
+					userDate.setMonth(userDate.getMonth() + 1);
+				}
 			}
-			userDate.setDate(dayNumber);
+			else {
+				userDate.setDate(dayNumber);
+			}
+
 
 			// sanity check
 			if (userDate.getDay() !== i) {
-				Foxtrick.log(new Error('Failed to detect calendar day'));
+				// eslint-disable-next-line no-magic-numbers
+				let bug = userDate.toISOString().slice(2, 13).replace(/\D/g, '');
+				let err =
+					new Error(`Calendar fail: ${userDayNo} (${season}/${week}) => ${bug} != ${i}`);
+				Foxtrick.log(err);
 				return;
 			}
 

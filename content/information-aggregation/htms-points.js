@@ -12,6 +12,7 @@ Foxtrick.modules.HTMSPoints = {
 	OPTIONS: ['AddToPlayer', 'AddToSearchResult', 'AddToPlayerList'],
 
 	/** @param {document} doc */
+	// eslint-disable-next-line complexity
 	run: function(doc) {
 		const module = this;
 
@@ -59,6 +60,9 @@ Foxtrick.modules.HTMSPoints = {
 				return; // no skills available, goodbye
 
 			let age = Foxtrick.Pages.Player.getAge(doc);
+			if (!age)
+				return;
+
 			let { days, years } = age;
 
 			let skillQuery = `&anni=${years}&giorni=${days}`;
@@ -91,7 +95,7 @@ Foxtrick.modules.HTMSPoints = {
 		else if (Foxtrick.isPage(doc, 'transferSearchResult') && AddToSearchResult) {
 			let transferPlayers = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 			Foxtrick.forEach(function(p) {
-				if (!p.skills)
+				if (!p.skills || !p.age)
 					return;
 
 				let totSkills = 0;
@@ -135,6 +139,8 @@ Foxtrick.modules.HTMSPoints = {
 		}
 		else if (Foxtrick.isPage(doc, 'ownPlayers') && AddToPlayerList) {
 			let players = Foxtrick.modules.Core.getPlayerList();
+			if (!players)
+				return;
 
 			Foxtrick.forEach(function(p) {
 				if (!p.skills)
@@ -227,6 +233,9 @@ Foxtrick.modules.HTMSPoints = {
 
 		const MAX_AGE = Math.max(...Object.keys(WEEK_PTS_PER_AGE).map(Number));
 
+		/** @type {PlayerSkillName[]} */
+		const MAIN_SKILLS = ['keeper', 'defending', 'playmaking', 'winger', 'passing', 'scoring'];
+
 		/* eslint-disable no-magic-numbers */
 		// keeper, defending, playmaking, winger, passing, scoring, setPieces
 		const SKILL_PTS_PER_LVL = [
@@ -257,14 +266,26 @@ Foxtrick.modules.HTMSPoints = {
 		];
 		/* eslint-enable no-magic-numbers */
 
-		var current = SKILL_PTS_PER_LVL[skills.keeper][0];
-		current += SKILL_PTS_PER_LVL[skills.defending][1];
-		current += SKILL_PTS_PER_LVL[skills.playmaking][2];
-		current += SKILL_PTS_PER_LVL[skills.winger][3];
-		current += SKILL_PTS_PER_LVL[skills.passing][4];
-		current += SKILL_PTS_PER_LVL[skills.scoring][5];
-		// eslint-disable-next-line no-magic-numbers
-		current += SKILL_PTS_PER_LVL[Math.min(23, skills.setPieces)][6];
+		const MAX_SKILL = SKILL_PTS_PER_LVL.length - 1;
+
+		/**
+		 * @param {PlayerSkillName} skill
+		 * @return {number}
+		 */
+		var mainSkill = function(skill) {
+			let level = skills[skill];
+			if (level > MAX_SKILL)
+				return NaN;
+
+			let idx = MAIN_SKILLS.indexOf(skill);
+			return SKILL_PTS_PER_LVL[level][idx];
+		};
+
+		var current = MAIN_SKILLS.reduce((s, c) => s + mainSkill(c), 0);
+		current += SKILL_PTS_PER_LVL[Math.min(MAX_SKILL, skills.setPieces)][6];
+
+		if (Number.isNaN(current))
+			return [NaN, NaN];
 
 		// now calculating the potential at 28yo
 		const AGE_FACTOR = 28;

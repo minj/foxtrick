@@ -405,9 +405,9 @@ Foxtrick.modules['CopyRatings'] = {
 		};
 
 		// Copy links inside the table
-		var tableHeader = doc.querySelector('#oldMatchRatings .tblBox');
-		var homeHeader = table.getElementsByTagName('th')[1];
-		var awayHeader = table.getElementsByTagName('th')[2];
+		var tableHeader = doc.querySelector('#oldMatchRatings h2');
+		var homeHeader = table.querySelectorAll('th')[1];
+		var awayHeader = table.querySelectorAll('th')[2];
 
 		var copyBoth = Foxtrick.createFeaturedElement(doc, this, 'span');
 		copyBoth.className = 'ft_copy_rating';

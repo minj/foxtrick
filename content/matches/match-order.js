@@ -290,6 +290,10 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				 */
 				var addCloneButtonForNodeByType = function(node, type, idx) {
 					let opts = cloneOpts[type];
+					if (!opts) {
+						Foxtrick.log(new Error(`unknown clone type: ${type}`));
+						return;
+					}
 					let { title, alt, text } = opts;
 
 					let tp = type;

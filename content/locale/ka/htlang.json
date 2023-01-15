@@ -509,15 +509,15 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "განაპირა მცველი"
+				"value": "გან. მცველი"
 			},
 			{
 				"type": "CentralDefender",
-				"value": "ცენტრალური მცველი"
+				"value": "ცენტრ. მცველი"
 			},
 			{
 				"type": "InnerMidfield",
-				"value": "ნახევარმცველი"
+				"value": "ნახ. მცველი"
 			},
 			{
 				"type": "Winger",

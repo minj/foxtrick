@@ -418,6 +418,9 @@ Foxtrick.util.time.getUserOffset = function(doc) {
 		return null;
 
 	let userDate = this.getDate(doc);
+	if (userDate == null)
+		return null;
+
 	let hourDiff = (userDate.getTime() - htDate.getTime()) / this.MSECS_IN_HOUR;
 
 	// time zone difference is typically a multiple of 15 minutes

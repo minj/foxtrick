@@ -294,6 +294,7 @@ Foxtrick.Pages.Players.getPlayerNodes = function(doc, include) {
  * @prop {number} [psicoTSI]
  * @prop {string} [psicoWage]
  * @prop {string} [psicoTitle]
+//  * @prop {PsicoTSIPrediction} [psico]
  *
  * @prop {number} [specialtyNumber]
  * @prop {string} [specialty] README: localized!
@@ -445,7 +446,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 		if (!teamId) {
 			let msg = `Failed to parse teamId: '${teamId}' of ${JSON.stringify(options)}`;
-			Foxtrick.log(new Error(msg));
+			Foxtrick.log(msg);
+			callback(null);
 			return;
 		}
 
@@ -1210,6 +1212,8 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 						for (let [idx, rowType] of anonRows.entries()) {
 							let row = playerInfo.rows[idx];
+							if (!row)
+								break;
 							let cell = row.cells[1];
 							anonCells[rowType] = cell;
 							anonTexts[rowType] = cell.textContent.trim();
@@ -1239,7 +1243,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 						}
 						if (!player.salary && anonCells.salary) {
 							let { base, total, bonus } =
-								Foxtrick.Pages.Player.getWage(doc, anonCells.salary);
+								Foxtrick.Pages.Player.getWage(doc, anonCells.salary) || {};
 
 							player.salary = total;
 							player.salaryBase = base;
@@ -1635,6 +1639,9 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 
 		for (let player of playerList) {
 			let contributions = Foxtrick.Pages.Player.getContributions(player.skills, player);
+			if (!contributions)
+				continue;
+
 			for (let name in contributions)
 				player[name] = contributions[name];
 

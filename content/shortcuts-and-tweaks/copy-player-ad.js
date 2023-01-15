@@ -382,6 +382,8 @@ Foxtrick.modules.CopyPlayerAd = {
 					if (Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'NonTableStyle')) {
 						ad += '\n';
 						for (let s = 0; s < skillArray.length; ++s) {
+							skillArray[s].max = skillArray[s].max ||
+								{ text: 'undefined', value: -1 };
 							ad += skillArray[s].name + ': ' +
 								(skillArray[s].maxed ? '[b]' : '') +
 								skillArray[s].current.text + ' / ' + skillArray[s].max.text +
@@ -393,6 +395,9 @@ Foxtrick.modules.CopyPlayerAd = {
 					else {
 						ad += '[table]\n';
 						for (let s = 0; s < skillArray.length; ++s) {
+							skillArray[s].max = skillArray[s].max ||
+								{ text: 'undefined', value: -1 };
+
 							ad += '[tr]' +
 								'[th]' + skillArray[s].name + '[/th]' +
 								'[td]' + (skillArray[s].maxed ? '[b]' : '') +
