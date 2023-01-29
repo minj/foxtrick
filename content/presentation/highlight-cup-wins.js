@@ -36,6 +36,13 @@ Foxtrick.modules['HighlightCupwins'] = {
 			var goalsHome = parseInt(goals[0], 10);
 			var goalsAway = parseInt(goals[1], 10);
 
+			var spans = table.rows[i].cells[4].getElementsByTagName('span');
+			if (spans.length > 0) {
+				// The score cell contains some span (#spanMatchScore) only if
+				// the row is a row with our own team.
+				// It's already highlighted by HT
+				continue;
+			}
 			// win, draw, lose from the aspect of home team
 			var win = goalsHome > goalsAway;
 			// 0 - 0 if match isn't played yet
