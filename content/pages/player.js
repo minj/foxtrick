@@ -451,6 +451,10 @@ Foxtrick.Pages.Player.getInfoTable = function(doc) {
 	else
 		infoDiv = doc.querySelector('.playerInfo');
 
+	if (infoDiv && isNewDesign && document.querySelector('.transferPlayerSkills') !== null) {
+		infoDiv.style.width="60%";
+	}
+
 	var table = infoDiv.querySelector('table');
 	var isYouth = this.isYouth(doc);
 
