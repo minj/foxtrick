@@ -219,7 +219,7 @@
 				"value": "2"
 			},
 			{
-				"text": "A mid table finish is nice",
+				"text": "A mid-table finish is nice",
 				"value": "3"
 			},
 			{
@@ -565,15 +565,15 @@
 			},
 			{
 				"type": "RightAttack",
-				"value": "Right attack"
+				"value": "Right Attack"
 			},
 			{
 				"type": "CentralAttack",
-				"value": "Central attack"
+				"value": "Central Attack"
 			},
 			{
 				"type": "LeftAttack",
-				"value": "Left attack"
+				"value": "Left Attack"
 			}
 		],
 		"skills": [
