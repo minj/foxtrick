@@ -47,7 +47,8 @@
 			"eurorate": "0.002",
 			"leagues": {
 				"121": "Senegal",
-				"126": "Côte d’Ivoire"
+				"126": "Côte d’Ivoire",
+				"167": "Burkina Faso"
 			},
 			"name": "XOF (West African CFA franc)",
 			"symbol": "XOF"
@@ -973,9 +974,10 @@
 			"code": "XCD",
 			"eurorate": "0.4",
 			"leagues": {
-				"157": "Saint Vincent and the Grenadines"
+				"157": "Saint Vincent and the Grenadines",
+				"166": "Grenada"
 			},
-			"name": "East Caribbean dollar",
+			"name": "Eastern Caribbean dollar",
 			"symbol": "dollar"
 		},
 		{
@@ -1013,6 +1015,15 @@
 			},
 			"name": "Kyat (Myanmar)",
 			"symbol": "kyat"
+		},
+		{
+			"code": "NPR",
+			"eurorate": "0.01",
+			"leagues": {
+				"168": "Nepal"
+			},
+			"name": "Nepalese rupee",
+			"symbol": "rupee"
 		},
 		{
 			"code": "BYR",
