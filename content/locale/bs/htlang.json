@@ -824,11 +824,11 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Dodavanje (Odbranbeni + svi Vezni igrači)"
+				"value": "Dodavanje (Odbrambeni + svi Vezni igrači)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Odbrana (Golmani,Odbranbeni + svi Vezni igrači)"
+				"value": "Odbrana (Golmani,Odbrambeni + svi Vezni igrači)"
 			},
 			{
 				"type": "WingAtt",
