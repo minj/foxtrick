@@ -10,7 +10,7 @@
 				"value": "1"
 			},
 			{
-				"text": "gebalanceerd",
+				"text": "evenwichtig",
 				"value": "2"
 			},
 			{
@@ -22,33 +22,33 @@
 				"value": "4"
 			},
 			{
-				"text": "onstabiel",
+				"text": "instabiel",
 				"value": "5"
 			}
 		],
 		"agreeability": [
 			{
-				"text": "gemeen",
+				"text": "gemene gast",
 				"value": "0"
 			},
 			{
-				"text": "controversieel",
+				"text": "controversiële speler",
 				"value": "1"
 			},
 			{
-				"text": "aangenaam",
+				"text": "aangename kerel",
 				"value": "2"
 			},
 			{
-				"text": "sympathiek",
+				"text": "sympathieke man",
 				"value": "3"
 			},
 			{
-				"text": "populair",
+				"text": "populaire kerel",
 				"value": "4"
 			},
 			{
-				"text": "geliefd teamlid",
+				"text": "geliefde medespeler",
 				"value": "5"
 			}
 		],
@@ -135,11 +135,11 @@
 				"value": "5"
 			},
 			{
-				"text": "content",
+				"text": "tevreden",
 				"value": "6"
 			},
 			{
-				"text": "tevreden",
+				"text": "voldaan",
 				"value": "7"
 			},
 			{
@@ -161,81 +161,81 @@
 		],
 		"fans_match": [
 			{
-				"text": "we blijven beter thuis",
+				"text": "We zouden eigenlijk beter thuis blijven",
 				"value": "0"
 			},
 			{
-				"text": "zij zijn veel sterker",
+				"text": "We gaan totaal overklast worden",
 				"value": "1"
 			},
 			{
-				"text": "deze verliezen we",
+				"text": "Grote kans dat we deze verliezen",
 				"value": "2"
 			},
 			{
-				"text": "zij zijn favoriet",
+				"text": "Ze zijn hoe dan ook de betere ploeg",
 				"value": "3"
 			},
 			{
-				"text": "we liggen net onder",
+				"text": "Ze zijn op papier iets sterker",
 				"value": "4"
 			},
 			{
-				"text": "we zijn aan elkaar gewaagd",
+				"text": "We zijn toch wel aan elkaar gewaagd",
 				"value": "5"
 			},
 			{
-				"text": "wij zijn iets beter",
+				"text": "We zijn op papier iets sterker",
 				"value": "6"
 			},
 			{
-				"text": "wij zijn favoriet",
+				"text": "Wij zijn normaal toch de betere ploeg",
 				"value": "7"
 			},
 			{
-				"text": "dit winnen we",
+				"text": "Winst lijkt de logica zelve",
 				"value": "8"
 			},
 			{
-				"text": "dat wordt een makkie",
+				"text": "Dit winnen we met de vingers in de neus",
 				"value": "9"
 			},
 			{
-				"text": "we geven ze een pak slaag",
+				"text": "Hopelijk zijn ze klaar om vernederd te worden",
 				"value": "10"
 			}
 		],
 		"fans_season": [
 			{
-				"text": "we zijn deze reeks niet waard",
+				"text": "We zijn deze reeks niet waardig",
 				"value": "0"
 			},
 			{
-				"text": "elke dag in deze reeks is mooi meegenomen",
+				"text": "Iedere dag in deze reeks is mooi meegenomen",
 				"value": "1"
 			},
 			{
-				"text": "we zullen ons best moeten doen om erin te blijven",
+				"text": "We zullen ons best moeten doen om in de reeks te blijven",
 				"value": "2"
 			},
 			{
-				"text": "in het midden van de tabel zou mooi zijn",
+				"text": "In het midden van de tabel eindigen zou mooi zijn",
 				"value": "3"
 			},
 			{
-				"text": "we horen thuis in de top 4",
+				"text": "We horen thuis in de top-4",
 				"value": "4"
 			},
 			{
-				"text": "ga voor de titel!",
+				"text": "De titel ligt binnen bereik. Ga er gewoon voor!",
 				"value": "5"
 			},
 			{
-				"text": "dit seizoen moeten we winnen",
+				"text": "Dit seizoen spelen we kampioen!",
 				"value": "6"
 			},
 			{
-				"text": "we zijn te goed voor deze reeks!",
+				"text": "We zijn echt veel te goed voor deze reeks!",
 				"value": "7"
 			}
 		],
