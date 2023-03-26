@@ -126,8 +126,13 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "10648080",
+			"name": "tperic"
+		},
+		{
+			"duty": "supporter",
 			"id": "10680966",
-			"name": "<vegar56>"
+			"name": "vegar56"
 		},
 		{
 			"duty": "supporter",
@@ -182,7 +187,7 @@
 		{
 			"duty": "supporter",
 			"id": "11035584",
-			"name": "<thejohn>"
+			"name": "thejohn"
 		},
 		{
 			"duty": "supporter",
@@ -567,7 +572,7 @@
 		{
 			"duty": "supporter",
 			"id": "12979172",
-			"name": "Robin-Bird"
+			"name": "<Robin-Bird>"
 		},
 		{
 			"duty": "supporter",
@@ -593,6 +598,11 @@
 			"duty": "supporter",
 			"id": "13059131",
 			"name": "<Harris92>"
+		},
+		{
+			"duty": "supporter",
+			"id": "13062950",
+			"name": "_MrEli8_"
 		},
 		{
 			"duty": "supporter",
@@ -681,6 +691,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13517350",
+			"name": "Iorda9"
+		},
+		{
+			"duty": "supporter",
 			"id": "13552149",
 			"name": "Daniel_Gringo"
 		},
@@ -706,6 +721,16 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13720067",
+			"name": "LucyJordan"
+		},
+		{
+			"duty": "supporter",
+			"id": "13724902",
+			"name": "Achilles_"
+		},
+		{
+			"duty": "supporter",
 			"id": "13774488",
 			"name": "Uglerimosen"
 		},
@@ -721,8 +746,13 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13928189",
+			"name": "mfaulkie"
+		},
+		{
+			"duty": "supporter",
 			"id": "1397713",
-			"name": "VvJ-Beckham"
+			"name": "<VvJ-Beckham>"
 		},
 		{
 			"duty": "translator",
@@ -732,7 +762,7 @@
 		{
 			"duty": "supporter",
 			"id": "1458532",
-			"name": "Moonlight-"
+			"name": "<Moonlight->"
 		},
 		{
 			"duty": "translator",
@@ -853,6 +883,11 @@
 			"duty": "supporter",
 			"id": "2247",
 			"name": "carlerik"
+		},
+		{
+			"duty": "supporter",
+			"id": "2293778",
+			"name": "alessioalex"
 		},
 		{
 			"duty": "developer",
@@ -1132,7 +1167,7 @@
 		{
 			"duty": "supporter",
 			"id": "4253318",
-			"name": "cschz"
+			"name": "<cschz>"
 		},
 		{
 			"duty": "supporter",
@@ -1232,7 +1267,7 @@
 		{
 			"duty": "supporter",
 			"id": "486061",
-			"name": "lanuscero"
+			"name": "<lanuscero>"
 		},
 		{
 			"duty": "translator",
@@ -1242,7 +1277,7 @@
 		{
 			"duty": "supporter",
 			"id": "4963483",
-			"name": "Maske"
+			"name": "<Maske>"
 		},
 		{
 			"duty": "supporter",
@@ -1272,7 +1307,7 @@
 		{
 			"duty": "translator",
 			"id": "5345125",
-			"name": "GM-Marin"
+			"name": "--Marin--"
 		},
 		{
 			"duty": "supporter",
@@ -1282,7 +1317,7 @@
 		{
 			"duty": "supporter",
 			"id": "536514",
-			"name": "GM-Piero"
+			"name": "Piero00"
 		},
 		{
 			"duty": "supporter",
@@ -1290,9 +1325,14 @@
 			"name": "celedon"
 		},
 		{
+			"duty": "supporter",
+			"id": "5394629",
+			"name": "Speedy-T"
+		},
+		{
 			"duty": "translator",
 			"id": "540775",
-			"name": "fcaqualung"
+			"name": "slartibartfast_aq"
 		},
 		{
 			"duty": "translator",
@@ -1436,6 +1476,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "6691835",
+			"name": "Xurde"
+		},
+		{
+			"duty": "supporter",
 			"id": "6723161",
 			"name": "Le-Chat-Potte"
 		},
@@ -1478,6 +1523,11 @@
 			"duty": "supporter",
 			"id": "6977975",
 			"name": "cicix-GIGA"
+		},
+		{
+			"duty": "supporter",
+			"id": "7068855",
+			"name": "Saarfubberino"
 		},
 		{
 			"duty": "translator",
@@ -1662,7 +1712,7 @@
 		{
 			"duty": "supporter",
 			"id": "8190906",
-			"name": "dxht-pawpol"
+			"name": "pawpol"
 		},
 		{
 			"duty": "supporter",
@@ -1710,6 +1760,11 @@
 			"name": "Bokko_"
 		},
 		{
+			"duty": "supporter",
+			"id": "8640745",
+			"name": "redbcn"
+		},
+		{
 			"duty": "translator",
 			"id": "8656808",
 			"name": "HHTim"
@@ -1747,7 +1802,7 @@
 		{
 			"duty": "supporter",
 			"id": "8997758",
-			"name": "<Ir_pa_na>"
+			"name": "Irpana"
 		},
 		{
 			"duty": "supporter",
@@ -1812,7 +1867,7 @@
 		{
 			"duty": "supporter",
 			"id": "9531623",
-			"name": "J_Bax"
+			"name": "<J_Bax>"
 		},
 		{
 			"duty": "translator",
@@ -1878,6 +1933,11 @@
 			"duty": "supporter",
 			"id": "9818296",
 			"name": "<relon>"
+		},
+		{
+			"duty": "supporter",
+			"id": "9825452",
+			"name": "NicoNico92"
 		},
 		{
 			"duty": "supporter",
