@@ -17,6 +17,7 @@
 				"50": "Greece",
 				"53": "Latvia",
 				"56": "Estonia",
+				"58": "Croatia",
 				"64": "Slovenia",
 				"66": "Lithuania",
 				"67": "Slovakia",
@@ -438,15 +439,6 @@
 			},
 			"name": "HKD (Hong Kong dollar)",
 			"symbol": "HKD"
-		},
-		{
-			"code": "HRK",
-			"eurorate": "0.1",
-			"leagues": {
-				"58": "Croatia"
-			},
-			"name": "Kuna (Croatian)",
-			"symbol": "kuna"
 		},
 		{
 			"code": "INR",
@@ -1024,6 +1016,12 @@
 			},
 			"name": "Nepalese rupee",
 			"symbol": "rupee"
+		},
+		{
+			"code": "HRK",
+			"eurorate": "0.1",
+			"name": "Kuna (Croatian)",
+			"symbol": "kuna"
 		},
 		{
 			"code": "BYR",
