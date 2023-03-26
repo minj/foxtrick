@@ -22,7 +22,7 @@ Foxtrick.modules.HTMSPoints = {
 		 */
 		var getLink = function(skillQuery) {
 			let lang = Foxtrick.Prefs.getString('htLanguage');
-			let prefix = 'http://www.fantamondi.it/HTMS/index.php' +
+			let prefix = 'https://www.fantamondi.it/HTMS/index.php' +
 				`?page=htmspoints&lang=${lang}&action=calc`;
 
 			let link = doc.createElement('a');

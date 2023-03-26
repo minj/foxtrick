@@ -64,7 +64,7 @@ Foxtrick.modules.TableOfStatisticalTruth = {
 			         xml.getElementsByTagName('available')[0].textContent == 'false') {
 
 				let link = doc.createElement('a');
-				link.href = 'http://www.fantamondi.it/HTMS/index.php?page=truthtable&lang=' +
+				link.href = 'https://www.fantamondi.it/HTMS/index.php?page=truthtable&lang=' +
 					lang + '&serie=' + serie + '&season=' + season;
 				link.id = 'createTableLink';
 				link.target = '_blank';
@@ -148,7 +148,7 @@ Foxtrick.modules.TableOfStatisticalTruth = {
 			insert(br);
 
 			var link = doc.createElement('a');
-			link.href = 'http://www.fantamondi.it/HTMS/index.php?page=truthtable&lang=' +
+			link.href = 'https://www.fantamondi.it/HTMS/index.php?page=truthtable&lang=' +
 				lang + '&serie=' + serie + '&season=' + season;
 			link.target = '_blank';
 			link.textContent = Foxtrick.L10n.getString('truthTable.tableAtHTMS');
@@ -158,7 +158,7 @@ Foxtrick.modules.TableOfStatisticalTruth = {
 		};
 
 		var addTable = async function() {
-			var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=truthtable&serie=' +
+			var url = 'https://www.fantamondi.it/HTMS/dorequest.php?action=truthtable&serie=' +
 				serie + '&season=' + season;
 
 			try {

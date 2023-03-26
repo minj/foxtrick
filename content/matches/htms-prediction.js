@@ -44,7 +44,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 	                           rattack, cattack, lattack, tactics, tacticsLevel, teams) {
 
 		var module = this;
-		const HTMS_PATH = 'http://www.fantamondi.it/HTMS';
+		const HTMS_PATH = 'https://www.fantamondi.it/HTMS';
 		var loading = Foxtrick.util.note.createLoading(doc);
 		targetNode.appendChild(loading);
 
@@ -115,7 +115,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 		{
 			let h2 = doc.createElement('h2');
 			let a = doc.createElement('a');
-			a.href = 'http://www.fantamondi.it/HTMS/index.php?lang=' + lang;
+			a.href = 'https://www.fantamondi.it/HTMS/index.php?lang=' + lang;
 			a.textContent = Foxtrick.L10n.getString('HTMSPrediction.title');
 			a.target = '_blank';
 			h2.appendChild(a);
@@ -295,7 +295,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 			a = p.appendChild(doc.createElement('a'));
 			a.target = '_blank';
 			a.href =
-				'http://www.fantamondi.it/HTMS/index.php?page=predictor&action=showpredict&lang=' + lang + params;
+				'https://www.fantamondi.it/HTMS/index.php?page=predictor&action=showpredict&lang=' + lang + params;
 
 			a.textContent = 'prediction result';
 			p.appendChild(doc.createTextNode(' manually'));
@@ -311,7 +311,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 		var p = doc.createElement('p');
 		var a = doc.createElement('a');
 		a.textContent = Foxtrick.L10n.getString('HTMSPrediction.changePrediction');
-		a.href = 'http://www.fantamondi.it/HTMS/index.php?page=predictor&action=showpredict&lang=' +
+		a.href = 'https://www.fantamondi.it/HTMS/index.php?page=predictor&action=showpredict&lang=' +
 			lang + params;
 		a.target = '_blank';
 		p.appendChild(a);
