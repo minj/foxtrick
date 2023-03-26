@@ -143,6 +143,8 @@ Foxtrick.XMLData = {
  * @prop {CupDefinition[]} Cups
  * @prop {string} EconomyDate
  * @prop {string} EnglishName
+ * @prop {string} LanguageId
+ * @prop {string} LanguageName
  * @prop {string} LeagueID
  * @prop {string} LeagueName
  * @prop {string} MatchRound
@@ -150,6 +152,11 @@ Foxtrick.XMLData = {
  * @prop {string} NumberOfLevels
  * @prop {string} Season
  * @prop {string} SeasonOffset
+ * @prop {string} Sequence1
+ * @prop {string} Sequence2
+ * @prop {string} Sequence3
+ * @prop {string} Sequence5
+ * @prop {string} Sequence7
  * @prop {string} SeriesMatchDate
  * @prop {string} ShortName
  * @prop {string} TrainingDate

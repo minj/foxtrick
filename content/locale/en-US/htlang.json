@@ -219,7 +219,7 @@
 				"value": "2"
 			},
 			{
-				"text": "A mid table finish is nice",
+				"text": "A mid-table finish is nice",
 				"value": "3"
 			},
 			{
@@ -336,6 +336,9 @@
 			"163": "San Marino",
 			"164": "Haiti",
 			"165": "Puerto Rico",
+			"166": "Grenada",
+			"167": "Burkina Faso",
+			"168": "Nepal",
 			"17": "Canada",
 			"18": "Chile",
 			"19": "Colombia",
@@ -565,15 +568,15 @@
 			},
 			{
 				"type": "RightAttack",
-				"value": "Right attack"
+				"value": "Right Attack"
 			},
 			{
 				"type": "CentralAttack",
-				"value": "Central attack"
+				"value": "Central Attack"
 			},
 			{
 				"type": "LeftAttack",
-				"value": "Left attack"
+				"value": "Left Attack"
 			}
 		],
 		"skills": [

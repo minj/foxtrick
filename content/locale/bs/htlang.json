@@ -336,6 +336,9 @@
 			"163": "San Marino",
 			"164": "Haiti",
 			"165": "Portoriko",
+			"166": "Grenada",
+			"167": "Burkina Faso",
+			"168": "Nepal",
 			"17": "Kanada",
 			"18": "Čile",
 			"19": "Kolumbija",
@@ -821,11 +824,11 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Dodavanje (Odbranbeni + svi Vezni igrači)"
+				"value": "Dodavanje (Odbrambeni + svi Vezni igrači)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Odbrana (Golmani,Odbranbeni + svi Vezni igrači)"
+				"value": "Odbrana (Golmani,Odbrambeni + svi Vezni igrači)"
 			},
 			{
 				"type": "WingAtt",
