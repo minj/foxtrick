@@ -43,7 +43,7 @@ Save `https://www.hattrick.org/goto.ashx?path=/Community/CHPP/NewDocs/Example.as
 cd ~/cdn
 python ~/trunk/maintainer/locale/XMLToJSON.py content/data/worlddetails.xml
 git diff content/data/worlddetails.json | grep -P '^[-+]\t' | grep -Pv \
-    'FetchedDate|ActiveTeams|ActiveUsers|CupMatchDate|EconomyDate|LeagueName|MatchRound|NumberOfLevels|Season|SeriesMatchDate|TrainingDate|WaitingUsers'
+    'FetchedDate|ActiveTeams|ActiveUsers|CupMatchDate|EconomyDate|LeagueName|MatchRound|NumberOfLevels|Season|SeriesMatchDate|TrainingDate|WaitingUsers|Sequence\d'
 rm ~/cdn/content/data/worlddetails.xml
 python ~/trunk/maintainer/locale/updateCurrencies.py ~/cdn/content/data/worlddetails.json
 ```
