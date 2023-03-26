@@ -721,6 +721,11 @@
 		},
 		{
 			"duty": "supporter",
+			"id": "13720067",
+			"name": "LucyJordan"
+		},
+		{
+			"duty": "supporter",
 			"id": "13724902",
 			"name": "Achilles_"
 		},
@@ -878,6 +883,11 @@
 			"duty": "supporter",
 			"id": "2247",
 			"name": "carlerik"
+		},
+		{
+			"duty": "supporter",
+			"id": "2293778",
+			"name": "alessioalex"
 		},
 		{
 			"duty": "developer",
