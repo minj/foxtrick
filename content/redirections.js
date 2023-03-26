@@ -78,8 +78,7 @@ Foxtrick.modules['Redirections'] = {
 					break;
 
 				case 'lastlineup':
-					url = '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID=' + teamId +
-						'&useArchive=True&redir_to_newlineup=true';
+					url = '/Club/Matches/?teamId=' + teamId + '&redir_to_lastlineup=true';
 					break;
 
 				case 'nextmatch':
@@ -152,11 +151,19 @@ Foxtrick.modules['Redirections'] = {
 						url = '/MyHattrick/Inbox/?actionType=newMail&userId=' + userId;
 					break;
 
-				case 'newlineup':
-					var match = mainBody.querySelector('a[href^="/Club/Matches/Match.aspx?"]');
+				case 'lastlineup':
+					{
+						let orders = [...mainBody.querySelectorAll('img.matchOrder')];
+						let match = /** @type {HTMLImageElement?}*/ (orders.pop());
+						let link = match?.closest('a').href;
+						if (link == null)
+							break;
 
-					// using getAttribute to generate a relative link
-					url = match.getAttribute('href') + '&teamId=' + teamId + '#tab2';
+						let parse = new URL(link.replace(/\/Match\.aspx\b/, '/Match.Classic.aspx'));
+						parse.searchParams.set('teamId', String(teamId));
+						// eslint-disable-next-line no-restricted-properties
+						url = parse.pathname + parse.search + '#tab2';
+					}
 					break;
 
 				case 'youthmatches':
