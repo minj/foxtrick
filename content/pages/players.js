@@ -472,6 +472,7 @@ Foxtrick.Pages.Players.getPlayerList = function(doc, callback, options) {
 				all = false;
 			}
 			args.push(['file', 'nationalplayers']);
+			args.push(['version', '1.5']);
 			args.push(['teamId', teamId]);
 			args.push(['actionType', action]);
 			args.push(['showAll', String(all)]);
