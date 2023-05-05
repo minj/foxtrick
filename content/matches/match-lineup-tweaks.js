@@ -784,7 +784,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 		let ratings = doc.querySelectorAll('div.playerRating > span');
 		for (let rating of ratings) {
-			var count = parseInt(rating.textContent, 10);
+			var count = parseFloat(rating.textContent);
 			var ratingsDiv = rating.parentElement;
 			var newDiv = Foxtrick.cloneElement(ratingsDiv, false);
 			Foxtrick.makeFeaturedElement(newDiv, this);
