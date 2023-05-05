@@ -189,11 +189,17 @@ Foxtrick.modules['LineupShortcut'] = {
 		var url = '/Club/Matches/Match.aspx?matchID=' + opts.matchId +
 			'&TeamId=' + opts.teamId + '&HighlightPlayerID=' + opts.playerId;
 		var link = Foxtrick.createFeaturedElement(doc, this, 'a');
-		if (opts.type == 'youth') {
-			link.href = url + '&YouthTeamId=' + opts.youthTeamId + '&SourceSystem=Youth#tab2';
-		}
-		else {
-			link.href = url + '&SourceSystem=Hattrick#tab2';
+		switch (opts.type) {
+		    case 'youth':
+			    link.href = url + '&YouthTeamId=' + opts.youthTeamId + '&SourceSystem=Youth#tab2';
+			    break;
+		    case 'NT':
+		    case 'U21':
+			    link.href = url + '&SourceSystem=HTOIntegrated#tab2';
+			    break;
+		    default:
+			    link.href = url + '&SourceSystem=Hattrick#tab2';
+			    break;
 		}
 		var src = '';
 		if (opts.type == 'NT')
