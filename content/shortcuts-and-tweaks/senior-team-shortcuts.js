@@ -45,8 +45,8 @@ Foxtrick.modules['SeniorTeamShortCuts'] = {
 		// last lineup
 		var li = Foxtrick.createFeaturedElement(doc, this, 'li');
 		var lastmatchlink = doc.createElement('a');
-		lastmatchlink.href = `/Club/Matches/MatchLineup.aspx?MatchID=&TeamID=${teamId}` +
-			'&useArchive=True&redir_to_newlineup=true';
+		lastmatchlink.href = `/Club/Matches/?teamID=${teamId}` +
+			'&redir_to_lastlineup=true';
 		lastmatchlink.textContent = Foxtrick.L10n.getString('LastLineup');
 		lastmatchlink.id = 'foxtrick_content_lastmatch';
 		li.appendChild(lastmatchlink);

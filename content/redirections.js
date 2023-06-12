@@ -153,8 +153,7 @@ Foxtrick.modules['Redirections'] = {
 
 				case 'lastlineup':
 					{
-						let orders = [...mainBody.querySelectorAll('img.matchOrder')];
-						let match = /** @type {HTMLImageElement?}*/ (orders.pop());
+						let match = mainBody.querySelector('img.matchOrder');
 						let link = match?.closest('a').href;
 						if (link == null)
 							break;
