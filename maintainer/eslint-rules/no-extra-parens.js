@@ -1,3 +1,5 @@
+'use strict';
+
 const ruleComposer = require('eslint-rule-composer');
 const eslint = require('eslint');
 const { isCommentToken: isComment } = require('eslint-utils');

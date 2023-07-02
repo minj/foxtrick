@@ -9,7 +9,8 @@
   "author": "minj",
   "license": "MIT",
   "dependencies": {
-    "eslint": "^7.32.0",
+    "eslint": "^8.44.0",
+    "eslint-utils": "^3.0.0",
     "eslint-rule-composer": "^0.3.0"
   }
 }
