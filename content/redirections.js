@@ -133,15 +133,9 @@ Foxtrick.modules['Redirections'] = {
 						else {
 							// redirect to other coaches
 							var sidebarBox = doc.querySelector('#sidebar .sidebarBox');
-							coachId = Foxtrick.util.id.findPlayerId(sidebarBox);
-							url = '/Club/Players/Player.aspx?playerId=' + coachId;
+							url = Foxtrick.util.id.findTrainerUrl(sidebarBox);
 						}
 
-					}
-					else if (/\/Club\/NationalTeam\/NationalTeam/i.test(location)) {
-						var ntinfo = doc.getElementById('teamInfo');
-						coachId = Foxtrick.util.id.findPlayerId(ntinfo);
-						url = '/Club/Players/Player.aspx?playerId=' + coachId;
 					}
 
 					break;
