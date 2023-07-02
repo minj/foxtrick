@@ -102,36 +102,6 @@
 		"title": "Hattrick Gazette",
 		"img": "https://www.foxtrick.org/res/linkicons/hattrickgazette.png"
 	},
-	"maptrick_coolness": {
-		"teamlink": {
-			"url": "http://www.maptrick.org/coolness.php?team=[teamid]#results"
-		},
-		"challengeslink": {
-			"url": "http://www.maptrick.org/coolness.php?team=[ownteamid]"
-		},
-		"title": "Maptrick Coolness",
-		"img": "https://www.foxtrick.org/res/linkicons/maptrick_coolness.ico"
-	},
-	"maptrick_hoc": {
-		"leaguelink": {
-			"url": "http://www.maptrick.org/hallofcool.php?country=[leagueid]"
-		},
-		"serieslink": {
-			"url": "http://www.maptrick.org/hallofcool.php?league=[seriesid]"
-		},
-		"federationlink": {
-			"url": "http://www.maptrick.org/hallofcool.php?alliance=[federationid]"
-		},
-		"title": "Maptrick Hall of Cool",
-		"img": "https://www.foxtrick.org/res/linkicons/maptrick_hoc.ico"
-	},
-	"maptrick_botmap": {
-		"leaguelink": {
-			"url": "http://www.maptrick.org/botmap.php?country=[leagueid]"
-		},
-		"title": "Maptrick Botmap",
-		"img": "https://www.foxtrick.org/res/linkicons/maptrick_botmap.ico"
-	},
 	"flagtools": {
 		"challengeslink": {
 			"url": "http://www.ht-flagtools.org/my_challenges.php?teamId=[ownteamid]"

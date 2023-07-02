@@ -27,6 +27,13 @@ Foxtrick.modules.MatchLineupTweaks = {
 	run: function(doc) {
 		this.showAway = false; // FIXME: remove when FF back-end is changed
 
+		{
+			let awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+			let urlTeam = new URL(doc.URL).searchParams.get('teamId');
+			if (urlTeam != null && String(awayId) == urlTeam)
+				this.showAway = true;
+		}
+
 		// run change now as sometimes we are too slow to init the listener
 		// causing display to be broken on first load
 		this.registerListener(doc);
@@ -777,7 +784,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 		let ratings = doc.querySelectorAll('div.playerRating > span');
 		for (let rating of ratings) {
-			var count = parseInt(rating.textContent, 10);
+			var count = parseFloat(rating.textContent);
 			var ratingsDiv = rating.parentElement;
 			var newDiv = Foxtrick.cloneElement(ratingsDiv, false);
 			Foxtrick.makeFeaturedElement(newDiv, this);

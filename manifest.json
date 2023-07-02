@@ -283,7 +283,7 @@
 		"clipboardWrite",
 		"*://chpp.hattrick.org/*",
 		"*://*.foxtrick.org/*",
-		"http://www.fantamondi.it/*"
+		"https://www.fantamondi.it/*"
 	],
 	"optional_permissions": [
 		"https://*.hattrick-youthclub.org/*",

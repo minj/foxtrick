@@ -798,7 +798,7 @@ Foxtrick.Pages.Match.modPlayerDiv = function(playerId, func, links) {
 		return;
 
 	var link = Foxtrick.nth(function(link) {
-		return new RegExp(String(playerId)).test(link.href);
+		return link.href.includes(String(playerId));
 	}, links);
 
 	if (link && typeof func == 'function') {

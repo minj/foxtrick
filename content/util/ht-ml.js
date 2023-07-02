@@ -157,6 +157,7 @@ Foxtrick.util.htMl.getFormat = (function() {
 
 						if (a.type === 'link') {
 							// test whether link text is just an URL (i. e. from forum post)
+							let meaningful = true;
 							let path = stripped;
 
 							if (/^\/\//.test(path)) {
@@ -169,9 +170,14 @@ Foxtrick.util.htMl.getFormat = (function() {
 								path = path.replace(/^\w+:\/\/.+?(\/.*)/, '$1');
 							}
 
-							// using a RegExp to enforce case-insensitivity
-							let pathRe = new RegExp('^' + Foxtrick.strToRe(path), 'i');
-							if (!pathRe.test(a.url)) {
+							try {
+								// using a RegExp to enforce case-insensitivity
+								let pathRe = new RegExp('^' + Foxtrick.strToRe(path), 'i');
+								meaningful = !pathRe.test(a.url);
+							}
+							catch (e) {}
+
+							if (meaningful) {
 								// link text is not a URL
 								ret = `${stripped} ${ret}`;
 							}

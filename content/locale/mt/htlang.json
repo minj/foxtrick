@@ -270,8 +270,8 @@
 			"1": "Iżvezja",
 			"100": "El Salvador",
 			"1000": "Hattrick International",
-			"1001": "",
-			"1002": "",
+			"1001": "? {LimitedLeagues}:{14}",
+			"1002": "? {anniversaryLeague}:{5}",
 			"101": "Malta",
 			"102": "Krigizstan",
 			"103": "Moldova",
@@ -326,19 +326,19 @@
 			"154": "Guam",
 			"155": "DR Congo",
 			"156": "Ethiopia",
-			"157": "",
-			"158": "",
-			"159": "",
+			"157": "? {leagueNames}:{157}",
+			"158": "? {leagueNames}:{158}",
+			"159": "? {leagueNames}:{159}",
 			"16": "Brażil",
-			"160": "",
-			"161": "",
-			"162": "",
-			"163": "",
-			"164": "",
-			"165": "",
-			"166": "",
-			"167": "",
-			"168": "",
+			"160": "? {leagueNames}:{160}",
+			"161": "? {leagueNames}:{161}",
+			"162": "? {leagueNames}:{162}",
+			"163": "? {leagueNames}:{163}",
+			"164": "? {leagueNames}:{164}",
+			"165": "? {leagueNames}:{165}",
+			"166": "? {leagueNames}:{166}",
+			"167": "? {leagueNames}:{167}",
+			"168": "? {leagueNames}:{168}",
 			"17": "Kanada",
 			"18": "Ċili",
 			"19": "Kolombja",
@@ -804,15 +804,15 @@
 			},
 			{
 				"type": "Cross",
-				"value": ""
+				"value": "? {training}:{124}"
 			},
 			{
 				"type": "Shoot",
-				"value": ""
+				"value": "? {training}:{128}"
 			},
 			{
 				"type": "Pass",
-				"value": ""
+				"value": "? {training}:{122}"
 			},
 			{
 				"type": "PM",
@@ -820,19 +820,19 @@
 			},
 			{
 				"type": "GK",
-				"value": ""
+				"value": "? {training}:{123}"
 			},
 			{
 				"type": "ThPass",
-				"value": ""
+				"value": "? {training}:{126}"
 			},
 			{
 				"type": "DefPos",
-				"value": ""
+				"value": "? {training}:{125}"
 			},
 			{
 				"type": "WingAtt",
-				"value": ""
+				"value": "? {training}:{127}"
 			},
 			{
 				"type": "Indiv",

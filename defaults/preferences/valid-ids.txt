@@ -216,14 +216,12 @@ module.Links.feedsList
 module.LinksAchievements.enabled
 module.LinksAchievements.htlinks_Errungenschaften.enabled
 module.LinksAlliances.enabled
-module.LinksAlliances.maptrick_hoc.enabled
 module.LinksArena.enabled
 module.LinksArena.ht_tools_arena_optimizer.enabled
 module.LinksArena.htarena.enabled
 module.LinksArena.htlinks_arena.enabled
 module.LinksArena.nrg_eco.enabled
 module.LinksChallenges.enabled
-module.LinksChallenges.maptrick_coolness.enabled
 module.LinksClubTransfers.enabled
 module.LinksCoach.coachexperience.enabled
 module.LinksCoach.enabled
@@ -234,8 +232,6 @@ module.LinksCountry.hattrickgazette.enabled
 module.LinksCountry.hattristics.enabled
 module.LinksCountry.htradiopodbean.enabled
 module.LinksCountry.htstats.enabled
-module.LinksCountry.maptrick_botmap.enabled
-module.LinksCountry.maptrick_hoc.enabled
 module.LinksCountry.todohattrick.enabled
 module.LinksCountry.vnukstats.enabled
 module.LinksCountry.vnukstats_hti.enabled
@@ -271,7 +267,6 @@ module.LinksLeague.enabled
 module.LinksLeague.hattrickgazette.enabled
 module.LinksLeague.hattristics.enabled
 module.LinksLeague.htstats.enabled
-module.LinksLeague.maptrick_hoc.enabled
 module.LinksLeague.todohattrick.enabled
 module.LinksLeague.vnukstats.enabled
 module.LinksManager.enabled
@@ -306,7 +301,6 @@ module.LinksTeam.ht-dog.enabled
 module.LinksTeam.ht_tools_spyingopponent.enabled
 module.LinksTeam.htlinks_price_money.enabled
 module.LinksTeam.htstats.enabled
-module.LinksTeam.maptrick_coolness.enabled
 module.LinksTeam.todohattrick.enabled
 module.LinksTeam.vnukstats.enabled
 module.LinksTracker.benintracker.enabled
