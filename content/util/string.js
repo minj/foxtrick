@@ -293,21 +293,35 @@ Foxtrick.cut_word = function(txt, where) {
 		Foxtrick.dump('CUT WORD: ' + e + '\n');
 	}
 };
-/*
+
+/**
  * Split a long line into multiple portions
- * E. g.:
- * portions[0] + lineEnd + lineStart + portions[1] + lineEnd + ...
- * @param length integer maximum length of one block (lineStart+portion+lineEnd)
- * @param recursive boolean whether to nest proceding lines with multiple lineStarts
+ *
+ * E. g.: portions[0] + lineEnd + lineStart + portions[1] + lineEnd + ...
+ *
+ * @param  {string} string
+ * @param  {number} length maximum length of one block (lineStart+portion+lineEnd)
+ * @param  {string} lineEnd
+ * @param  {string} lineStart
+ * @param  {boolean} recursive whether to nest proceding lines with multiple lineStarts
+ * @return {string}
  */
 Foxtrick.foldLines = function(string, length, lineEnd, lineStart, recursive) {
 	var sLength = string.length;
 	var i = 0, prepend = '';
 	var ret = '', portion = '';
 	while (i < sLength) {
-		portion = string.substr(i, length - (prepend.length + lineEnd.length));
-		ret += prepend + portion + lineEnd;
-		if (recursive || !i) prepend += lineStart;
+		portion = string.slice(i, i + length - (prepend.length + lineEnd.length));
+
+		try {
+			ret += prepend + portion + lineEnd;
+		}
+		catch (e) { // RangeError
+			return ret;
+		}
+
+		if (recursive || !i)
+			prepend += lineStart;
 		i += portion.length;
 	}
 	return ret;
