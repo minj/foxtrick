@@ -137,11 +137,6 @@ Foxtrick.modules['Redirections'] = {
 						}
 
 					}
-					else if (/\/Club\/NationalTeam\/NationalTeam/i.test(location)) {
-						var ntinfo = doc.getElementById('teamInfo');
-						coachId = Foxtrick.util.id.findPlayerId(ntinfo);
-						url = '/Club/Players/Player.aspx?playerId=' + coachId;
-					}
 
 					break;
 
