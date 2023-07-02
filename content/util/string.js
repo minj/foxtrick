@@ -7,6 +7,7 @@
 
 /* eslint-disable */
 if (!this.Foxtrick)
+	// @ts-ignore
 	var Foxtrick = {};
 /* eslint-enable */
 
@@ -27,7 +28,7 @@ Foxtrick.strToRe = function(str) {
  * opts is {start, end: string} (required)
  * @param  {string} str
  * @param  {object} opts {start, end: str}
- * @return {array}
+ * @return {any[]}
  */
 Foxtrick.parseNestedTag = function(str, opts) {
 	var mArray, tag;
@@ -69,6 +70,7 @@ Foxtrick.parseNestedTag = function(str, opts) {
 	while ((mArray = opts.re.exec(str))) {
 		tag = mArray[0];
 		var startIndex = opts.re.lastIndex - tag.length;
+
 		// add any previous str (even if empty)
 		var previousText = str.slice(opts.prevIndex, startIndex);
 		nodes.push(previousText);
@@ -76,9 +78,11 @@ Foxtrick.parseNestedTag = function(str, opts) {
 		if (tag === opts.start) {
 			if (opts.level < opts.maxLevel) {
 				opts.level += 1;
+
 				// continue recursively
 				nodes.push(Foxtrick.parseNestedTag(str, opts));
 				opts.level -= 1;
+
 				// update where recursion left off
 				opts.prevIndex = opts.re.lastIndex;
 			}
@@ -88,16 +92,16 @@ Foxtrick.parseNestedTag = function(str, opts) {
 			}
 		}
 		else if (tag === opts.end) {
-			if (!opts.level) {
-				// unmatched ending tag
-				nodes.push(tag);
-			}
-			else {
+			if (opts.level) {
 				// tag level finished, returning to previous stack frame
 				return nodes;
 			}
+
+			// unmatched ending tag
+			nodes.push(tag);
 		}
 	}
+
 	// no more tags in str
 	// add any ending text
 	var endText = str.slice(opts.prevIndex);

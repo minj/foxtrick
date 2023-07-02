@@ -163,16 +163,18 @@ Foxtrick.modules['CrossTable'] = {
 		};
 
 		var fillCrossTable = function(doc) {
+			// eslint-disable-next-line complexity
 			var getShortName = function(str) {
 				var minLength = 3; // only suggested
 				var maxLength = 9;
-				if (str.length <= maxLength) {
+				if (str.length <= maxLength)
 					return str;
-				}
+
 
 				// if abbreviation made by all word initials is good, return it
 				var initials = '';
-				var initialRe = new RegExp('\\b(\\w)\\w*\\b', 'g');
+
+				var initialRe = /\b(\w)\w*\b/g;
 				var initialMatches = str.replace(initialRe, '$1').match(initialRe);
 				if (initialMatches) {
 					for (var i = 0; i < initialMatches.length; ++i) {
@@ -186,7 +188,7 @@ Foxtrick.modules['CrossTable'] = {
 				// otherwise, if abbreviation made by all capital letters is good,
 				// return it
 				var allCaps = '';
-				var capRe = new RegExp('[A-Z]', 'g');
+				var capRe = /[A-Z]/g;
 				var capMatches = str.match(capRe);
 				if (capMatches) {
 					for (var i = 0; i < capMatches.length; ++i) {
@@ -199,7 +201,7 @@ Foxtrick.modules['CrossTable'] = {
 
 				// otherwise, if first word is good, return it
 				var firstWord;
-				var firstWordRe = new RegExp('^\\w+\\b');
+				var firstWordRe = /^\w+\b/;
 				var firstWordMatches = str.match(firstWordRe);
 				if (firstWordMatches) {
 					firstWord = str.match(firstWordRe)[0];

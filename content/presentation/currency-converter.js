@@ -53,7 +53,7 @@ Foxtrick.modules.CurrencyConverter = {
 			var { rate: oldRate, symbol: oldSymbol } = curr;
 
 			// regular expressions for getting out money
-			const RE = new RegExp("(-?[\\d][.,'\\d\\s]+)" + Foxtrick.strToRe(oldSymbol), 'g');
+			const RE = new RegExp("(-?\\d[.,'\\d\\s]+)" + Foxtrick.strToRe(oldSymbol), 'g');
 
 			// new stuffs
 			var code = Foxtrick.Prefs.getString('module.CurrencyConverter.to');

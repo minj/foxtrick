@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * forum-thread-auto-ignore.js
  * Foxtrick Leave Conference module
@@ -12,96 +13,111 @@ Foxtrick.modules.ForumThreadAutoIgnore = {
 	OPTION_EDITS: true,
 
 	run: function(doc) {
-		var tagmarkers = [['\\[', '\\]'], ['{', '}'], ['\\[', '}'], ['{', '\\]']];
 		// any more known?
+		var tagmarkers = [['\\[', '\\]'], ['{', '}'], ['\\[', '}'], ['{', '\\]']];
+
 		// blacklist tags
 		var tags = null;
+
 		// whitelist thread ids
 		var whitelist = null;
+
 		// thread id which is currently processed
 		var deletingThreadId = -1;
 
+		// eslint-disable-next-line complexity
 		var checkThreads = function() {
 			if (!Foxtrick.Prefs.isModuleOptionEnabled('ForumThreadAutoIgnore', 'Tags'))
 				return;
-			var tags_string = Foxtrick.Prefs.getString('module.ForumThreadAutoIgnore.Tags_text');
-			if (!tags_string)
+
+			let tagsString = Foxtrick.Prefs.getString('module.ForumThreadAutoIgnore.Tags_text');
+			if (!tagsString)
 				return;
 
 			// get tags. comma seperated in the prefs
-			tags = tags_string.split(',');
-			for (var i = 0; i < tags.length; ++i) {
+			tags = tagsString.split(',');
+			for (let i = 0; i < tags.length; ++i) {
 				tags[i] = tags[i].replace(/^\s+/, ''); // leading space removed
 				tags[i] = tags[i].replace(/\s+$/, ''); // trailing space removed
 			}
 
+			let whitelistString = '';
+
 			// get whitelisted threadIDs. comma seperated in the prefs
 			if (Foxtrick.Prefs.isModuleOptionEnabled('ForumThreadAutoIgnore',
 			    'Whitelist_ThreadIDs')) {
-				var whitelist_string =
-					Foxtrick.Prefs.getString('module.ForumThreadAutoIgnore.Whitelist_ThreadIDs_text');
-				if (whitelist_string) {
-					whitelist = whitelist_string.split(',');
-					for (var i = 0; i < whitelist.length; ++i) {
+				let id = 'module.ForumThreadAutoIgnore.Whitelist_ThreadIDs_text';
+				whitelistString = Foxtrick.Prefs.getString(id);
+				if (whitelistString) {
+					whitelist = whitelistString.split(',');
+					for (let i = 0; i < whitelist.length; ++i) {
 						whitelist[i] = whitelist[i].replace(/^\s+/, ''); // leading space removed
 						whitelist[i] = whitelist[i].replace(/\s+$/, ''); // trailing space removed
-						//Foxtrick.dump(whitelist[i]+ '\n');
 					}
 				}
 			}
 
 			var myForums = doc.getElementById('myForums');
 			var threadItems = myForums.getElementsByClassName('threadItem');
-			for (var i = 0; i < threadItems.length; ++i) {
-				var url = threadItems[i].getElementsByClassName('url')[0];
+			for (let i = 0; i < threadItems.length; ++i) {
+				let url = threadItems[i].getElementsByClassName('url')[0];
 
 				if (url == null)
 					continue;
 
-				var a = url.getElementsByTagName('a')[0];
-				for (var j = 0; j < tagmarkers.length; ++j) {
-					for (var k = 0; k < tags.length; ++k) {
-						var reg = new RegExp(tagmarkers[j][0] + tags[k] + tagmarkers[j][1], 'i');
-						if (a.textContent.search(reg) != -1) {
-							// only autoignore if there is ht's ignore option
-							var ignore = threadItems[i].getElementsByClassName('ignore')[0];
-							if (ignore) {
-								var thread_id = a.href.match(/\/Forum\/Read.aspx\?t=(\d+)/)[1];
-								// check whitelist
-								var whitelisted = false;
-								if (whitelist_string) {
-									for (var l = 0; l < whitelist.length; ++l) {
-										if (whitelist[l] == thread_id) {
-											whitelisted = true;
-											continue;
-										}
-									}
-								}
-								if (whitelisted)
-									continue;
+				let a = url.getElementsByTagName('a')[0];
+				for (let j = 0; j < tagmarkers.length; ++j) {
+					for (let k = 0; k < tags.length; ++k) {
+						let tagMatches = false;
+						try {
+							let re = Foxtrick.strToRe(tags[k]);
+							let reg = new RegExp(tagmarkers[j][0] + re + tagmarkers[j][1], 'i');
+							tagMatches = reg.test(a.textContent);
+						}
+						catch (e) {}
 
-								// check if finished deleting the last one. if ids match, the last
-								// delet order isn't finished. come back with next onchange
-								if (thread_id == deletingThreadId)
-									return;
-								deletingThreadId = thread_id;
+						if (!tagMatches)
+							continue;
 
-								// ignore thread using ht's javascript link. need to use the
-								// webpage's injected script function
-								var func = ignore.getAttribute('onclick');
-								doc.location.href = func;
-								Foxtrick.log('autoignore ' + tags[k] + ': ' + a.textContent + '\n');
+						// only autoignore if there is ht's ignore option
+						let ignore = threadItems[i].getElementsByClassName('ignore')[0];
+						if (!ignore)
+							continue;
 
-								// only one at a time. recheck after page has changed
-								return;
+						let threadId = a.href.match(/\/Forum\/Read.aspx\?t=(\d+)/)[1];
+
+						// check whitelist
+						let whitelisted = false;
+						if (whitelistString) {
+							for (let l = 0; l < whitelist.length; ++l) {
+								if (whitelist[l] == threadId)
+									whitelisted = true;
 							}
 						}
+						if (whitelisted)
+							continue;
+
+						// check if finished deleting the last one. if ids match, the last
+						// delet order isn't finished. come back with next onchange
+						if (threadId == deletingThreadId)
+							return;
+						deletingThreadId = threadId;
+
+						// ignore thread using ht's javascript link. need to use the
+						// webpage's injected script function
+						let func = ignore.getAttribute('onclick');
+						doc.location.href = func;
+						Foxtrick.log('autoignore ' + tags[k] + ': ' + a.textContent + '\n');
+
+						// only one at a time. recheck after page has changed
+						return;
 					}
 				}
 			}
 		};
+
 		checkThreads();
-		var id = 'ctl00_ctl00_CPContent_ucLeftMenu_pnlLeftMenuScrollContent';
+		let id = 'ctl00_ctl00_CPContent_ucLeftMenu_pnlLeftMenuScrollContent';
 		Foxtrick.onChange(doc.getElementById(id), checkThreads);
-	}
+	},
 };
