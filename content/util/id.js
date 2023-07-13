@@ -262,7 +262,7 @@ Foxtrick.util.id.findYouthPlayerId = function(element) {
 
 /**
  * @param  {Element} element
- * @return {string}
+ * @return {string} relative URL to trainer page
  */
 Foxtrick.util.id.findTrainerUrl = function(element) {
 	if (!element)
@@ -271,8 +271,9 @@ Foxtrick.util.id.findTrainerUrl = function(element) {
 	/** @type {NodeListOf<HTMLAnchorElement>} */
 	let links = element.querySelectorAll('a[href]');
 	for (let link of links) {
-		if (/Club\/Specialists\/Trainer.aspx/i.test(link.href)) {
-			return link.href;
+		let match = link.href.match(/\/Club\/Specialists\/Trainer.aspx.*/);
+		if (match) {
+			return match[0];
 		}
 	}
 	return null;
