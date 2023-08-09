@@ -97,11 +97,6 @@
 			"duty": "translator"
 		},
 		{
-			"id": "6917943",
-			"name": "Azimuthios",
-			"duty": "translator"
-		},
-		{
 			"id": "7093200",
 			"name": "TeamBMW",
 			"duty": "translator"
@@ -339,6 +334,11 @@
 		{
 			"id": "13280539",
 			"name": "gaslei04",
+			"duty": "translator"
+		},
+		{
+			"id": "13258205",
+			"name": "AnoniMoose",
 			"duty": "translator"
 		},
 		{
