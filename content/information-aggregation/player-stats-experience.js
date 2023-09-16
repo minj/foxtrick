@@ -354,9 +354,17 @@ Foxtrick.modules.PlayerStatsExperience = {
 			thXP.title = Foxtrick.L10n.getString('PlayerStatsExperience.ExperienceChange.title');
 
 			var store = module.store;
-			var [header, bestPerf, ...statsRows] = [...statsTable.rows];
+			
+			// Brand new players have no stats table at all
+			// Players that have not played yet with their current team do not have a best performance line (label + actual performance)
+			if (statsTable.rows[1].id != "") {
+			    var [header, ...statsRows] = [...statsTable.rows];
+			} else {
+			    var [header, bestPerf, ...statsRows] = [...statsTable.rows];
+			    bestPerf.cells[0].colSpan += 1;
+			}
+			
 			header.insertBefore(thXP, header.cells[8]);
-			bestPerf.cells[0].colSpan += 1;
 
 			// sum up xp stuff
 			for (let row of statsRows) {
@@ -372,6 +380,7 @@ Foxtrick.modules.PlayerStatsExperience = {
 
 				// current skilllevel
 				let xpNow = parseInt(row.cells[module.XP_CELL_IDX].textContent, 10);
+				// Best performance line appears in statsRows, but does not display any XP information
 				if (Number.isNaN(xpNow))
 					continue;
 
