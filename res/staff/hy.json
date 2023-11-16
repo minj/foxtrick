@@ -32,6 +32,11 @@
 			"duty": "support"
 		},
 		{
+			"id": "7586465",
+			"name": "wettnetzer",
+			"duty": "helper"
+		},
+		{
 			"id": "8652247",
 			"name": "GM-Gorschi",
 			"duty": "helper"
