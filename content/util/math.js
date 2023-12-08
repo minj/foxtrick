@@ -119,9 +119,20 @@ Foxtrick.Predict.averageEnergy90 = function(stamina) {
  * @return {number}            1-based stamina level
  */
 Foxtrick.Predict.stamina = function(energyAt90) {
-	return energyAt90 <= 0.887 ?
-		energyAt90 * 10.1341 - 0.9899 :
-		8 + (energyAt90 - 0.887) / 0.1792;
+	/**
+	* Expected energyAt90, based on https://www.hattrick.org/goto.ashx?path=/Forum/Read.aspx?t=17552577&v=0&a=1&n=7
+	* - maxStamina(33 y.o.) === 8.00 --> 0.885 (exact value)
+	* - maxStamina(34 y.o.) === 7.50 --> 0.839...
+	* - maxStamina(35 y.o.) === 7.00 --> 0.793...
+	* The formula below currently returns 8.00, 7.51 and 7.05 for these values.
+	*/
+	if (energyAt90 < 0.885)
+		return energyAt90 * 10.1341 - 0.9899;
+	
+	if (energyAt90 < 0.887)
+		return 8;
+	
+	return 8 + (energyAt90 - 0.887) / 0.1792;
 };
 
 /**
