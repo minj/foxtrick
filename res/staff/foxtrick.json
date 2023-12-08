@@ -355,6 +355,11 @@
 			"name": "Davit_P"
 		},
 		{
+			"duty": "supporter",
+			"id": "11860277",
+			"name": "inulinux12"
+		},
+		{
 			"duty": "translator",
 			"id": "11869364",
 			"name": "<LucaXVI>"
@@ -758,6 +763,11 @@
 			"duty": "supporter",
 			"id": "13928189",
 			"name": "mfaulkie"
+		},
+		{
+			"duty": "supporter",
+			"id": "13955025",
+			"name": "xep624"
 		},
 		{
 			"duty": "supporter",
