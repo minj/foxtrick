@@ -341,13 +341,13 @@ Foxtrick.modules.CopyYouth = {
 
 		let hasReport = false;
 		if (Foxtrick.isPage(doc, 'youthOverview'))
-			hasReport = Foxtrick.getButton(doc, 'ScoutPropYes') !== null;
+			hasReport = Foxtrick.getHTModuleButton(doc, 'ucYouthScouts', 'ScoutPropYes') !== null;
 
 		if (!Foxtrick.isPage(doc, 'youthPlayerDetails') && !hasReport)
 			return;
 
 		if (hasReport) {
-			let alertdiv = Foxtrick.getButton(doc, 'ScoutPropYes').parentNode;
+			let alertdiv = Foxtrick.getHTModuleButton(doc, 'ucYouthScouts', 'ScoutPropYes').parentNode;
 			let [acceptButton, rejectButton] = alertdiv.querySelectorAll('input');
 
 			// auto send rejected players to HY, api see above
