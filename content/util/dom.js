@@ -1127,6 +1127,29 @@ Foxtrick.getButton = function(scope, ID) {
 };
 
 /**
+ * Get HT Button by the relevant part of HT module's ID.
+ *
+ * Supports ctl00_ctl00_CPContent_CPMain_$HTModule_$ID,
+ * ctl00_ctl00_CPContent_CPMain_$HTModule_btn$ID and
+ * ctl00_ctl00_CPContent_CPMain_$HTModule_but$ID
+ *
+ * @param  {document|Element} scope
+ * @param  {string}           HTModule
+ * @param  {string}           ID
+ * @return {HTMLInputElement}
+ */
+Foxtrick.getHTModuleButton = function(scope, HTModule, ID) {
+       const PRE = this.getMainIDPrefix() + HTModule + '_';
+
+       let btn =
+               scope.querySelector(`#${PRE}${ID}`) ||
+               scope.querySelector(`#${PRE}btn${ID}`) ||
+               scope.querySelector(`#${PRE}but${ID}`);
+
+       return /** @type {HTMLInputElement} */ (btn);
+};
+
+/**
  * @param  {document|Element} scope
  * @return {HTMLInputElement}
  */
