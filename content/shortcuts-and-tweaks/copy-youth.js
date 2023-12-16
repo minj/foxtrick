@@ -223,13 +223,7 @@ Foxtrick.modules.CopyYouth = {
 				var mainBody = doc.getElementById('mainBody');
 
 				/** @type {HTMLElement} */
-				let mInfo = mainBody.querySelector('.managerInfo');
-
-				/** @type {NodeListOf<HTMLElement>} */
-				let mainBoxes = mainBody.querySelectorAll('.mainBox');
-				let lastMain = [...mainBoxes].pop();
-
-				let info = mInfo || lastMain;
+				let info = mainBody.querySelector('.pmSpeech');
 				if (!info)
 					return;
 
