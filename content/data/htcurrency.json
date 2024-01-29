@@ -1023,16 +1023,16 @@
 			"leagues": {
 				"169": "Guyana"
 			},
-			"name": "G$ (Guyanese dollar)",
+			"name": "Guyanese dollar",
 			"symbol": "GYD"
 		},
 		{
-			"code": "XPF",
+			"code": "CFP",
 			"eurorate": "0.01",
 			"leagues": {
 				"170": "Tahiti"
 			},
-			"name": "CFP franc",
+			"name": "French Pacific Franc (Tahitian)",
 			"symbol": "XPF"
 		},
 		{
