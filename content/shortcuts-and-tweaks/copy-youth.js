@@ -223,13 +223,7 @@ Foxtrick.modules.CopyYouth = {
 				var mainBody = doc.getElementById('mainBody');
 
 				/** @type {HTMLElement} */
-				let mInfo = mainBody.querySelector('.managerInfo');
-
-				/** @type {NodeListOf<HTMLElement>} */
-				let mainBoxes = mainBody.querySelectorAll('.mainBox');
-				let lastMain = [...mainBoxes].pop();
-
-				let info = mInfo || lastMain;
+				let info = mainBody.querySelector('.pmSpeech');
 				if (!info)
 					return;
 
@@ -341,13 +335,13 @@ Foxtrick.modules.CopyYouth = {
 
 		let hasReport = false;
 		if (Foxtrick.isPage(doc, 'youthOverview'))
-			hasReport = Foxtrick.getButton(doc, 'ScoutPropYes') !== null;
+			hasReport = Foxtrick.getHTModuleButton(doc, 'ucYouthScouts', 'ScoutPropYes') !== null;
 
 		if (!Foxtrick.isPage(doc, 'youthPlayerDetails') && !hasReport)
 			return;
 
 		if (hasReport) {
-			let alertdiv = Foxtrick.getButton(doc, 'ScoutPropYes').parentNode;
+			let alertdiv = Foxtrick.getHTModuleButton(doc, 'ucYouthScouts', 'ScoutPropYes').parentNode;
 			let [acceptButton, rejectButton] = alertdiv.querySelectorAll('input');
 
 			// auto send rejected players to HY, api see above

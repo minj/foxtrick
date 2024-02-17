@@ -9,7 +9,7 @@ da:
       important: '<header>Vigtige meddelelser</header>'
       safari_cert: 'Vi er på udkig efter engageret managere, som arbejder med udvikling af apps til iOS eller OSX, for at være med til at genetablere hjælp til Safari-brugere omkring Foxtrick. Se vores <linkSafariCertBug>issue tracker</linkSafariCertBug> for flere oplysninger.'
       beta: 'Hvis du kunne tænke dig at få adgang til nye funktioner sådan, at du kan være med til at præge udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle fejl der måtte opstå, bør du overveje at installer beta versionen som du finder her: <linkFTBeta>Foxtrick beta</linkFTBeta>'
-      support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
+      support: '<header>Støtt Foxtrick via Paypal <linkContribute>Donér</linkContribute>.</header>'
       bugs: '<header>Fejlrettelser</header>'
       android: 'Grundet ændringer foretaget af Mozilla, holdt Foxtrick op med at virke på Android enheder.'
       filters: 'Modulet <module>Filtre</module> var nede på grund af ændringer i Foxtricks kerne.'
@@ -28,7 +28,7 @@ da:
       browsers: 'Af tekniske årsager er Firefox v.38, Google Chrome v.39 og Opera v.26 nu de senest officielt understøttede browserversioner. Du bør dog altid, for din egen sikkerhed, bruge den senest tilgængelige browserversion.'
       safari_cert: 'Vi er på udkig efter engageret managere, som arbejder med udvikling af apps til iOS eller OSX, for at være med til at genetablere hjælp til Safari-brugere omkring Foxtrick. Se vores <linkSafariCertBug>issue tracker</linkSafariCertBug> for flere oplysninger.'
       beta: 'Hvis du kunne tænke dig at få adgang til nye funktioner sådan, at du kan være med til at præge udviklingen af nye features, og til at hjælpe med at finde og løse eventuelle fejl der måtte opstå, bør du overveje at installer beta versionen som du finder her: <linkFTBeta>Foxtrick beta</linkFTBeta>'
-      support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
+      support: '<header>Støtt Foxtrick via Paypal <linkContribute>Donér</linkContribute>.</header>'
       new: '<header>Nye moduler</header>'
       spec_info: '<module>SpecialtyInfo</module> viser en kortfattet beskrivelse af spillerspecialitet ved at klikke på specialitet-ikonet.'
       bugs: '<header>Fejlrettelser</header>'
@@ -64,7 +64,7 @@ da:
       important: '<header>Vigtige meddelelser</header>'
       new_contributions: 'Modulet <module>PlayerPositionsEvaluations</module> bruger nu officielle data som er offentliggjort for global sæson #60. Imidlertid er yderligere parametre nødvendige for, at tallene giver mening. Mens rimelige standardværdier er angivet, er de hverken officielle eller baseret på statistiske undersøgelser. Vi tager glædeligt imod enhver tilbagemelding om værdierne, som kan være med til at forbedre vore data. Alle indstillinger er tilgængelige på enhver spillerside.'
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
-      support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
+      support: '<header>Støtt Foxtrick via Paypal <linkContribute>Donér</linkContribute>.</header>'
       bugs: '<header>Fejlrettelser</header>'
       dollar_wage: 'Lønberegningen er rettet ved <module>ExtendedPlayerDetailsWage</module> for lande der bruger dollar som valuta.'
       old_faces_moi: 'Defekte spiller avatarer som skyldes interferens mellem <module>OldStyleFace</module> og <module>MatchOrderInterface</module> er nu rettet.'
@@ -80,7 +80,7 @@ da:
       important: '<header>Vigtige meddelelser</header>'
       safari: 'Grundet ændringer i Apple Inc. politik og en generel modvilje mod at forbedre deres browser, kan vi ikke længere garantere automatiske opdateringer og generel hjælp til Safari-brugere. Overvej at bruge Firefox, Google Chrome eller Opera i stedet.'
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
-      support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
+      support: '<header>Støtt Foxtrick via Paypal <linkContribute>Donér</linkContribute>.</header>'
       new: '<header>Nye moduler</header>'
       transfers: '<module>CurrentTransfers</module> tilføjer mere information om spillere på transfersiden.'
       bugs: '<header>Fejlrettelser</header>'
@@ -107,7 +107,7 @@ da:
     0.15.2:
       important: '<header>Vigtige meddelelser</header>'
       links: 'Funktionaliteten af modulen <module>Links</module> er omskrevet for at rette nogle få fejl og forbedre vedligeholdelsen af den. Det er nu muligt at vælge mellem flere etiketter for brugerdefinerede hyperlinks. Nogle etiketter er omdøbt for at afspejle deres betydning bedre. Du skal rydde din Foxtrick cache, test din brugerdefinerede links og opdatere dem i overensstemmelse hermed.'
-      support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
+      support: '<header>Støtt Foxtrick via Paypal <linkContribute>Donér</linkContribute>.</header>'
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
       twitter: 'Du kan følge <linkTwitter>Foxtrick på Twitter</linkTwitter> for at modtage de seneste nyheder, opdateringer og meddelelser.'
       bugs: '<header>Fejlrettelser</header>'
@@ -136,7 +136,7 @@ da:
       and_more: 'Forskellige små ændringer og rettelser.'
     0.15.0:
       important: '<header>Vigtige meddelelser</header>'
-      support: '<header>Støt Foxtrick via Flattr mikrodonationer eller giv et bidrag med Paypal <linkContribute>Donér</linkContribute>.</header>'
+      support: '<header>Støtt Foxtrick via Paypal <linkContribute>Donér</linkContribute>.</header>'
       crowdin: '<header>En stor tak til alle de hjælpsomme brugere, som oversætter ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også give en hånd!</header>'
       twitter: 'Du kan følge <linkTwitter>Foxtrick på Twitter</linkTwitter> for at modtage de seneste nyheder, opdateringer og meddelelser.'
       new: '<header>Nye moduler</header>'
@@ -463,7 +463,7 @@ da:
       note_4: Flere oversættelse opdateringer
     0.9.0.1:
       note_0: Rettet (utilsigtet) overdreven tilladelser for Chrome
-      note_1: Rettet LiveAlert 
+      note_1: Rettet LiveAlert
       note_2: Rette nogle css-problemer (til Chrome, Opera, Safari)
     0.9:
       note_0: '<header>Localization:</header>'
@@ -584,4 +584,3 @@ da:
       note_19: 'Modul <module>TeamSelectBox</module> deaktiveret som standard. (ryanli)'
       note_20: 'Modul <module>SmallerPages</module> deaktiveret som standard. (ljushaff)'
       note_21: 'Radio indstillinger i <module>ExtraShortcuts</module> er deaktiveret som standard. (ryanli)'
-

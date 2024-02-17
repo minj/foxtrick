@@ -28,15 +28,15 @@
 		],
 		"agreeability": [
 			{
-				"text": "eng ekleg Persoun",
+				"text": "eng eekleg Persoun",
 				"value": "0"
 			},
 			{
-				"text": "eng kontrovers Persoun",
+				"text": "eng ëmstridde Persoun",
 				"value": "1"
 			},
 			{
-				"text": "eng beléift Persoun",
+				"text": "eng agreabel Persoun",
 				"value": "2"
 			},
 			{
@@ -44,11 +44,11 @@
 				"value": "3"
 			},
 			{
-				"text": "eng populär Persoun",
+				"text": "eng beléift Persoun",
 				"value": "4"
 			},
 			{
-				"text": "eng integréiert Persoun",
+				"text": "e beléifte Member vun der Ekipp",
 				"value": "5"
 			}
 		],
@@ -339,7 +339,9 @@
 			"166": "Grenada",
 			"167": "Burkina Faso",
 			"168": "Nepal",
+			"169": "Guyana",
 			"17": "Kanada",
+			"170": "Tahiti",
 			"18": "Chile",
 			"19": "Kolumbien",
 			"2": "England",
@@ -618,7 +620,7 @@
 			},
 			{
 				"type": "LeaderShip",
-				"value": "Féierungsqualitéiten"
+				"value": "Féierungsqualitéit"
 			}
 		],
 		"specialties": [

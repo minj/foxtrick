@@ -56,17 +56,20 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 			// player has no team
 			return;
 		}
-		var joinedEl = table.querySelector('.shy');
-
-
-		let dateObj = Foxtrick.util.time.getDateFromText(joinedEl.textContent);
-		let seasonWeek = Foxtrick.util.time.gregorianToHT(dateObj);
 
 		let htDate = Foxtrick.util.time.getDate(doc);
 		if (!htDate) {
 			Foxtrick.log('User time missing');
 			return;
 		}
+
+		var joinedEl = table.querySelector('.shy');
+		let dateObj = Foxtrick.util.time.getDateFromText(joinedEl.textContent);
+		if (!dateObj) {
+			Foxtrick.log('Could no parse .shy time');
+			return;
+		}
+		let seasonWeek = Foxtrick.util.time.gregorianToHT(dateObj);
 
 		let diff = htDate.getTime() - dateObj.getTime();
 		let sec = Math.floor(diff / Foxtrick.util.time.MSECS_IN_SEC);

@@ -1018,6 +1018,24 @@
 			"symbol": "rupee"
 		},
 		{
+			"code": "GYD",
+			"eurorate": "0.01",
+			"leagues": {
+				"169": "Guyana"
+			},
+			"name": "Guyanese dollar",
+			"symbol": "GYD"
+		},
+		{
+			"code": "CFP",
+			"eurorate": "0.01",
+			"leagues": {
+				"170": "Tahiti"
+			},
+			"name": "French Pacific Franc (Tahitian)",
+			"symbol": "XPF"
+		},
+		{
 			"code": "HRK",
 			"eurorate": "0.1",
 			"name": "Kuna (Croatian)",

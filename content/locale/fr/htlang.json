@@ -68,7 +68,7 @@
 		],
 		"confidence": [
 			{
-				"text": "inexistante",
+				"text": "inexistant",
 				"value": "0"
 			},
 			{
@@ -339,7 +339,9 @@
 			"166": "Grenade",
 			"167": "Burkina Faso",
 			"168": "Népal",
+			"169": "Guyana",
 			"17": "Canada",
+			"170": "Tahiti",
 			"18": "Chili",
 			"19": "Colombie",
 			"2": "Angleterre",
