@@ -1,6 +1,6 @@
 {
     "type": "ho",
-    "url": "https://akasolace.github.io/HO/",
+    "url": "https://ho-dev.github.io/HattrickOrganizer/",
     "duties": {
         "developer": {
             "alt": "HO developer"
@@ -72,11 +72,6 @@
             "id": "9100817",
             "name": "DavidatorusF",
             "duty": "helper"
-        },
-        {
-            "id": "13441219",
-            "name": "capitaineFro",
-            "duty": "developer"
         },
         {
             "id": "13458976",
