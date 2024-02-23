@@ -221,8 +221,9 @@ Foxtrick.modules.PlayerStatsExperience = {
 				var getGameIcon = function(node) {
 					var gameIconParent = node.querySelector('td.keyColumn');
 					var gameIconImage = gameIconParent.querySelector('.iconMatchtype img');
+					var gameIconSrc = gameIconImage.getAttribute('src');
 					const gameIconRegEx = /([\w-]+).svg/g;
-					var gameIcon = gameIconRegEx.exec(gameIconImage.src)[1]; // first match (idx 0) is with .svg, 2nd match is the group match without .svg
+					var gameIcon = gameIconRegEx.exec(gameIconSrc)[1]; // first match is with ".svg", 2nd match is the group match without ".svg"
 					var gameIconWithoutDashes = gameIcon.replaceAll('-', '_');
 					return /** @type {GameIconClass} */ (gameIconWithoutDashes);
 				};
