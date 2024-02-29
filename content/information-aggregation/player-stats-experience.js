@@ -293,7 +293,7 @@ Foxtrick.modules.PlayerStatsExperience = {
 							: 'matchNtContinental';
 					}
 
-					console.log("WARNING: Unmatched gameIcon for NT " + gameIcon); // TODO: Can this even happen?
+					Foxtrick.log("WARNING: Unmatched gameIcon for NT", gameIcon); // TODO: Can this even happen?
 
 					return gameIcon in module.XP ? /** @type {MatchTypeClass} */ (gameIcon) : null;
 				};
