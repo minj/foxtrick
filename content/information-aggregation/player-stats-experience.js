@@ -39,22 +39,24 @@ Foxtrick.modules.PlayerStatsExperience = {
 	/** @typedef {'matchCup'|'matchCupA'|'matchCupB1'|'matchCupB2'|'matchCupB3'|'matchCupC'|'matchFriendly'|'matchLeague'|'matchMasters'|'matchNewbie'|'matchNtAfricaCup'|'matchNtAmericaCup'|'matchNtAsiaCup'|'matchNtEuropeCup'|'matchNtNationsCup'|'matchNtWildcard'|'matchNtWorldCup'|'matchQualification'|'matchSingleMatch'|'matchSingleMatchFast'|'matchTournament'|'matchTournamentFast'|'matchTournamentLadder'} MatchTypeClassRaw */
 
 	// eslint-disable-next-line max-len
-	/** @typedef {'matchCupA'|'matchCupB1'|'matchCupB2'|'matchCupB3'|'matchCupC'|'matchFriendly'|'matchLeague'|'matchMasters'|'matchNtContinental'|'matchNtContinentalKO'|'matchNtNationsCup'|'matchNtNationsCupKO'|'matchNtWildcard'|'matchNtWorldCup'|'matchQualification'|'matchNtFriendly'|'matchNtLeague'|'matchNtFinals'|'matchNtFriendlyNew'|'matchNtWorldCupFinals'} MatchTypeClass */
+	/** @typedef {'series'|'cup'|'challenger_cup_1'|'challenger_cup_2'|'challenger_cup_3'|'consolation_cup'|'friendly'|'qualifier'|'masters'|'nt_worldcup'|'nations_cup'|'nt_wildcard'|'nt_cup_europe'|'nt_cup_americas'|'nt_cup_africa'|'nt_cup_asia'|'nt_worldcup_u21'|'nations_cup_u21'|'nt_wildcard_u21'|'nt_cup_europe_u21'|'nt_cup_americas_u21'|'nt_cup_africa_u21'|'nt_cup_asia_u21'} GameIconClass */
+	// eslint-disable-next-line max-len
+	/** @typedef {'series'|'cup'|'challenger_cup_1'|'challenger_cup_2'|'challenger_cup_3'|'consolation_cup'|'friendly'|'qualifier'|'masters'|'matchNtContinental'|'matchNtContinentalKO'|'matchNtNationsCup'|'matchNtNationsCupKO'|'matchNtWildcard'|'matchNtWorldCup'|'matchNtFriendly'|'matchNtLeague'|'matchNtFinals'|'matchNtFriendlyNew'|'matchNtWorldCupFinals'} MatchTypeClass */
 
 	// don't randomly rename, parts of this are taken from hattrick using image classnames
 	/** @type {Record<MatchTypeClass, number>} */
 	XP: {
 		// assume international friendly as default, considered in min-max,
 		// minimum uses 1/2 of this value
-		matchFriendly: 0.7,
-		matchLeague: 3.5,
-		matchCupA: 7.0,
-		matchCupB1: 1.75,
-		matchCupB2: 1.75,
-		matchCupB3: 1.75,
-		matchCupC: 1.75,
-		matchQualification: 7,
-		matchMasters: 17.5,
+		friendly: 0.7,
+		series: 3.5,
+		cup: 7.0,
+		challenger_cup_1: 1.75,
+		challenger_cup_2: 1.75,
+		challenger_cup_3: 1.75,
+		consolation_cup: 1.75,
+		qualifier: 7,
+		masters: 17.5,
 
 		// globe: NaN,
 		// matchCup: NaN,
@@ -214,21 +216,25 @@ Foxtrick.modules.PlayerStatsExperience = {
 				// most games can be identified by the classname directly, NT needs some tricks
 				/**
 				 * @param  {HTMLTableRowElement} node
-				 * @return {MatchTypeClassRaw}
+				 * @return {GameIconClass}
 				 */
-				var getBasicGameType = function(node) {
-					var gametypeParent = node.querySelector('td.keyColumn');
-					var gameTypeImage = gametypeParent.querySelector('.iconMatchtype img');
-					return /** @type {MatchTypeClassRaw} */ (gameTypeImage.className);
+				var getGameIcon = function(node) {
+					var gameIconParent = node.querySelector('td.keyColumn');
+					var gameIconImage = gameIconParent.querySelector('.iconMatchtype img');
+					var gameIconSrc = gameIconImage.getAttribute('src');
+					const gameIconRegEx = /([\w-]+).svg/g;
+					var gameIcon = gameIconRegEx.exec(gameIconSrc)[1]; // first match is with ".svg", 2nd match is the group match without ".svg"
+					var gameIconWithoutDashes = gameIcon.replaceAll('-', '_');
+					return /** @type {GameIconClass} */ (gameIconWithoutDashes);
 				};
 
 				/**
-				 * @param  {MatchTypeClassRaw} raw
+				 * @param  {GameIconClass} gameIcon
 				 * @return {MatchTypeClass}
 				 */
 				// eslint-disable-next-line complexity
-				var getNTType = function(raw) {
-					if (raw == 'matchFriendly') {
+				var getNTType = function(gameIcon) {
+					if (gameIcon == 'friendly') {
 						if (juniors)
 							// eslint-disable-next-line no-magic-numbers
 							return season >= 77 ? 'matchNtFriendlyNew' : 'matchNtFriendly';
@@ -237,21 +243,22 @@ Foxtrick.modules.PlayerStatsExperience = {
 						return season >= 78 ? 'matchNtFriendlyNew' : 'matchNtFriendly';
 					}
 
-					if (raw == 'matchLeague') {
-						// old NT
-						// oldies wc finals are in odd seasons, juniors in even seasons
-						if (!isFinalSeason)
-							return 'matchNtLeague';
+					// TODO: what is this type of game? Do we still need it?
+					// if (raw == 'matchLeague') {
+					// 	// old NT
+					// 	// oldies wc finals are in odd seasons, juniors in even seasons
+					// 	if (!isFinalSeason)
+					// 		return 'matchNtLeague';
 
-						let semifinal = date.getDay() == DAY_OF_SEMIS;
-						let final = date.getDay() === DAY_OF_FINAL;
-						if (week == WEEK_OF_FINALS && (semifinal || final))
-							return 'matchNtFinals';
+					// 	let semifinal = date.getDay() == DAY_OF_SEMIS;
+					// 	let final = date.getDay() === DAY_OF_FINAL;
+					// 	if (week == WEEK_OF_FINALS && (semifinal || final))
+					// 		return 'matchNtFinals';
 
-						return 'matchNtLeague';
-					}
+					// 	return 'matchNtLeague';
+					// }
 
-					if (raw == 'matchNtWorldCup') {
+					if (gameIcon.includes('nt_worldcup')) { // also catch u21, which has the addition "_u21" at the end
 						if (!isFinalSeason)
 							return 'matchNtWorldCup';
 
@@ -263,7 +270,7 @@ Foxtrick.modules.PlayerStatsExperience = {
 						return 'matchNtWorldCup';
 					}
 
-					if (raw == 'matchNtNationsCup') {
+					if (gameIcon.includes('nations_cup')) { // also catch u21, which has the addition "-u21" at the end
 						// weeks 14-16 in final season are KO
 						// eslint-disable-next-line no-magic-numbers
 						return isFinalSeason && week >= 14
@@ -271,14 +278,14 @@ Foxtrick.modules.PlayerStatsExperience = {
 							: 'matchNtNationsCup';
 					}
 
-					/** @type {MatchTypeClassRaw[]} */
+					/** @type {GameIconClass[]} */
 					const CONT_CUPS = [
-						'matchNtAfricaCup',
-						'matchNtAmericaCup',
-						'matchNtAsiaCup',
-						'matchNtEuropeCup',
+						'nt_cup_europe',
+						'nt_cup_americas',
+						'nt_cup_africa',
+						'nt_cup_asia',
 					];
-					if (CONT_CUPS.includes(raw)) {
+					if (CONT_CUPS.includes(gameIcon)) {
 						// weeks 11-12 are KO
 						// eslint-disable-next-line no-magic-numbers
 						return !isFinalSeason && week >= 11
@@ -286,23 +293,25 @@ Foxtrick.modules.PlayerStatsExperience = {
 							: 'matchNtContinental';
 					}
 
-					return raw in module.XP ? /** @type {MatchTypeClass} */ (raw) : null;
+					Foxtrick.log("WARNING: Unmatched gameIcon for NT", gameIcon); // TODO: Can this even happen?
+
+					return gameIcon in module.XP ? /** @type {MatchTypeClass} */ (gameIcon) : null;
 				};
 
-				var cls = getBasicGameType(node);
+				var gameIcon = getGameIcon(node);
 				var isNT = isNTMatch(node);
 
 				if (isNT) {
-					let nt = getNTType(cls);
+					let nt = getNTType(gameIcon);
 					if (nt != null)
 						return nt;
 				}
 
-				var ret = cls in module.XP ? /** @type {MatchTypeClass} */ (cls) : null;
+				var ret = gameIcon in module.XP ? /** @type {MatchTypeClass} */ (gameIcon) : null;
 
 				if (ret === null) {
 					// report failure
-					Foxtrick.log(new Error(`Type dection failed: ${cls},
+					Foxtrick.log(new Error(`Type dection failed: ${gameIcon},
 						d=${isodate} (${season}/${week}), isNT=${isNT}, junions=${juniors}
 					`));
 				}
@@ -331,7 +340,7 @@ Foxtrick.modules.PlayerStatsExperience = {
 			 */
 			var getXPMinMaxDifference = function(ntMatch, xpGain, gameType) {
 				var dxp = { min: xpGain, max: xpGain };
-				if (!ntMatch && gameType == 'matchFriendly')
+				if (!ntMatch && gameType == 'friendly')
 					dxp.min /= 2;
 
 				return dxp;
@@ -441,7 +450,7 @@ Foxtrick.modules.PlayerStatsExperience = {
 					tdXP.textContent = xpGain.toFixed(PRECISION);
 				}
 
-				if (!ntMatch && gameType == 'matchFriendly' && minutes > 0) {
+				if (!ntMatch && gameType == 'friendly' && minutes > 0) {
 					tdXP.textContent =
 						(xpGain / 2.0).toFixed(PRECISION) + '/' + xpGain.toFixed(PRECISION);
 				}
