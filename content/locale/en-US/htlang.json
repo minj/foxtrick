@@ -161,47 +161,47 @@
 		],
 		"fans_match": [
 			{
-				"text": "Better not show up",
+				"text": "Better not show up.",
 				"value": "0"
 			},
 			{
-				"text": "We are outclassed",
+				"text": "We are outclassed.",
 				"value": "1"
 			},
 			{
-				"text": "We will lose",
+				"text": "We will lose.",
 				"value": "2"
 			},
 			{
-				"text": "They are favorites",
+				"text": "They are favorites.",
 				"value": "3"
 			},
 			{
-				"text": "They have the edge",
+				"text": "They have the edge.",
 				"value": "4"
 			},
 			{
-				"text": "It will be a close affair",
+				"text": "It will be a close affair.",
 				"value": "5"
 			},
 			{
-				"text": "We have the edge",
+				"text": "We have the edge.",
 				"value": "6"
 			},
 			{
-				"text": "We are favorites",
+				"text": "We are favorites.",
 				"value": "7"
 			},
 			{
-				"text": "We will win",
+				"text": "We will win!",
 				"value": "8"
 			},
 			{
-				"text": "Piece of cake",
+				"text": "Piece of cake!",
 				"value": "9"
 			},
 			{
-				"text": "Let's humiliate them",
+				"text": "Let's humiliate them!",
 				"value": "10"
 			}
 		],
