@@ -2003,6 +2003,11 @@
 			"duty": "supporter",
 			"id": "9999999",
 			"name": "<kickoff98>"
+		},
+		{
+			"duty": "developer",
+			"id": "12693691",
+			"name": "SwanFF"
 		}
 	],
 	"type": "foxtrick",
