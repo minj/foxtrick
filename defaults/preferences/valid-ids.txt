@@ -907,7 +907,6 @@ module.TickerColoring.enabled
 module.TransferComparePlayers.ShowProfit.enabled
 module.TransferComparePlayers.enabled
 module.TransferDeadline.enabled
-module.TransferHistoryFilters.enabled
 module.TransferSearchFilters.enabled
 module.TransferSearchResultFilters.enabled
 module.YouthPromotes.enabled

@@ -756,7 +756,6 @@ pref("extensions.foxtrick.prefs.module.TickerColoring.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferComparePlayers.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferComparePlayers.ShowProfit.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferDeadline.enabled", true);
-pref("extensions.foxtrick.prefs.module.TransferHistoryFilters.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferSearchFilters.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferSearchResultFilters.enabled", true);
 pref("extensions.foxtrick.prefs.module.TableOfStatisticalTruth.enabled", true);
