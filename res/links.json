@@ -279,15 +279,15 @@
 		"img": "https://www.foxtrick.org/res/linkicons/frenchtracker.ico",
 		"title": "French U20/NT Tracker",
 		"trackernationalteamlink": {
-			"url": "https://www.ht-dtnfff.fr/",
+			"url": "https://www.hattrick-dtnfff.fr/",
 			"filters": ["leagueid"]
 		},
 		"trackerleaguelink": {
-			"url": "https://www.ht-dtnfff.fr/",
+			"url": "https://www.hattrick-dtnfff.fr/",
 			"filters": ["leagueid"]
 		},
 		"trackerplayerlink": {
-			"url": "https://www.ht-dtnfff.fr/",
+			"url": "https://www.hattrick-dtnfff.fr/",
 			"filters": ["nationality"]
 		},
 		"leagueidranges": [[5, 5]],
