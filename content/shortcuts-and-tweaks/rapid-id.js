@@ -160,13 +160,6 @@ Foxtrick.modules['RapidId'] = {
 			}
 		};
 
-		var rightnow = doc.getElementById('ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents');
-		if (rightnow) {
-			// +padding -margin -.scContainer -allowance
-			rightnow.setAttribute('style', 'overflow:hidden; white-space:nowrap;' +
-				'width: calc(100% + 16px - 235px - 324px - 12%);');
-		}
-
 		// get labels of optgroup and option
 		for (let opt of options)
 			opt.label = Foxtrick.L10n.getString(opt.text);
