@@ -160,11 +160,10 @@ Foxtrick.modules['RapidId'] = {
 			}
 		};
 
-		var rightnow = doc.getElementById('ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents');
+		let rightnow = doc.getElementById('ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents');
 		if (rightnow) {
-			// +padding -margin -.scContainer -allowance
-			rightnow.setAttribute('style', 'overflow:hidden; white-space:nowrap;' +
-				'width: calc(100% + 16px - 235px - 324px - 12%);');
+			//  Stop live event overflowing behind the screen
+			rightnow.setAttribute('style', 'overflow:hidden; white-space:nowrap;');
 		}
 
 		// get labels of optgroup and option
