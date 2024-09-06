@@ -132,22 +132,6 @@
 		"title": "HT-Dog",
 		"img": "https://www.foxtrick.org/res/linkicons/ht-dog.gif"
 	},
-	"Ht4u": {
-		"playerlink": {
-			"url": "https://ht4u.altervista.org/index.php",
-			"filters": ["age"]
-		},
-		"ageranges": [[27, 99]],
-		"title": "Primary Skill drop Calculator",
-		"img": "https://www.foxtrick.org/res/linkicons/Ht4u.png"
-	},
-	"Ht4uTS": {
-		"traininglink": {
-			"url": "https://ht4u.altervista.org/TSpredictor/team_spirit_predictor.php"
-		},
-		"title": "Team Spirit Calculator",
-		"img": "https://www.foxtrick.org/res/linkicons/Ht4uTS.png"
-	},
 	"staminia": {
 		"playerlink": {
 			"url": "http://lizardopoli.altervista.org/staminia/"
