@@ -50,7 +50,7 @@ Foxtrick.modules['ElectionTable'] = {
 				for (var i = 0; i < lis.length; ++i) {
 					var imgs = lis[i].getElementsByTagName('img');
 					// count only if not withdrawn
-					if (imgs.length < 2 || imgs[1].src.search(/withdrawnStamp/i) != -1)
+					if (imgs.length < 2 || imgs[1].src.search(/withdrawnStamp/i) == -1)
 						++sum;
 				}
 
