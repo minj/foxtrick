@@ -272,7 +272,7 @@
 			"1000": "Hattrick International",
 			"1001": "? {LimitedLeagues}:{14}",
 			"1002": "? {anniversaryLeague}:{5}",
-			"1003": "Homegrown League",
+			"1003": "? {leagueDetails}:{136}",
 			"101": "Malta",
 			"102": "Krigizstan",
 			"103": "Moldova",
