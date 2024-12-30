@@ -27,7 +27,7 @@
 		{
 			"duty": "translator",
 			"id": "10167326",
-			"name": "SilesiaVratislavia"
+			"name": "<SilesiaVratislavia>"
 		},
 		{
 			"duty": "supporter",
@@ -1012,7 +1012,7 @@
 		{
 			"duty": "supporter",
 			"id": "3150937",
-			"name": "Hidetoschi"
+			"name": "<Hidetoschi>"
 		},
 		{
 			"duty": "supporter",
@@ -1842,7 +1842,7 @@
 		{
 			"duty": "translator",
 			"id": "9100817",
-			"name": "DavidatorusF"
+			"name": "<DavidatorusF>"
 		},
 		{
 			"duty": "supporter",
