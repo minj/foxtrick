@@ -80,7 +80,6 @@
 			"leagues": {
 				"8": "USA",
 				"19": "Colombia",
-				"23": "Peru",
 				"100": "El Salvador"
 			},
 			"name": "US$ (US dollar)",
@@ -345,7 +344,7 @@
 			"code": "CZK",
 			"eurorate": "0.025",
 			"leagues": {
-				"52": "Czech Republic"
+				"52": "Czechia"
 			},
 			"name": "Kč (Česká koruna)",
 			"symbol": "Kč"
@@ -1034,6 +1033,42 @@
 			},
 			"name": "French Pacific Franc (Tahitian)",
 			"symbol": "XPF"
+		},
+		{
+			"code": "BSD",
+			"eurorate": "1.0",
+			"leagues": {
+				"172": "Bahamas"
+			},
+			"name": "Bahamian dollar",
+			"symbol": "BS$"
+		},
+		{
+			"code": "RWF",
+			"eurorate": "0.05",
+			"leagues": {
+				"173": "Rwanda"
+			},
+			"name": "Rwandan franc",
+			"symbol": "RWF"
+		},
+		{
+			"code": "PEN",
+			"eurorate": "1.0",
+			"leagues": {
+				"23": "Peru"
+			},
+			"name": "Peruvian sol",
+			"symbol": "S/"
+		},
+		{
+			"code": "GNF",
+			"eurorate": "100.0",
+			"leagues": {
+				"171": "Guinea"
+			},
+			"name": "Guinean franc",
+			"symbol": "franc"
 		},
 		{
 			"code": "HRK",

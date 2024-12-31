@@ -131,7 +131,7 @@ Foxtrick.log.cache = '';
 
 Foxtrick.log.client = null;
 Foxtrick.lazyProp(Foxtrick.log, 'client', () => {
-	var client = new Foxtrick.exceptionless.ExceptionlessClient('Z6ACuQcWkqEirnhl1n7FD38J0rWxYNepS2DN9s7F', 'https://bugs.foxtrick.org');
+	var client = new Foxtrick.exceptionless.ExceptionlessClient('grAEJTrH20BcgqO3sF4bIlnXhgZfMCqCuE9gUsLG', 'https://api.exceptionless.io');
 	client.config.updateSettingsWhenIdleInterval = 0;
 	client.config.useReferenceIds(); // Foxtrick.log.client.getLastReferenceId();
 	client.config.includeMachineName = false;
@@ -328,7 +328,8 @@ Foxtrick.reportError = (err) => {
 
 	switch (Foxtrick.Prefs.getString('errorReporting')) {
 		case 'reportAll':
-			report();
+			// Disabled while using free plan on exceptionless.io
+			//report();
 			break;
 		case 'ignoreAll':
 			return;

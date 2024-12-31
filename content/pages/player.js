@@ -539,13 +539,10 @@ Foxtrick.Pages.Player.getSpecialtyNumber = function(doc) {
 		var playerNode = doc.querySelector('.playerInfo');
 		var isNewDesign = !!playerNode.querySelector('.transferPlayerInformation');
 
-		/** @type {HTMLTableElement} */
-		var playerInfo = playerNode.querySelector('table');
-
 		if (isNewDesign) {
 			const SPEC_PREFIX = 'icon-speciality-'; // HT-TYPO
 			const SPEC_SUFFIX = 'trSpeciality'; // HT-TYPO
-			let specTd = playerInfo.querySelector(`tr[id$="${SPEC_SUFFIX}"] td:nth-child(2)`);
+			let specTd = playerNode.querySelector(`.transferPlayerInformation table tr[id$="${SPEC_SUFFIX}"] td:nth-child(2)`);
 			let specIcon;
 			if (specTd && (specIcon = specTd.querySelector(`i[class*="${SPEC_PREFIX}"]`))) {
 				let classes = [...specIcon.classList];
@@ -554,6 +551,8 @@ Foxtrick.Pages.Player.getSpecialtyNumber = function(doc) {
 			}
 		}
 		else {
+			/** @type {HTMLTableElement} */
+			let playerInfo = playerNode.querySelector('table');
 			let specRow = playerInfo.rows[5];
 			if (specRow) {
 				let specText = specRow.cells[1].textContent.trim();
@@ -618,7 +617,7 @@ Foxtrick.Pages.Player.getSkillsWithText = function(doc) {
 			/** @type {HTMLTableElement} */
 			var skillTable;
 			if (this.isSenior(doc)) {
-				skillTable = doc.querySelector('.transferPlayerSkills, .mainBox table');
+				skillTable = doc.querySelector('.transferPlayerSkills, .mainBox:not(.ft-dummy) table');
 				return this.parseSeniorSkills(skillTable);
 			}
 

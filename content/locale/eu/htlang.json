@@ -272,6 +272,7 @@
 			"1000": "Hattrick International",
 			"1001": "\"Apache\" liga (Edizio mugatua)",
 			"1002": "Hattrick-en Urteurrenaren liga",
+			"1003": "Harrobiko Liga",
 			"101": "Malta",
 			"102": "Kirgizistan",
 			"103": "Moldavia",
@@ -342,6 +343,9 @@
 			"169": "Guyana",
 			"17": "Kanada",
 			"170": "Tahiti",
+			"171": "Ginea",
+			"172": "Bahamak",
+			"173": "Ruanda",
 			"18": "Txile",
 			"19": "Kolonbia",
 			"2": "Ingalaterra",
@@ -374,14 +378,14 @@
 			"5": "Frantzia",
 			"50": "Grezia",
 			"51": "Hungaria",
-			"52": "Txekiar Errepublika",
+			"52": "Txekia",
 			"53": "Letonia",
 			"54": "Indonesia",
 			"55": "Filipinak",
 			"56": "Estonia",
 			"57": "Serbia",
 			"58": "Kroazia",
-			"59": "Hong Kong",
+			"59": "Hong Kong, Txina",
 			"6": "Mexiko",
 			"60": "Taiwan",
 			"61": "Gales",
@@ -806,7 +810,7 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Erdiraketak"
+				"value": "Hegalekoa"
 			},
 			{
 				"type": "Shoot",

@@ -2,27 +2,11 @@
 	"links": [
 		{
 			"id": "homepage",
-			"href": "https://www.foxtrick.org/"
-		},
-		{
-			"id": "bugTracker",
-			"href": "https://github.com/minj/foxtrick/issues"
+			"href": "https://foxtrick-ng.github.io/"
 		},
 		{
 			"id": "hattrickForum",
 			"href": "https://www.hattrick.org/goto.ashx?path=/Forum/Overview.aspx?v=0%26f=173635"
-		},
-		{
-			"id": "screenshots",
-			"href": "https://www.foxtrick.org/screenshots/"
-		},
-		{
-			"id": "beta",
-			"href": "https://www.foxtrick.org/download/beta"
-		},
-		{
-			"id": "recentChanges",
-			"href": "https://github.com/minj/foxtrick"
 		}
 	],
 	"maintainers": [

@@ -272,6 +272,7 @@
 			"1000": "Hattrick International",
 			"1001": "Apache League (Limited Edition)",
 			"1002": "Hattrick Jubileumcompetitie",
+			"1003": "Homegrown League",
 			"101": "Malta",
 			"102": "Kirgizië",
 			"103": "Moldavië",
@@ -320,7 +321,7 @@
 			"148": "Palestina",
 			"149": "Sao Tomé en Principe",
 			"15": "Oceanië",
-			"151": "De Komoren",
+			"151": "Komoren",
 			"152": "Sri Lanka",
 			"153": "Curaçao",
 			"154": "Guam",
@@ -342,6 +343,9 @@
 			"169": "Guyana",
 			"17": "Canada",
 			"170": "Tahiti",
+			"171": "Guinee",
+			"172": "Bahama's",
+			"173": "Rwanda",
 			"18": "Chili",
 			"19": "Colombia",
 			"2": "Engeland",
@@ -381,7 +385,7 @@
 			"56": "Estland",
 			"57": "Servië",
 			"58": "Kroatië",
-			"59": "Hong Kong",
+			"59": "Hong Kong, China",
 			"6": "Mexico",
 			"60": "Chinees Taipei",
 			"61": "Wales",
@@ -830,7 +834,7 @@
 			},
 			{
 				"type": "DefPos",
-				"value": "Verdedigen (keepers, verdedigers, middenvelders en vleugelspelers)"
+				"value": "Verdedigen (doelmannen, verdedigers, middenvelders en vleugelspelers)"
 			},
 			{
 				"type": "WingAtt",

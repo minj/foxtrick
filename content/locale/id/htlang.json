@@ -249,11 +249,11 @@
 				"value": "1"
 			},
 			{
-				"text": "benar",
+				"text": "jujur",
 				"value": "2"
 			},
 			{
-				"text": "jujur",
+				"text": "alim",
 				"value": "3"
 			},
 			{
@@ -261,7 +261,7 @@
 				"value": "4"
 			},
 			{
-				"text": "seperti malaikat",
+				"text": "saleh",
 				"value": "5"
 			}
 		],
@@ -272,6 +272,7 @@
 			"1000": "Hattrick International",
 			"1001": "Liga Apache (Edisi Terbatas)",
 			"1002": "Liga Anniversary Hattrick",
+			"1003": "Liga Binaan Lokal",
 			"101": "Malta",
 			"102": "Kirgistan",
 			"103": "Moldova",
@@ -342,6 +343,9 @@
 			"169": "Guyana",
 			"17": "Canada",
 			"170": "Tahiti",
+			"171": "Guinea",
+			"172": "Bahama",
+			"173": "Rwanda",
 			"18": "Chili",
 			"19": "Kolombia",
 			"2": "Inggris",
@@ -381,7 +385,7 @@
 			"56": "Estonia",
 			"57": "Serbia",
 			"58": "Kroasia",
-			"59": "HongKong",
+			"59": "Hong Kong, China",
 			"6": "Meksiko",
 			"60": "Taiwan",
 			"61": "Wales",

@@ -1438,7 +1438,7 @@ Foxtrick.modules.SkillTable = {
 					insertParent.appendChild(tableDiv);
 				}
 				else {
-					var playerList = doc.querySelector('.playerList');
+					var playerList = doc.querySelector('#mainBody > .playerList');
 					if (playerList) {
 						// If there is playerList, as there is in youth/senior teams,
 						// insert before it. In such cases, there would be category headers

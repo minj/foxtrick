@@ -105,8 +105,8 @@ Foxtrick.modules['PsicoTSI'] = {
 			return;
 
 		p.tsi = Foxtrick.Pages.Player.getTsi(doc);
-		let wo = Foxtrick.Pages.Player.getWage(doc);
-		p.salary = wo && wo.base;
+		p.salary = Foxtrick.Pages.Player.getWage(doc).base;
+		p.specialtyNumber = Foxtrick.Pages.Player.getSpecialtyNumber(doc);
 		p.isAbroad = false;
 
 		var attrs = Foxtrick.Pages.Player.getAttributes(doc);
@@ -217,7 +217,10 @@ Foxtrick.modules['PsicoTSI'] = {
 		let age = p.ageYears || p.age.years;
 		let currTSI = p.tsi;
 		let currWAGE = currRate ? Math.floor(p.salary / (p.isAbroad ? 1.2 : 1) * currRate) : 0;
-
+		if (p.specialtyNumber) {
+			// players with a speciality have a 10% higher salary
+			currWAGE = currWAGE * (10 / 11);
+		}
 		let frm = p.form;
 		let sta = p.stamina;
 

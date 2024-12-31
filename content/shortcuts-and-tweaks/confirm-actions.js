@@ -142,9 +142,7 @@ Foxtrick.modules.ConfirmActions = {
 			let confirm = doc.getElementById('ft-sell-confirm');
 			if (sellText && !confirm) {
 				let msgTemplate = Foxtrick.L10n.getString('ConfirmActions.transferlist');
-				let price = sellText.value.split('').reverse().join('');
-				price = price.replace(/(.{3})(?!$)/g, '$1' + NBSP).split('').reverse().join('');
-
+				let price = sellText.value.replace(/\s/g,'').replace(/\B(?=(\d{3})+(?!\d))/g, NBSP);
 				let msg = msgTemplate.replace(/%s/, price);
 				let msgPara = doc.createElement('p');
 				if (Foxtrick.util.layout.hasMultipleTeams(doc)) {

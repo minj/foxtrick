@@ -420,7 +420,7 @@ Foxtrick.modules['PlayerFilters'] = {
 			};
 
 			var body = doc.getElementById('mainBody');
-			var pList = doc.querySelector('.playerList');
+			var pList = doc.querySelector('#mainBody > .playerList');
 			if (!pList) {
 				// presumably fog of war in NT
 				return;

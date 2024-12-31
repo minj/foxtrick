@@ -272,6 +272,7 @@
 			"1000": "Hattrick International",
 			"1001": "Apache Liga (Limitovaná Edice)",
 			"1002": "Hattricková výroční liga",
+			"1003": "Homegrown League",
 			"101": "Malta",
 			"102": "Kyrgyzstán",
 			"103": "Moldavsko",
@@ -342,6 +343,9 @@
 			"169": "Guyana",
 			"17": "Kanada",
 			"170": "Tahiti",
+			"171": "Guinea",
+			"172": "Bahamy",
+			"173": "Rwanda",
 			"18": "Chile",
 			"19": "Kolumbie",
 			"2": "Anglie",
@@ -374,7 +378,7 @@
 			"5": "Francie",
 			"50": "Řecko",
 			"51": "Maďarsko",
-			"52": "Česká republika",
+			"52": "Česko",
 			"53": "Lotyšsko",
 			"54": "Indonésie",
 			"55": "Filipíny",
@@ -502,7 +506,7 @@
 				"value": "19"
 			},
 			{
-				"text": "Boží",
+				"text": "boží",
 				"value": "20"
 			}
 		],

@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 pref("extensions.foxtrick.prefs.CopyPostingStyle", "ht-ml");
-pref("extensions.foxtrick.prefs.version", "0.17.9");
+pref("extensions.foxtrick.prefs.version", "0.18.0");
 pref("extensions.foxtrick.prefs.branch", "dev");
 pref("extensions.foxtrick.prefs.disableOnStage", false);
 pref("extensions.foxtrick.prefs.disableTemporary", false);
@@ -756,7 +756,6 @@ pref("extensions.foxtrick.prefs.module.TickerColoring.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferComparePlayers.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferComparePlayers.ShowProfit.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferDeadline.enabled", true);
-pref("extensions.foxtrick.prefs.module.TransferHistoryFilters.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferSearchFilters.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferSearchResultFilters.enabled", true);
 pref("extensions.foxtrick.prefs.module.TableOfStatisticalTruth.enabled", true);

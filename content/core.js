@@ -77,14 +77,15 @@ Foxtrick.modules.Core = {
 	},
 
 	/**
-	* @param {document} doc
-	*/
+	 * test
+	 * @param {Document} doc HTML document object
+	 */
 	showReleaseModal: function(doc) {
 		// TODO: this needs maintenance:
 		// use release-notes-links.yml directly
 
 		var CONTRIBUTE_URL = 'https://www.foxtrick.org/contribute';
-		var CHANGES_URL = 'foxtrick://preferences.html#tab=changes';
+		var CHANGES_URL = 'https://foxtrick-ng.github.io/releasenotes.html';
 		var UPDATES_URL = 'https://twitter.com/Foxtrick';
 
 		var content = doc.createDocumentFragment();
@@ -95,9 +96,11 @@ Foxtrick.modules.Core = {
 		header.textContent = Foxtrick.L10n.getString('changes.newVersion');
 		content.appendChild(header);
 
+		/* disable until we have a new contribute page
 		var pSupport = doc.createElement('p');
 		Foxtrick.L10n.appendLink('changes.support', pSupport, CONTRIBUTE_URL);
 		content.appendChild(pSupport);
+		*/
 
 		var link = doc.createElement('a');
 		link.href = CHANGES_URL;
@@ -105,10 +108,11 @@ Foxtrick.modules.Core = {
 		link.target = '_blank';
 		content.appendChild(link);
 
+		/* disable until we decide what to replace the Twitter link with, if anything
 		var pUpdates = doc.createElement('p');
 		Foxtrick.L10n.appendLink('changes.updates', pUpdates, UPDATES_URL);
 		content.appendChild(pUpdates);
-
+		*/
 		Foxtrick.makeModal(doc, Foxtrick.version, content);
 	},
 
@@ -341,7 +345,7 @@ Foxtrick.modules.Core = {
 	 */
 	addBugReportLink: function(doc) {
 		const NOTE_ID = 'ft-bug-report-confirm';
-		const BUG_DATA_URL = 'https://www.foxtrick.org/bug-report-data';
+		const BUG_DATA_URL = 'https://foxtrick-ng.github.io/datacollection.html';
 
 		var bottom = doc.getElementById('bottom');
 		if (!bottom)
@@ -395,8 +399,8 @@ Foxtrick.modules.Core = {
 				return;
 
 
-			// add a somewhat sane limit of 200K
-			const Ki = 1024, KB = 200, MAX_LENGTH = KB * Ki;
+			// set to 50K for free exceptionless.io
+			const Ki = 1024, KB = 50, MAX_LENGTH = KB * Ki;
 
 			var bug = log;
 			if (bug.length > MAX_LENGTH)
@@ -446,7 +450,7 @@ Foxtrick.modules.Core = {
 	 */
 	displayErrorNotice: function(doc, ask) {
 		const NOTE_ID = 'ft-bug-ask-notice';
-		const BUG_DATA_URL = 'https://www.foxtrick.org/bug-report-data';
+		const BUG_DATA_URL = 'https://foxtrick-ng.github.io/datacollection.html';
 
 		if (doc.getElementById(NOTE_ID))
 			return;
@@ -494,16 +498,18 @@ Foxtrick.modules.Core = {
 			disagree.style.justifyContent = 'space-around';
 			options.appendChild(disagree);
 
-			let always = doc.createElement('button');
-			always.type = 'button';
-			always.textContent = Foxtrick.L10n.getString('reportBug.always');
-			Foxtrick.onClick(always, function() {
-				Foxtrick.Prefs.setString('errorReporting', 'reportAll');
-				let doc = note.ownerDocument;
-				hideNote();
-				Foxtrick.modules.Core.reportBug(doc);
-			});
-			agree.appendChild(always);
+			// Disabled while using free plan on exceptionless.io 
+			//
+			// let always = doc.createElement('button');
+			// always.type = 'button';
+			// always.textContent = Foxtrick.L10n.getString('reportBug.always');
+			// Foxtrick.onClick(always, function() {
+			// 	Foxtrick.Prefs.setString('errorReporting', 'reportAll');
+			// 	let doc = note.ownerDocument;
+			// 	hideNote();
+			// 	Foxtrick.modules.Core.reportBug(doc);
+			// });
+			// agree.appendChild(always);
 
 			let report = doc.createElement('button');
 			report.type = 'button';

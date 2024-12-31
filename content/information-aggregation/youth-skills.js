@@ -673,7 +673,7 @@ Foxtrick.modules['YouthSkills'] = {
 				Foxtrick.modules['TeamStats'].execute(doc);
 		};
 
-		entry = doc.querySelector('.playerList');
+		entry = doc.querySelector('#mainBody > .playerList');
 		if (entry)
 			drawMessage(doc);
 

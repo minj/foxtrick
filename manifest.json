@@ -247,7 +247,6 @@
 			"content/shortcuts-and-tweaks/supportership-expiration-date.js",
 			"content/shortcuts-and-tweaks/table-sort.js",
 			"content/shortcuts-and-tweaks/team-popup-links.js",
-			"content/shortcuts-and-tweaks/transfer-history-filters.js",
 			"content/shortcuts-and-tweaks/transfer-search-filters.js",
 			"content/shortcuts-and-tweaks/transfer-search-result-filters.js",
 			// <!-- end categorized modules -->
@@ -283,7 +282,8 @@
 		"clipboardWrite",
 		"*://chpp.hattrick.org/*",
 		"*://*.foxtrick.org/*",
-		"https://www.fantamondi.it/*"
+		"https://www.fantamondi.it/*",
+		"https://api.exceptionless.io/*"
 	],
 	"optional_permissions": [
 		"https://*.hattrick-youthclub.org/*",
@@ -310,7 +310,7 @@
 		"browser_style": false,
 		"open_in_tab": true
 	},
-	"homepage_url": "https://www.foxtrick.org/",
+	"homepage_url": "https://foxtrick-ng.github.io/",
 	// <!-- gecko-specific -->
 	"browser_specific_settings": {
 		"gecko": {
@@ -320,6 +320,5 @@
 		}
 	},
 	// <!-- end gecko-specific -->
-	"update_url": "https://www.foxtrick.org/nightly/chrome/update.xml",
 	"version": "0.17.9"
 }

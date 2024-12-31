@@ -283,14 +283,16 @@ Foxtrick.modules.PlayerStatsExperience = {
 						'nt_cup_europe',
 						'nt_cup_americas',
 						'nt_cup_africa',
-						'nt_cup_asia',
+						'nt_cup_asia'
 					];
-					if (CONT_CUPS.includes(gameIcon)) {
-						// weeks 11-12 are KO
-						// eslint-disable-next-line no-magic-numbers
-						return !isFinalSeason && week >= 11
-							? 'matchNtContinentalKO'
-							: 'matchNtContinental';
+					for (var contCupName of CONT_CUPS) {
+						if (gameIcon.includes(contCupName)) { // also catch u21, which has the addition "_u21" at the end
+							// weeks 11-12 are KO
+							// eslint-disable-next-line no-magic-numbers
+							return !isFinalSeason && week >= 11
+								? 'matchNtContinentalKO'
+								: 'matchNtContinental';
+						}
 					}
 
 					Foxtrick.log("WARNING: Unmatched gameIcon for NT", gameIcon); // TODO: Can this even happen?

@@ -26,7 +26,8 @@ Foxtrick.modules['LinksManager'] = {
 	links: function(doc) {
 		var userId = Foxtrick.Pages.All.getId(doc);
 		var bcs = Foxtrick.Pages.All.getBreadCrumbs(doc);
-		var userName = bcs[1].textContent;
+		// if bcs is length 1 - no team name in breadcrumbs - we are on the user's own manager page 
+		var userName = bcs[ bcs.length == 1 ? 0 : 1 ].textContent;
 
 		var info = {
 			userId: userId,

@@ -42,7 +42,7 @@ Foxtrick.modules['TeamSelectBox'] = {
 			var hh = pn.removeChild(header);
 			div = Foxtrick.createFeaturedElement(doc, this, 'div');
 			div.appendChild(hh);
-			pn.insertBefore(div, pn.firstChild);
+			pn.appendChild(div, pn.firstChild);
 		}
 		else
 			div = pn.parentNode;
