@@ -22,7 +22,7 @@
 				"value": "4"
 			},
 			{
-				"text": "onzouverlässeg",
+				"text": "hëtzeg",
 				"value": "5"
 			}
 		],
@@ -44,11 +44,11 @@
 				"value": "3"
 			},
 			{
-				"text": "eng beléift Persoun",
+				"text": "eng beléifte Persoun",
 				"value": "4"
 			},
 			{
-				"text": "e beléifte Member vun der Ekipp",
+				"text": "eng Integratiounsfigur",
 				"value": "5"
 			}
 		],
@@ -169,11 +169,11 @@
 				"value": "1"
 			},
 			{
-				"text": "Mer wäerte verléieren",
+				"text": "Mir wäerte verléieren",
 				"value": "2"
 			},
 			{
-				"text": "Se sinn d'Favoritten",
+				"text": "Si sinn d'Favoritten",
 				"value": "3"
 			},
 			{
@@ -181,23 +181,23 @@
 				"value": "4"
 			},
 			{
-				"text": "Dat gëtt eng knapp Affaire",
+				"text": "Dat gëtt eng knapp Affär",
 				"value": "5"
 			},
 			{
-				"text": "Mer sinn am Virdeel",
+				"text": "Mir sinn am Virdeel",
 				"value": "6"
 			},
 			{
-				"text": "Mer si Favoritt",
+				"text": "Mir sinn d'Favoritten",
 				"value": "7"
 			},
 			{
-				"text": "Mer gewannen dat",
+				"text": "Mir gewannen dat",
 				"value": "8"
 			},
 			{
-				"text": "Dat gëtt eng liicht Affaire",
+				"text": "Dat gëtt einfach",
 				"value": "9"
 			},
 			{
@@ -207,41 +207,41 @@
 		],
 		"fans_season": [
 			{
-				"text": "Mer sinn net prett fir dës Divisioun.",
+				"text": "Mir sinn net prett fir dës Divisioun",
 				"value": "0"
 			},
 			{
-				"text": "All Dag méi an dëser Divisioun ass e Bonus.",
+				"text": "All Dag méi an dëser Divisioun ass e Bonus",
 				"value": "1"
 			},
 			{
-				"text": "Mer mussen eis druginn, fir dobäi ze bleiwen.",
+				"text": "Mir mussen eis druginn, fir dran ze bleiwen",
 				"value": "2"
 			},
 			{
-				"text": "Eng Plaz an der Mëtt vun der Tabell wier flott.",
+				"text": "Eng Plaz an der Mëtt vun der Tabell wier flott",
 				"value": "3"
 			},
 			{
-				"text": "Mer gehéieren an d'Top 4.",
+				"text": "Mer gehéieren an d'Top 4",
 				"value": "4"
 			},
 			{
-				"text": "Eist Zil sollt den Titel sinn!",
+				"text": "Eist Zil ass den Titel!",
 				"value": "5"
 			},
 			{
-				"text": "Dës Saison musse mer den Titel gewannen.",
+				"text": "Mir mussn dës Saison gewannen",
 				"value": "6"
 			},
 			{
-				"text": "Mer sinn ze gutt fir déi heiten Divisioun!",
+				"text": "Mir sinn ze gutt fir déi heiten Divisioun!",
 				"value": "7"
 			}
 		],
 		"honesty": [
 			{
-				"text": "dreckeg",
+				"text": "nidderträchteg",
 				"value": "0"
 			},
 			{
@@ -253,11 +253,11 @@
 				"value": "2"
 			},
 			{
-				"text": "korrekt",
+				"text": "opriichteg",
 				"value": "3"
 			},
 			{
-				"text": "fair",
+				"text": "tadellos",
 				"value": "4"
 			},
 			{
@@ -346,7 +346,7 @@
 			"171": "Guinea",
 			"172": "Bahamas",
 			"173": "Ruanda",
-			"174": "Saint Kitts and Nevis",
+			"174": "Saint Kitts & Nevis",
 			"175": "Equatorial Guinea",
 			"18": "Chile",
 			"19": "Kolumbien",
@@ -681,7 +681,7 @@
 				"value": "3"
 			},
 			{
-				"text": "passiv",
+				"text": "roueg",
 				"value": "4"
 			},
 			{
@@ -705,7 +705,7 @@
 				"value": "9"
 			},
 			{
-				"text": "wéi am Paradäis",
+				"text": "wéi am Paradis",
 				"value": "10"
 			}
 		],
