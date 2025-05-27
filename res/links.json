@@ -415,13 +415,13 @@
 		"title": "Hattrick Portal NT/U20 tracker",
 		"img": "https://www.foxtrick.org/res/linkicons/hattrickportal.ico",
 		"trackerleaguelink": {
-			"url": "https://hattrickportal.pro/Tracker"
+			"url": "https://hattrickportal.online/Tracker"
 		},
 		"trackernationalteamlink": {
-			"url": "https://hattrickportal.pro/Tracker"
+			"url": "https://hattrickportal.online/Tracker"
 		},
 		"trackerplayerlink": {
-			"url": "https://hattrickportal.pro/Tracker"
+			"url": "https://hattrickportal.online/Tracker"
 		}
 	},
 	"hattrick-youthclub": {
