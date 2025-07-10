@@ -161,47 +161,47 @@
 		],
 		"fans_match": [
 			{
-				"text": "Wir treten wohl besser gar nicht erst an!",
+				"text": "Wir treten wohl besser gar nicht erst an",
 				"value": "0"
 			},
 			{
-				"text": "Oh je, da werden wir garantiert deklassiert.",
+				"text": "Oh je, da werden wir garantiert deklassiert",
 				"value": "1"
 			},
 			{
-				"text": "Das wird nichts.",
+				"text": "Das wird nichts",
 				"value": "2"
 			},
 			{
-				"text": "Wir sind Außenseiter.",
+				"text": "Wir sind Außenseiter",
 				"value": "3"
 			},
 			{
-				"text": "Wir sind etwas unterlegen.",
+				"text": "Wir sind etwas unterlegen",
 				"value": "4"
 			},
 			{
-				"text": "Das wird eine knappe Angelegenheit.",
+				"text": "Das wird eine knappe Angelegenheit",
 				"value": "5"
 			},
 			{
-				"text": "Wir sind leicht überlegen.",
+				"text": "Wir sind leicht überlegen",
 				"value": "6"
 			},
 			{
-				"text": "Wir sind die Favoriten.",
+				"text": "Wir sind die Favoriten",
 				"value": "7"
 			},
 			{
-				"text": "Wir werden gewinnen!",
+				"text": "Wir werden gewinnen",
 				"value": "8"
 			},
 			{
-				"text": "Das wird ein Kinderspiel!",
+				"text": "Das wird ein Kinderspiel",
 				"value": "9"
 			},
 			{
-				"text": "Demütigen wir sie!",
+				"text": "Demütigen wir sie",
 				"value": "10"
 			}
 		],
