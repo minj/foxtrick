@@ -573,13 +573,17 @@ Foxtrick.util.load.sync = function(url) {
 	// MV3: Use fetch() - XMLHttpRequest does not exist in service workers
 	return fetch(url)
 		.then(function(response) {
+			Foxtrick.log('loadSync: fetch() succeeded for:', url, '| status:', response.status, '| ok:', response.ok);
 			if (!response.ok) {
 				return null;
 			}
 			return response.text();
 		})
 		.catch(function(e) {
-			Foxtrick.log('Error loading resource:', url, e);
+			Foxtrick.log('loadSync: fetch() FAILED for:', url);
+			Foxtrick.log('loadSync: Error type:', e.constructor.name);
+			Foxtrick.log('loadSync: Error message:', e.message);
+			Foxtrick.log('loadSync: Full error:', e);
 			return null;
 		});
 };

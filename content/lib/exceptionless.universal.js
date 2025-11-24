@@ -3,10 +3,12 @@
  * @license MIT
  * @namespace TraceKit
  */
+// MV3: Ensure window is defined for service workers BEFORE the IIFE
+var window = typeof globalThis !== 'undefined' ? globalThis :
+             typeof self !== 'undefined' ? self : {};
+
+// MV3: Use safe global object for service worker compatibility
 (function(window, undefined) {
-if (!window) {
-    return;
-}
 
 var TraceKit = {};
 var _oldTraceKit = window.TraceKit;

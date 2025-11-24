@@ -15,3 +15,5 @@ maintainer/locale/Hattrick/CHPP/AccessToken.py
 build/
 content/locale/af/
 node_modules
+content/background-bundle.js
+content/background-bundle.js.map

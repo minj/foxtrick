@@ -569,17 +569,26 @@ Foxtrick.util.load.sync = function(url) {
 		return Promise.resolve(null);
 	}
 
+	// MV3: Debug logging to understand fetch failures
+	Foxtrick.log('loadSync: Attempting to fetch URL:', url);
+	Foxtrick.log('loadSync: Foxtrick.InternalPath is:', Foxtrick.InternalPath);
+	Foxtrick.log('loadSync: URL starts with chrome-extension://?', url.startsWith('chrome-extension://'));
 
 	// MV3: Use fetch() - XMLHttpRequest does not exist in service workers
 	return fetch(url)
 		.then(function(response) {
+			Foxtrick.log('loadSync: fetch() succeeded for:', url, '| status:', response.status, '| ok:', response.ok);
 			if (!response.ok) {
+				Foxtrick.log('loadSync: HTTP error', response.status, 'for:', url);
 				return null;
 			}
 			return response.text();
 		})
 		.catch(function(e) {
-			Foxtrick.log('Error loading resource:', url, e);
+			Foxtrick.log('loadSync: fetch() FAILED for:', url);
+			Foxtrick.log('loadSync: Error type:', e.constructor.name);
+			Foxtrick.log('loadSync: Error message:', e.message);
+			Foxtrick.log('loadSync: Full error:', e);
 			return null;
 		});
 };

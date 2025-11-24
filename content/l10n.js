@@ -10,9 +10,11 @@
 /* global PluralForm */
 
 /* eslint-disable */
-if (!this.Foxtrick)
+// MV3: Use globalThis for service worker compatibility
+if (typeof globalThis.Foxtrick === 'undefined')
 	// @ts-ignore
-	var Foxtrick = {};
+	globalThis.Foxtrick = {};
+var Foxtrick = globalThis.Foxtrick;
 /* eslint-enable */
 
 Foxtrick.L10n = (() => ({
@@ -864,24 +866,31 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 			screenshotsDefault: null,
 			screenshots: null,
 
-			init: function() {
+			// MV3: Converted to async for service worker compatibility
+			init: async function() {
 				var L10N_BUNDLE_PATH = Foxtrick.InternalPath + 'foxtrick.properties';
 
 				// var SS_BUNDLE_PATH = Foxtrick.InternalPath + 'foxtrick.screenshots';
 				var L10N_PATH = Foxtrick.InternalPath + 'locale/';
 
 				// get htlang.json for each locale
-				if (!/\/preferences\.html$/.test(window.location.pathname)) {
+				// MV3: Check if window.location exists (not in service workers)
+			var pathname = (typeof window !== 'undefined' && window.location)
+				? window.location.pathname
+				: '';
+			if (!/\/preferences\.html$/.test(pathname)) {
 					// don't run in prefs
 					// unnecessary and hurts performance
 					for (let locale of Foxtrick.L10n.locales) {
 						let url = L10N_PATH + locale + '/htlang.json';
-						let text = Foxtrick.util.load.sync(url);
+						// MV3: await async load
+						let text = await Foxtrick.util.load.sync(url);
 						this.htLanguagesJSON[locale] = JSON.parse(text);
 					}
 				}
 
-				var propsDefault = Foxtrick.util.load.sync(L10N_BUNDLE_PATH);
+				// MV3: await async load
+				var propsDefault = await Foxtrick.util.load.sync(L10N_BUNDLE_PATH);
 				this.propertiesDefault = this.__parse(propsDefault);
 
 				// this.screenshotsDefault = Foxtrick.util.load.sync(SS_BUNDLE_PATH);
@@ -895,7 +904,8 @@ Foxtrick.L10n.getCountryNameLocal = function(leagueId, lang) {
 
 				var l10nBundlePath = L10N_PATH + localeCode + '/foxtrick.properties';
 				try {
-					let props = Foxtrick.util.load.sync(l10nBundlePath);
+					// MV3: await async load
+					let props = await Foxtrick.util.load.sync(l10nBundlePath);
 					if (props === null) {
 						Foxtrick.log('Use default properties for locale', localeCode);
 						this.properties = this.propertiesDefault;

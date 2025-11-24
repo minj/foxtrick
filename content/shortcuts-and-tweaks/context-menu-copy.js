@@ -69,6 +69,20 @@
 
 			// called from background script
 			var chromeInit = function() {
+				// MV3: Use chrome.contextMenus.onClicked event instead of onclick property
+				chrome.contextMenus.onClicked.addListener((info, tab) => {
+					// Find the entry that matches the menuItemId
+					for (let type in entries) {
+						let entry = entries[type];
+						if (entry.item === info.menuItemId) {
+							// FIXME copying from background
+							// does not work in WebExt
+							Foxtrick.copy(document, entry.copyText);
+							break;
+						}
+					}
+				});
+
 				// update menu in background on mousedown
 				Foxtrick.SB.ext.onRequest.addListener((request) => {
 					if (request.req !== 'updateContextMenu')
@@ -100,10 +114,11 @@
 						let source = request.entries[type];
 
 						target.copyText = source.copyText;
+						// MV3: Remove onclick, store menu ID for event handler
 						target.item = chrome.contextMenus.create({
+							id: type, // Add explicit ID for event matching
 							title: source.title,
 							contexts: ['all'],
-							onclick: copy(target),
 							documentUrlPatterns,
 						});
 					}

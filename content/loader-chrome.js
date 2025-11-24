@@ -8,9 +8,11 @@
 'use strict';
 
 /* eslint-disable */
-if (!this.Foxtrick)
+// MV3: Use globalThis for service worker compatibility
+if (typeof globalThis.Foxtrick === 'undefined')
 	// @ts-ignore
-	var Foxtrick = {};
+	globalThis.Foxtrick = {};
+var Foxtrick = globalThis.Foxtrick;
 /* eslint-enable */
 
 if (!Foxtrick.loader)

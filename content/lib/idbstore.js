@@ -1407,4 +1407,20 @@
 
     return IDBStore;
 
-}, this);
+}, typeof globalThis !== 'undefined' ? globalThis : this);
+
+// MV3: Force global export for service worker/webpack compatibility
+// This ensures IDBStore is available even when webpack intercepts UMD
+(function() {
+    'use strict';
+    var IDBStore = typeof module !== 'undefined' && module.exports ? module.exports :
+                   typeof globalThis !== 'undefined' && globalThis.IDBStore ? globalThis.IDBStore : null;
+
+    if (IDBStore) {
+        if (typeof globalThis !== 'undefined') {
+            globalThis.IDBStore = IDBStore;
+        } else if (typeof self !== 'undefined') {
+            self.IDBStore = IDBStore;
+        }
+    }
+})();

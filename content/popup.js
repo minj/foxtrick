@@ -9,98 +9,98 @@
 
 // jscs:disable disallowFunctionDeclarations
 
-var BackgroundPage, isChrome = false, Foxtrick;
-if (typeof window.chrome == 'object') {
-	BackgroundPage = chrome.extension.getBackgroundPage();
-	isChrome = true;
-	Foxtrick = BackgroundPage.Foxtrick;
-}
+var Foxtrick = {
+	strings: {}
+};
 
 function shutDown() {
 	window.close();
 }
-function visitLink() {
-	if (isChrome) {
-		// jshint -W040
-		chrome.tabs.create({ url: this.href });
-		// jshint +W040
 
-		window.close();
-
-		return false;
-	}
-
-	shutDown();
+function visitLink(e) {
+	e.preventDefault();
+	chrome.tabs.create({ url: this.href });
+	window.close();
+	return false;
 }
 
 function toggleEnabled() {
 	var checked = document.getElementById('foxtrick-toolbar-deactivate').checked;
-	Foxtrick.Prefs.setBool('disableTemporary', checked);
+	chrome.runtime.sendMessage({ req: 'setValue', key: 'disableTemporary', value: checked, type: 'boolean' });
 	window.close();
 }
+
 function toggleHighlight() {
 	var checked = document.getElementById('foxtrick-toolbar-highlight').checked;
-	Foxtrick.Prefs.setBool('featureHighlight', checked);
+	chrome.runtime.sendMessage({ req: 'setValue', key: 'featureHighlight', value: checked, type: 'boolean' });
 	window.close();
 }
+
 function toggleTranslationKeys() {
 	var checked = document.getElementById('foxtrick-toolbar-translationKeys').checked;
-	Foxtrick.Prefs.setBool('translationKeys', checked);
+	chrome.runtime.sendMessage({ req: 'setValue', key: 'translationKeys', value: checked, type: 'boolean' });
 	window.close();
 }
 
 function clearCache() {
-	Foxtrick.clearCaches();
+	chrome.runtime.sendMessage({ req: 'cacheClear' });
 	window.close();
 }
 
 function openPrefs() {
-	document.location.href = 'preferences.html?width=700#tab=on_page';
+	chrome.tabs.create({ url: 'content/preferences.html?width=700#tab=on_page' });
+	window.close();
 }
 
 function init() {
-	var checkbox, label;
-	checkbox = document.getElementById('foxtrick-toolbar-deactivate');
-	checkbox.checked = Foxtrick.Prefs.getBool('disableTemporary');
-	checkbox.addEventListener('click', toggleEnabled);
+	chrome.runtime.sendMessage({ req: 'getPopupData' }, function(response) {
+		if (!response) {
+			console.error('Failed to get popup data');
+			return;
+		}
 
-	checkbox = document.getElementById('foxtrick-toolbar-highlight');
-	checkbox.checked = Foxtrick.Prefs.getBool('featureHighlight');
-	checkbox.addEventListener('click', toggleHighlight);
+		var prefs = response.prefs;
+		var strings = response.strings;
+		Foxtrick.strings = strings;
 
-	checkbox = document.getElementById('foxtrick-toolbar-translationKeys');
-	checkbox.checked = Foxtrick.Prefs.getBool('translationKeys');
-	checkbox.addEventListener('click', toggleTranslationKeys);
+		var checkbox, label;
+		checkbox = document.getElementById('foxtrick-toolbar-deactivate');
+		checkbox.checked = prefs.disableTemporary;
+		checkbox.addEventListener('click', toggleEnabled);
 
-	document.getElementById('foxtrick-toolbar-deactivate-label').textContent =
-		Foxtrick.L10n.getString('toolbar.disableTemporary');
-	document.getElementById('foxtrick-toolbar-highlight-label').textContent =
-		Foxtrick.L10n.getString('toolbar.featureHighlight');
-	document.getElementById('foxtrick-toolbar-translationKeys-label').textContent =
-		Foxtrick.L10n.getString('toolbar.translationKeys');
+		checkbox = document.getElementById('foxtrick-toolbar-highlight');
+		checkbox.checked = prefs.featureHighlight;
+		checkbox.addEventListener('click', toggleHighlight);
 
-	label = document.getElementById('foxtrick-toolbar-options-label');
-	label.textContent = Foxtrick.L10n.getString('toolbar.preferences');
-	label.addEventListener('click', openPrefs);
+		checkbox = document.getElementById('foxtrick-toolbar-translationKeys');
+		checkbox.checked = prefs.translationKeys;
+		checkbox.addEventListener('click', toggleTranslationKeys);
 
-	label = document.getElementById('foxtrick-toolbar-homepage-label');
-	label.textContent = Foxtrick.L10n.getString('link.homepage');
-	label.addEventListener('click', visitLink);
+		document.getElementById('foxtrick-toolbar-deactivate-label').textContent =
+			strings['toolbar.disableTemporary'];
+		document.getElementById('foxtrick-toolbar-highlight-label').textContent =
+			strings['toolbar.featureHighlight'];
+		document.getElementById('foxtrick-toolbar-translationKeys-label').textContent =
+			strings['toolbar.translationKeys'];
 
-	label = document.getElementById('foxtrick-toolbar-contribute-label');
-	var temp = document.createElement('div');
-	var link = Foxtrick.L10n.appendLink('changes.support', temp, label.href);
-	if (link) {
-		label.textContent = link.textContent;
-	}
-	label.addEventListener('click', visitLink);
+		label = document.getElementById('foxtrick-toolbar-options-label');
+		label.textContent = strings['toolbar.preferences'];
+		label.addEventListener('click', openPrefs);
 
-	label = document.getElementById('foxtrick-toolbar-clearCache-label');
-	label.textContent = Foxtrick.L10n.getString('api.clearCache');
-	label.title = Foxtrick.L10n.getString('api.clearCache.title');
-	label.addEventListener('click', clearCache);
+		label = document.getElementById('foxtrick-toolbar-homepage-label');
+		label.textContent = strings['link.homepage'];
+		label.addEventListener('click', visitLink);
+
+		label = document.getElementById('foxtrick-toolbar-contribute-label');
+		// Simple text replacement for now, avoiding complex appendLink logic
+		label.textContent = strings['changes.support'].replace(/<[^>]*>/g, ''); 
+		label.addEventListener('click', visitLink);
+
+		label = document.getElementById('foxtrick-toolbar-clearCache-label');
+		label.textContent = strings['api.clearCache'];
+		label.title = strings['api.clearCache.title'];
+		label.addEventListener('click', clearCache);
+	});
 }
 
-if (Foxtrick) {
-	init();
-}
+document.addEventListener('DOMContentLoaded', init);

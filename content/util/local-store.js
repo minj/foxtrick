@@ -9,9 +9,10 @@
 'use strict';
 
 /* eslint-disable */
-if (!this.Foxtrick)
-	// @ts-ignore
-	var Foxtrick = {};
+// MV3: Use globalThis for service worker compatibility
+if (typeof globalThis.Foxtrick === 'undefined')
+	globalThis.Foxtrick = {};
+var Foxtrick = globalThis.Foxtrick;
 /* eslint-enable */
 
 Foxtrick.storage = {};
@@ -40,6 +41,8 @@ if (Foxtrick.context == 'background') {
 
 						let val = JSON.stringify(value);
 
+						// MV3: localStorage only in non-SW context
+					if (typeof window !== 'undefined' && window.localStorage)
 						window.localStorage.setItem(k, val);
 
 						return k;
@@ -60,7 +63,9 @@ if (Foxtrick.context == 'background') {
 					let promise = Promise.resolve().then(() => {
 
 						let k = PREFIX + key;
-						let val = window.localStorage.getItem(k);
+						let val = (typeof window !== 'undefined' && window.localStorage)
+						? window.localStorage.getItem(k)
+						: null;
 
 						return JSON.parse(val);
 
@@ -97,6 +102,7 @@ if (Foxtrick.context == 'background') {
 
 								mutCursor.delete = function() {
 									return Promise.resolve().then(() => {
+										if (typeof window !== 'undefined' && window.localStorage)
 										window.localStorage.removeItem(PREFIX + key);
 									}).catch(CLEANUP);
 								};
@@ -124,7 +130,8 @@ if (Foxtrick.context == 'background') {
 
 					var promises = [];
 
-					for (let key in window.localStorage) {
+					let localStorage = (typeof window !== 'undefined' && window.localStorage) || {};
+				for (let key in localStorage) {
 						key = key.slice(PREFIX.length);
 
 						if (keyMatches(key)) {
@@ -200,7 +207,7 @@ if (Foxtrick.context == 'background') {
 				});
 
 			}
-			else if (window.localStorage) {
+			else if (typeof window !== 'undefined' && window.localStorage) {
 
 				Promise.resolve(getIDBShim()).then(fulfill);
 

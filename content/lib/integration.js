@@ -18,8 +18,9 @@
 	];
 
 	LIBS.forEach((lib) => {
+		// MV3: Fallback to self instead of window for service worker compatibility
 		var global = typeof globalThis == 'undefined' || typeof globalThis[lib] == 'undefined'
-			? window
+			? (typeof window !== 'undefined' ? window : self)
 			: globalThis;
 
 		if (typeof Foxtrick[lib] == 'undefined')

@@ -7,9 +7,11 @@
 'use strict';
 
 /* eslint-disable */
-if (!this.Foxtrick)
+// MV3: Use globalThis for service worker compatibility
+if (typeof globalThis.Foxtrick === 'undefined')
 	// @ts-ignore
-	var Foxtrick = {};
+	globalThis.Foxtrick = {};
+var Foxtrick = globalThis.Foxtrick;
 /* eslint-enable */
 
 /* globals safari */
@@ -397,7 +399,10 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 		Foxtrick.lazyProp(Foxtrick, 'context', function() {
 			var ret;
 			try {
-				var protocol = window.location.protocol;
+				// MV3: Use self.location for service worker compatibility
+			var protocol = (typeof self !== 'undefined' && self.location)
+				? self.location.protocol
+				: '';
 				if (protocol === 'chrome-extension:' || protocol === 'moz-extension:')
 					ret = 'background';
 				else
@@ -432,8 +437,13 @@ Foxtrick.lazyProp = function(obj, prop, calc) {
 			return handler; // (request, sender, sendResponse) => bool
 		};
 
+		// MV3: chrome.extension.getBackgroundPage() is deprecated
+		// Use message passing instead to communicate with service worker
 		Foxtrick.SB.ext.getBackgroundPage = function() {
-			return chrome.extension.getBackgroundPage();
+			// Return null - service workers don't have a window/document
+			// Code should use sendRequest() for communication instead
+			Foxtrick.log.warn('getBackgroundPage() is deprecated in MV3. Use sendRequest() instead.');
+			return null;
 		};
 		Foxtrick.SB.ext.getURL = function(path) {
 			return chrome.runtime.getURL(path);

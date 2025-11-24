@@ -7,9 +7,10 @@
 'use strict';
 
 /* eslint-disable */
-if (!this.Foxtrick)
-	// @ts-ignore
-	var Foxtrick = {};
+// MV3: Use globalThis for service worker compatibility
+if (typeof globalThis.Foxtrick === 'undefined')
+	globalThis.Foxtrick = {};
+var Foxtrick = globalThis.Foxtrick;
 /* eslint-enable */
 
 /**
@@ -126,7 +127,8 @@ Foxtrick.jsonError = (err) => {
 			};
 		}
 		else if (ERROR_SYMBOL in err) {
-			let obj = new window[err.name]();
+			// MV3: Use self instead of window for global error constructors
+		let obj = new self[err.name]();
 			obj.message = err.message;
 			obj.stack = err.stack;
 			return obj;
@@ -550,16 +552,27 @@ Foxtrick.insertAtCursor = function(textarea, text) {
  * @return {boolean}
  */
 Foxtrick.confirmDialog = function(msg) {
-	// eslint-disable-next-line no-alert
-	return window.confirm(msg);
+	// MV3: Dialogs not available in service workers
+	if (typeof window !== 'undefined' && window.confirm) {
+		// eslint-disable-next-line no-alert
+		return window.confirm(msg);
+	}
+	return false; // Default to cancel in service worker
 };
 
 /**
  * @param  {string} msg
  */
 Foxtrick.alert = function(msg) {
-	// eslint-disable-next-line no-alert
-	window.alert(msg);
+	// MV3: Dialogs not available in service workers
+	if (typeof window !== 'undefined' && window.alert) {
+		// eslint-disable-next-line no-alert
+		window.alert(msg);
+	}
+	else {
+		// Log in service worker context
+		console.log('Alert:', msg);
+	}
 };
 
 /**
@@ -567,7 +580,8 @@ Foxtrick.alert = function(msg) {
  * @return {string}
  */
 Foxtrick.encodeBase64 = function(str) {
-	return window.btoa(unescape(encodeURIComponent(str)));
+	// MV3: btoa is available on self in service workers
+	return self.btoa(unescape(encodeURIComponent(str)));
 };
 
 /**
@@ -576,7 +590,8 @@ Foxtrick.encodeBase64 = function(str) {
  */
 Foxtrick.decodeBase64 = function(str) {
 	try {
-		return decodeURIComponent(escape(window.atob(str)));
+		// MV3: atob is available on self in service workers
+		return decodeURIComponent(escape(self.atob(str)));
 	}
 	catch (e) {
 		Foxtrick.log('Error decoding base64 encoded string', str, e);

@@ -25,8 +25,10 @@ THE SOFTWARE.
 'use strict';
 
 /* eslint-disable */
-if (!this.Foxtrick)
-	var Foxtrick = {};
+// MV3: Use globalThis for service worker compatibility
+if (typeof globalThis.Foxtrick === 'undefined')
+	globalThis.Foxtrick = {};
+var Foxtrick = globalThis.Foxtrick;
 /* eslint-enable */
 
 Foxtrick.psico = {

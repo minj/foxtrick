@@ -915,7 +915,7 @@ Foxtrick.Prefs.translationKeys = function(sender) {
 		if (Foxtrick.context == 'background') {
 
 			var prefsBG = {
-				init: async function() {
+				init: function() {
 					// get preferences
 					// MV3: localStorage not available in service workers
 					// Use chrome.storage.local as primary storage
@@ -925,20 +925,19 @@ Foxtrick.Prefs.translationKeys = function(sender) {
 
 						prefs._prefsChromeDefault = {};
 
-						// MV3: Make async to use await
-				var parsePrefsFile = async (url) => {
-							let string = await Foxtrick.util.load.sync(Foxtrick.InternalPath + url);
+						var parsePrefsFile = (url) => {
+							let string = Foxtrick.util.load.sync(Foxtrick.InternalPath + url);
 
 							Foxtrick.Prefs.parsePrefs(string, (key, value) => {
 								this._prefsChromeDefault[key] = value;
 							});
 						};
 
-						await parsePrefsFile('../defaults/preferences/foxtrick.js');
+						parsePrefsFile('../defaults/preferences/foxtrick.js');
 						if (Foxtrick.platform == 'Chrome')
-							await parsePrefsFile('../defaults/preferences/foxtrick.chrome');
+							parsePrefsFile('../defaults/preferences/foxtrick.chrome');
 						else if (Foxtrick.platform == 'Safari')
-							await parsePrefsFile('../defaults/preferences/foxtrick.safari');
+							parsePrefsFile('../defaults/preferences/foxtrick.safari');
 
 					}
 					catch (e) {

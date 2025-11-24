@@ -10,8 +10,10 @@
 'use strict';
 
 /* eslint-disable */
-if (!this.Foxtrick)
-	var Foxtrick = {};
+// MV3: Use globalThis for service worker compatibility
+if (typeof globalThis.Foxtrick === 'undefined')
+	globalThis.Foxtrick = {};
+var Foxtrick = globalThis.Foxtrick;
 /* eslint-enable */
 
 if (!Foxtrick.loader)
@@ -67,9 +69,10 @@ Foxtrick.loader.background.browserLoad = function() {
 		/** @type {Record<string, string>} */
 		var htLanguagesJSONText;
 
-		let updateResources = function(reInit) {
+		// MV3: Converted to async to handle XMLData async init
+		let updateResources = async function(reInit) {
 			// init resources
-			Foxtrick.entry.init(reInit);
+			await Foxtrick.entry.init(reInit);
 
 			// prepare resources for later transmission to content script
 			currencyJSON = JSON.stringify(Foxtrick.XMLData.htCurrencyJSON);
@@ -85,16 +88,21 @@ Foxtrick.loader.background.browserLoad = function() {
 			Foxtrick.Prefs.deleteValue('preferences.updated');
 		};
 
-		updateResources();
+		// MV3: Use IIFE to await async updateResources
+		let initPromise = (async () => {
+			await updateResources();
 		Foxtrick.Prefs.setBool('featureHighlight', false);
 		Foxtrick.Prefs.setBool('translationKeys', false);
 
 		// calls module.onLoad() after the extension is loaded
+		// Note: In MV3 service workers, there is no document object
+		// Modules should not rely on document in onLoad()
 		for (let module of Object.values(Foxtrick.modules)) {
 			let m = /** @type {FTBackgroundModuleMixin} */ (module);
 			if (typeof m.onLoad === 'function') {
 				try {
-					m.onLoad(document);
+					// Pass null instead of document for MV3 compatibility
+					m.onLoad(null);
 				}
 				catch (e) {
 					Foxtrick.log('Error caught in module', m.MODULE_NAME, ':', e);
@@ -102,7 +110,6 @@ Foxtrick.loader.background.browserLoad = function() {
 			}
 		}
 
-		Foxtrick.SB.ext.onRequest.addListener(this.contentRequestsListener);
 
 		// -- requests functions --
 		// here goes the handlers to content requests of requestName
@@ -113,15 +120,27 @@ Foxtrick.loader.background.browserLoad = function() {
 		// called to parse a copy of the settings and data to the content script
 		// pageLoad: on HT pages for chrome/safari
 		// scriptLoad: once per tab for Fennec
-		this.requests.pageLoad = function(request, sender, sendResponse) {
+		// MV3: Made async to handle async updateResources
+		this.requests.pageLoad = async function(request, sender, sendResponse) {
 			// access user setting directly here, since getBool uses a copy
 			// which needs updating just here
-			if (Foxtrick.arch == 'Sandboxed' && localStorage.getItem('preferences.updated')	||
-				Foxtrick.platform == 'Android' &&
+			// MV3: Use chrome.storage.local instead of localStorage
+			if (Foxtrick.platform == 'Android' &&
 				Foxtrick.Prefs._prefs_gecko.getBoolPref('preferences.updated')) {
 
 				// reInit
-				updateResources(true);
+				await updateResources(true);
+			}
+			else if (Foxtrick.arch == 'Sandboxed') {
+				// Check chrome.storage.local for preferences.updated
+				await new Promise(function(resolve) {
+					chrome.storage.local.get('preferences.updated', async function(result) {
+						if (result['preferences.updated']) {
+							await updateResources(true);
+						}
+						resolve();
+					});
+				});
 			}
 
 			let [prefsChromeDefault, prefsChromeUser] = Foxtrick.Prefs.clone();
@@ -150,7 +169,9 @@ Foxtrick.loader.background.browserLoad = function() {
 			};
 
 			if (request.req == 'pageLoad') {
-				Foxtrick.modules.UI.update(sender.tab);
+				if (Foxtrick.modules.UI) {
+					Foxtrick.modules.UI.update(sender.tab);
+				}
 				resource.cssText = cssTextCollection;
 			}
 
@@ -162,6 +183,23 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		// safari options page
 		this.requests.optionsPageLoad = this.requests.pageLoad;
+
+		})();
+		
+		initPromise.catch(function(e) {
+			Foxtrick.log('Error in async initialization:', e);
+		});
+
+		// MV3: Register listener SYNCHRONOUSLY to catch early messages
+		// Wait for initialization to complete before handling requests
+		Foxtrick.SB.ext.onRequest.addListener((request, sender, sendResponse) => {
+			initPromise.then(() => {
+				Foxtrick.loader.background.contentRequestsListener(request, sender, sendResponse);
+			}).catch(e => {
+				Foxtrick.log('Error in initPromise:', e);
+			});
+			return true; // Keep channel open for async response
+		});
 
 		// ----- end of init part. ------
 
@@ -219,22 +257,39 @@ Foxtrick.loader.background.browserLoad = function() {
 		// };
 
 		this.requests.getDataUrl = function({ url }, sender, sendResponse) {
-			let replaceImage = function(url) {
-				let image = new Image();
-				image.onload = function() {
-					let canvas = document.createElement('canvas');
-					canvas.width = image.width;
-					canvas.height = image.height;
+			let replaceImage = async function(url) {
+				try {
+					// Fetch the image as blob
+					let response = await fetch(url);
+					if (!response.ok) {
+						return sendResponse({ url: '' });
+					}
+
+					let blob = await response.blob();
+					let bitmap = await createImageBitmap(blob);
+
+					// Use OffscreenCanvas for MV3 service worker compatibility
+					let canvas = new OffscreenCanvas(bitmap.width, bitmap.height);
 					let context = canvas.getContext('2d');
-					context.drawImage(image, 0, 0);
-					let dataUrl = canvas.toDataURL();
-					Foxtrick.dataUrlStorage[url] = dataUrl;
-					return sendResponse({ url: dataUrl });
-				};
-				image.onerror = function() {
+					context.drawImage(bitmap, 0, 0);
+
+					// Convert to blob, then to data URL
+					let canvasBlob = await canvas.convertToBlob();
+					let reader = new FileReader();
+					reader.onloadend = function() {
+						let dataUrl = reader.result;
+						Foxtrick.dataUrlStorage[url] = dataUrl;
+						return sendResponse({ url: dataUrl });
+					};
+					reader.onerror = function() {
+						return sendResponse({ url: '' });
+					};
+					reader.readAsDataURL(canvasBlob);
+				}
+				catch (e) {
+					Foxtrick.log('Error converting image to data URL:', e);
 					return sendResponse({ url: '' });
-				};
-				image.src = url;
+				}
 			};
 
 			let dataUrl = Foxtrick.dataUrlStorage[url];
@@ -415,6 +470,25 @@ Foxtrick.loader.background.browserLoad = function() {
 		// this.requests.updateViewportSize = function() {
 		// 	Browser.updateViewportSize();
 		// };
+
+		this.requests.getPopupData = function(request, sender, sendResponse) {
+			let prefs = {
+				disableTemporary: Foxtrick.Prefs.getBool('disableTemporary'),
+				featureHighlight: Foxtrick.Prefs.getBool('featureHighlight'),
+				translationKeys: Foxtrick.Prefs.getBool('translationKeys')
+			};
+			let strings = {
+				'toolbar.disableTemporary': Foxtrick.L10n.getString('toolbar.disableTemporary'),
+				'toolbar.featureHighlight': Foxtrick.L10n.getString('toolbar.featureHighlight'),
+				'toolbar.translationKeys': Foxtrick.L10n.getString('toolbar.translationKeys'),
+				'toolbar.preferences': Foxtrick.L10n.getString('toolbar.preferences'),
+				'link.homepage': Foxtrick.L10n.getString('link.homepage'),
+				'changes.support': Foxtrick.L10n.getString('changes.support'),
+				'api.clearCache': Foxtrick.L10n.getString('api.clearCache'),
+				'api.clearCache.title': Foxtrick.L10n.getString('api.clearCache.title')
+			};
+			sendResponse({ prefs, strings });
+		};
 
 	}
 	catch (e) {

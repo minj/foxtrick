@@ -7,8 +7,10 @@
 'use strict';
 
 /* eslint-disable */
-if (!this.Foxtrick)
-	var Foxtrick = {};
+// MV3: Use globalThis for service worker compatibility
+if (typeof globalThis.Foxtrick === 'undefined')
+	globalThis.Foxtrick = {};
+var Foxtrick = globalThis.Foxtrick;
 /* eslint-enable */
 
 Foxtrick.modules.UI = {
@@ -160,7 +162,8 @@ if (Foxtrick.platform == 'Firefox') {
 if (Foxtrick.platform == 'Chrome') {
 
 	Foxtrick.modules.UI.onLoad = function() {
-		chrome.pageAction.onClicked.addListener(function(tab) {
+		// MV3: Use chrome.action instead of chrome.pageAction
+		chrome.action.onClicked.addListener(function(tab) {
 			Foxtrick.Prefs.disable(tab); // in case pop-up is disabled
 		});
 	};
@@ -178,7 +181,9 @@ if (Foxtrick.platform == 'Chrome') {
 		if (!tab || !tab.id)
 			return;
 
-		chrome.pageAction.show(tab.id);
+		// MV3: chrome.action doesn't require show() - it's always visible
+		// chrome.action.show(tab.id); // Not needed in MV3
+
 		var iconUrl = '', statusText = '';
 		if (Foxtrick.Prefs.getBool('disableTemporary')) {
 			iconUrl = '../skin/disabled-24.png';
@@ -191,10 +196,10 @@ if (Foxtrick.platform == 'Chrome') {
 		var tooltipText = Foxtrick.L10n.getString('toolbar.title') + ' ' +
 			Foxtrick.version + ' ' + Foxtrick.branch + ' (' + statusText + ')';
 
-		if (chrome.pageAction.setIcon)
-			chrome.pageAction.setIcon({ tabId: tab.id, path: iconUrl });
-		if (chrome.pageAction.setTitle)
-			chrome.pageAction.setTitle({ tabId: tab.id, title: tooltipText });
+		if (chrome.action.setIcon)
+			chrome.action.setIcon({ tabId: tab.id, path: iconUrl });
+		if (chrome.action.setTitle)
+			chrome.action.setTitle({ tabId: tab.id, title: tooltipText });
 	};
 }
 

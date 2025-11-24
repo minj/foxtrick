@@ -8,9 +8,10 @@
 'use strict';
 
 /* eslint-disable */
-if (!this.Foxtrick)
-	// @ts-ignore
-	var Foxtrick = {};
+// MV3: Use globalThis for service worker compatibility
+if (typeof globalThis.Foxtrick === 'undefined')
+	globalThis.Foxtrick = {};
+var Foxtrick = globalThis.Foxtrick;
 if (!Foxtrick.util)
 	Foxtrick.util = {};
 /* eslint-enable */
@@ -238,7 +239,10 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 				this.cancel();
 			};
 
-			var notification = window.webkitNotifications.createNotification(IMG, TITLE, msg);
+			// MV3: Safari-specific, not available in service workers
+		if (typeof window === 'undefined' || !window.webkitNotifications)
+			return;
+		var notification = window.webkitNotifications.createNotification(IMG, TITLE, msg);
 
 			if (gUrl)
 				notification.onclick = onClick;
@@ -247,7 +251,8 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 			notification.show();
 
 			// close after 20 sec
-			window.setTimeout(function() {
+			// MV3: Use self.setTimeout for service worker compatibility
+		self.setTimeout(function() {
 				reject(new Error(Foxtrick.TIMEOUT_ERROR));
 				notification.cancel();
 			}, WEBKIT_TIMEOUT);
@@ -255,7 +260,8 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 	};
 
 	var createGrowl = function() {
-		var bridge = window.GrowlSafariBridge;
+		// MV3: Safari Growl bridge not available in service workers
+	var bridge = (typeof window !== 'undefined') ? window.GrowlSafariBridge : null;
 		try {
 			if (bridge && bridge.notifyWithOptions) {
 				bridge.notifyWithOptions(TITLE, msg, {
@@ -298,7 +304,7 @@ Foxtrick.util.notify.create = function(msg, source, opts) {
 	if (Foxtrick.context === 'background') {
 		if (Foxtrick.platform === 'Chrome' && chrome.notifications)
 			return createChrome();
-		else if (window.webkitNotifications)
+		else if (typeof window !== 'undefined' && window.webkitNotifications)
 			return createWebkit();
 		else if (Foxtrick.platform === 'Safari')
 			return createGrowl();

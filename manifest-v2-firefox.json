@@ -1,36 +1,19 @@
 {
-	"manifest_version": 3,
+	"manifest_version": 2,
 	"web_accessible_resources": [
-		{
-			"resources": [
-				"content/resources/css/*.css",
-				"content/resources/img/*.gif",
-				"content/resources/img/*.png",
-				"content/resources/notes/*.png",
-				"content/resources/personality/*.jpg",
-				"content/resources/skillcolors/*.css",
-				"content/resources/sounds/*.mp3",
-				"content/resources/sounds/*.ogg",
-				"content/resources/sounds/*.wav",
-				"content/preferences.html",
-				"content/data/*.json",
-				"content/locale/*/*.properties",
-				"content/locale/*/*.json"
-			],
-			"matches": [
-				"*://*.hattrick.org/*",
-				"*://*.hattrick.ws/*",
-				"*://*.hattrick.bz/*",
-				"*://*.hat-trick.net/*",
-				"*://*.hattrick.uol.com.br/*",
-				"*://*.hattrick.interia.pl/*",
-				"*://*.hattrick.name/*",
-				"*://*.hattrick.fm/*"
-			]
-		}
+		"content/resources/css/*.css",
+		"content/resources/img/*.gif",
+		"content/resources/img/*.png",
+		"content/resources/notes/*.png",
+		"content/resources/personality/*.jpg",
+		"content/resources/skillcolors/*.css",
+		"content/resources/sounds/*.mp3",
+		"content/resources/sounds/*.ogg",
+		"content/resources/sounds/*.wav",
+		"content/preferences.html"
 	],
 	"background": {
-		"service_worker": "content/background-bundle.js"
+		"page": "content/background.html"
 	},
 	"content_scripts": [ {
 		"js": [
@@ -297,14 +280,12 @@
 		"cookies",
 		"contextMenus",
 		"notifications",
-		"clipboardWrite"
-	],
-	"host_permissions": [
+		"clipboardWrite",
 		"*://chpp.hattrick.org/*",
 		"*://*.foxtrick.org/*",
 		"https://www.fantamondi.it/*"
 	],
-	"optional_host_permissions": [
+	"optional_permissions": [
 		"https://*.hattrick-youthclub.org/*",
 		"http://no9-online.de/*",
 		"http://www.latehome.de/*",
@@ -317,24 +298,23 @@
 		"https://imageshack.us/*",
 		"http://api.openweathermap.org/*"
 	],
-	"action": {
+	"page_action": {
 		"default_icon": "skin/icon-24.png",
 		"default_title": "Foxtrick enabled",
 		"default_popup": "content/popup.html"
 	},
-	"minimum_chrome_version": "88",
+	"minimum_chrome_version": "73",
 	"options_ui" : {
 		"page": "content/preferences.html",
+		"chrome_style": false,
+		"browser_style": false,
 		"open_in_tab": true
-	},
-	"content_security_policy": {
-		"extension_pages": "script-src 'self'; object-src 'self'"
 	},
 	"homepage_url": "https://www.foxtrick.org/",
 	// <!-- gecko-specific -->
 	"browser_specific_settings": {
 		"gecko": {
-			"strict_min_version": "109",
+			"strict_min_version": "63.0a1",
 			"update_url": "https://www.foxtrick.org/nightly/update.rdf",
 			"id": "foxtrick-webext-dev@foxtrick.org"
 		}
