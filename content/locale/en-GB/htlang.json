@@ -522,15 +522,15 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "Wing back"
+				"value": "Wing Back"
 			},
 			{
 				"type": "CentralDefender",
-				"value": "Central defender"
+				"value": "Central Defender"
 			},
 			{
 				"type": "InnerMidfield",
-				"value": "Inner midfielder"
+				"value": "Inner Midfielder"
 			},
 			{
 				"type": "Winger",
@@ -566,27 +566,27 @@
 			},
 			{
 				"type": "RightDefense",
-				"value": "Right defence"
+				"value": "Right Defence"
 			},
 			{
 				"type": "CentralDefense",
-				"value": "Central defence"
+				"value": "Central Defence"
 			},
 			{
 				"type": "LeftDefense",
-				"value": "Left defence"
+				"value": "Left Defence"
 			},
 			{
 				"type": "RightAttack",
-				"value": "Right attack"
+				"value": "Right Attack"
 			},
 			{
 				"type": "CentralAttack",
-				"value": "Central attack"
+				"value": "Central Attack"
 			},
 			{
 				"type": "LeftAttack",
-				"value": "Left attack"
+				"value": "Left Attack"
 			}
 		],
 		"skills": [
@@ -616,7 +616,7 @@
 			},
 			{
 				"type": "Kicker",
-				"value": "Set pieces"
+				"value": "Set Pieces"
 			},
 			{
 				"type": "Passer",
@@ -764,7 +764,7 @@
 			},
 			{
 				"type": "ca",
-				"value": "Counter-attacks"
+				"value": "Counter-Attacks"
 			},
 			{
 				"type": "aim",
@@ -772,7 +772,7 @@
 			},
 			{
 				"type": "aow",
-				"value": "Attack on wings"
+				"value": "Attack on Wings"
 			},
 			{
 				"type": "",
@@ -784,11 +784,11 @@
 			},
 			{
 				"type": "creatively",
-				"value": "Play creatively"
+				"value": "Play Creatively"
 			},
 			{
 				"type": "longshots",
-				"value": "Long shots"
+				"value": "Long Shots"
 			}
 		],
 		"training": [
