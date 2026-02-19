@@ -834,15 +834,15 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Perdavimai (gynėjai + saugai)"
+				"value": "Perdavimai (gynėjai ir saugai)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Gynyba (vartininkai, gynėjai + saugai)"
+				"value": "Gynyba (vartininkai, gynėjai, saugų linija)"
 			},
 			{
 				"type": "WingAtt",
-				"value": "Skersavimas (krašto saugai + puolėjai)"
+				"value": "Skersavimas (krašto saugai ir puolėjai)"
 			},
 			{
 				"type": "Indiv",
