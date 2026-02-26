@@ -522,11 +522,11 @@
 			},
 			{
 				"type": "WingBack",
-				"value": "Defensa lateral"
+				"value": "Defensor lateral"
 			},
 			{
 				"type": "CentralDefender",
-				"value": "Defensa central"
+				"value": "Defensor central"
 			},
 			{
 				"type": "InnerMidfield",

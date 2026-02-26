@@ -530,7 +530,7 @@
 			},
 			{
 				"type": "InnerMidfield",
-				"value": "Везни играч"
+				"value": "Везни"
 			},
 			{
 				"type": "Winger",
@@ -628,7 +628,7 @@
 			},
 			{
 				"type": "LeaderShip",
-				"value": "Вођа"
+				"value": "Вођство"
 			}
 		],
 		"specialties": [
