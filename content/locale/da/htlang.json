@@ -36,15 +36,15 @@
 				"value": "1"
 			},
 			{
-				"text": "behagelig fyr",
+				"text": "behagelig type",
 				"value": "2"
 			},
 			{
-				"text": "sympatisk fyr",
+				"text": "sympatisk type",
 				"value": "3"
 			},
 			{
-				"text": "populær fyr",
+				"text": "populær type",
 				"value": "4"
 			},
 			{
@@ -365,6 +365,7 @@
 			"29": "Venezuela",
 			"3": "Tyskland",
 			"30": "Sydkorea",
+			"3000": "Hattrick Femme International",
 			"31": "Thailand",
 			"32": "Tyrkiet",
 			"33": "Egypten",
