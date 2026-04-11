@@ -327,6 +327,11 @@
 			"duty": "translator"
 		},
 		{
+			"id": "9654360",
+			"name": "dM666",
+			"duty": "translator"
+		},
+		{
 			"id": "12062566",
 			"name": "maxim_robi",
 			"duty": "translator"
@@ -369,6 +374,11 @@
 		{
 			"id": "10865363",
 			"name": "DaiTyCaiThe",
+			"duty": "translator"
+		},
+		{
+			"id": "13703668",
+			"name": "adachigustavo",
 			"duty": "translator"
 		}
 	]
