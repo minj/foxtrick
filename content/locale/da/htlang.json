@@ -36,15 +36,15 @@
 				"value": "1"
 			},
 			{
-				"text": "behagelig type",
+				"text": "behagelig person",
 				"value": "2"
 			},
 			{
-				"text": "sympatisk type",
+				"text": "sympatisk person",
 				"value": "3"
 			},
 			{
-				"text": "populær type",
+				"text": "populær person",
 				"value": "4"
 			},
 			{
@@ -831,7 +831,7 @@
 			},
 			{
 				"type": "GK",
-				"value": "Målmand"
+				"value": "Målmandsspil"
 			},
 			{
 				"type": "ThPass",
@@ -839,7 +839,7 @@
 			},
 			{
 				"type": "DefPos",
-				"value": "Forsvar (målmænd, forsvarere + alle midtbanespillere)"
+				"value": "Forsvar (målvogter, forsvarere + alle midtbanespillere)"
 			},
 			{
 				"type": "WingAtt",

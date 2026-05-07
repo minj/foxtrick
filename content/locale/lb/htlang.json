@@ -527,11 +527,11 @@
 			},
 			{
 				"type": "CentralDefender",
-				"value": "zentrale Verteideger"
+				"value": "Zentrale Verteideger"
 			},
 			{
 				"type": "InnerMidfield",
-				"value": "zentrale Mëttelfeldspiller"
+				"value": "Zentrale Mëttelfeldspiller"
 			},
 			{
 				"type": "Winger",
@@ -815,11 +815,11 @@
 			},
 			{
 				"type": "Cross",
-				"value": "Bandentraining"
+				"value": "Bande"
 			},
 			{
 				"type": "Shoot",
-				"value": "Schoss a Strofstéiss Training"
+				"value": "Schoss- a Strofstéisstraining"
 			},
 			{
 				"type": "Pass",
@@ -831,15 +831,15 @@
 			},
 			{
 				"type": "GK",
-				"value": "Golkipps-Training"
+				"value": "Golkipp"
 			},
 			{
 				"type": "ThPass",
-				"value": "Erweiderte Passtraining (Verteideger, Mëttelfeld a Banden)"
+				"value": "Erweiderte Passtraining (Verteideger + All Mëttelfeldspiller)"
 			},
 			{
 				"type": "DefPos",
-				"value": "Verteidegung (GK, Verteideger + Mëttelfeld)"
+				"value": "Verteidegung (Golkipper, Verteideger + Mëttelfeldspiller)"
 			},
 			{
 				"type": "WingAtt",
