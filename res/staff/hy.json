@@ -82,11 +82,6 @@
 			"duty": "helper"
 		},
 		{
-			"id": "8059435",
-			"name": "Saltapiou",
-			"duty": "support"
-		},
-		{
 			"id": "7128451",
 			"name": "LA-savcenko",
 			"duty": "translator"
@@ -379,6 +374,11 @@
 		{
 			"id": "10865363",
 			"name": "DaiTyCaiThe",
+			"duty": "translator"
+		},
+		{
+			"id": "8059435",
+			"name": "Saltapiou",
 			"duty": "translator"
 		},
 		{
