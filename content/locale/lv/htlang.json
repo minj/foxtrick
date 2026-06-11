@@ -207,15 +207,15 @@
 		],
 		"fans_season": [
 			{
-				"text": "Mēs tiksim izmantoti kājslauķu vietā ...",
+				"text": "Mēs neesam šīs līgas cienīgi",
 				"value": "0"
 			},
 			{
-				"text": "Katra diena šajā līgā ir kā bonuss ...",
+				"text": "Katra diena šajā līgā ir kā bonuss",
 				"value": "1"
 			},
 			{
-				"text": "Mums būs smagi jāpacīnās, lai paliktu ...",
+				"text": "Mums būs smagi jāpacīnās, lai paliktu",
 				"value": "2"
 			},
 			{
@@ -795,7 +795,7 @@
 		"training": [
 			{
 				"type": "Gen",
-				"value": "Vispārējais (gatavība spēlei)"
+				"value": "Vispārējais (forma)"
 			},
 			{
 				"type": "Sta",
