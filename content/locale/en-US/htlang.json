@@ -835,7 +835,7 @@
 			},
 			{
 				"type": "ThPass",
-				"value": "Passing (Defenders + Midfielders + Wingers)"
+				"value": "Passing (Defenders + All Midfielders)"
 			},
 			{
 				"type": "DefPos",
