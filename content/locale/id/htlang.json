@@ -207,7 +207,7 @@
 		],
 		"fans_season": [
 			{
-				"text": "Kami tidak layak divisi ini",
+				"text": "Kita tidak layak berada di divisi ini",
 				"value": "0"
 			},
 			{
@@ -215,27 +215,27 @@
 				"value": "1"
 			},
 			{
-				"text": "Kami akan harus berjuang untuk tetap bertahan",
+				"text": "Kita harus berjuang agar tetap bertahan",
 				"value": "2"
 			},
 			{
-				"text": "Selesai di papan tengah cukup bagus",
+				"text": "Finis di posisi tengah klasemen cukup bagus",
 				"value": "3"
 			},
 			{
-				"text": "Kami termasuk dalam 4 besar",
+				"text": "Kita pantas berada di 4 besar",
 				"value": "4"
 			},
 			{
-				"text": "Mengincar untuk juara!",
+				"text": "Incar gelar juara!",
 				"value": "5"
 			},
 			{
-				"text": "Kami harus menang musim ini",
+				"text": "Kita harus menang musim ini",
 				"value": "6"
 			},
 			{
-				"text": "Kami jauh lebih baik daripada divisi ini!",
+				"text": "Kita jauh lebih baik dibandingkan divisi ini!",
 				"value": "7"
 			}
 		],
