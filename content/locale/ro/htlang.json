@@ -597,7 +597,7 @@
 			},
 			{
 				"type": "Stamina",
-				"value": "Rezistenţă"
+				"value": "Rezistență"
 			},
 			{
 				"type": "Defender",
@@ -605,7 +605,7 @@
 			},
 			{
 				"type": "Playmaker",
-				"value": "Construcţie"
+				"value": "Construcție"
 			},
 			{
 				"type": "Winger",
