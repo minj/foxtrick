@@ -509,5 +509,32 @@
 		},
 		"title": "Rate My Academy",
 		"img": "https://www.foxtrick.org/res/linkicons/ratemyacademy.ico"
+	},
+	"ntdatalab": {
+	  "playerlink": {
+	    "url": "https://ntdatalab.com/nationals-player?player-id=[playerid]"
+	  },
+	  "title": "NTDataLab - National Team Player Analysis",
+	  "img": "https://ntdatalab.com/assets/img/icons/common/nticon.png"
+	},
+	"ntdatalabtracker": {
+	  "img": "https://ntdatalab.com/assets/img/icons/common/nticon.png",
+	  "forceimg": true,
+	  "title": "NTDataLab - San Marino Tracker",
+	  "shorttitle": "NTDataLab",
+	  "trackerplayerlink": {
+	    "url": "https://ntdatalab.com/nationals-player?player-id=[playerid]",
+	    "filters": ["nationality"]
+	  },
+	  "trackernationalteamlink": {
+	    "url": "https://ntdatalab.com",
+	    "filters": ["leagueid"]
+	  },
+	  "trackerleaguelink": {
+	    "url": "https://ntdatalab.com",
+	    "filters": ["leagueid"]
+	  },
+	  "leagueidranges": [[163, 163]],
+	  "nationalityranges": [[163, 163]]
 	}
 }
